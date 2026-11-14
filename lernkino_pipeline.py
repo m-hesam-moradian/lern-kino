@@ -326,10 +326,17 @@ def select_or_create_series() -> Path:
     else:
         ep_dir = existing_eps[choice_e - 1]
 
-    return ep_dir
+    # Compute standard episode code (e.g. S1E3)
+    s_match = re.search(r'\d+', season_dir.name)
+    e_match = re.search(r'\d+', ep_dir.name)
+    s_num = int(s_match.group(0)) if s_match else 1
+    e_num = int(e_match.group(0)) if e_match else 1
+    std_code = f"S{s_num}E{e_num}"
+
+    return ep_dir, std_code
 
 
-def select_or_create_movie() -> Path:
+def select_or_create_movie() -> Tuple[Path, str]:
     """Interactive navigation for Movies folder."""
     MOVIES_ROOT.mkdir(parents=True, exist_ok=True)
     existing_movies = sorted([d for d in MOVIES_ROOT.iterdir() if d.is_dir()], key=lambda p: p.name.lower())
@@ -371,30 +378,48 @@ def select_or_create_movie() -> Path:
     else:
         movie_dir = existing_movies[choice - 1]
 
-    return movie_dir
+    safe_title = re.sub(r'[^\w\-_\. ]', '', movie_dir.name).strip() or "movie"
+    return movie_dir, safe_title
 
 
 # ── Step C: Video Handling & url.txt ───────────────────────────────────────
-def handle_video_file(target_dir: Path) -> Path:
-    """Prompts for video source, checks file size, copies/moves it into target folder."""
-    print(f"\n{Colors.CYAN}── Video File Selection ───────────────────────────────────────────────{Colors.RESET}")
-    while True:
-        raw_path = prompt_string("Drag & drop or paste source VIDEO path (.mp4, .mkv, .webm, .avi)", required=True)
-        cleaned = clean_input_path(raw_path)
-        source_path = Path(cleaned)
+def handle_video_file(target_dir: Path, default_stem: Optional[str] = None) -> Path:
+    """Prompts for video source, offers clean renaming (e.g. S1E3.mp4), copies/moves it."""
+    # Check if target folder already has video files
+    existing_videos = [f for f in target_dir.iterdir() if f.is_file() and f.suffix.lower() in SUPPORTED_VIDEO_EXTS]
+    source_path: Optional[Path] = None
 
-        if not source_path.exists() or not source_path.is_file():
-            print(f"{Colors.RED}File does not exist: {source_path}{Colors.RESET}")
-            continue
+    if existing_videos:
+        print(f"\n{Colors.CYAN}── Video Detected in Target Folder ────────────────────────────────────{Colors.RESET}")
+        for idx, ev in enumerate(existing_videos, start=1):
+            ev_mb = ev.stat().st_size / (1024 * 1024)
+            print(f"  [{idx}] {ev.name} ({ev_mb:.1f} MB)")
+        print(f"  [0] Select / Drag & drop a different video file...")
+        v_choice = prompt_choice("Use existing video in folder?", len(existing_videos), default=1)
+        if v_choice > 0:
+            source_path = existing_videos[v_choice - 1]
 
-        if source_path.suffix.lower() not in SUPPORTED_VIDEO_EXTS:
-            print(f"{Colors.YELLOW}Warning: Extension '{source_path.suffix}' is unusual for video.{Colors.RESET}")
-            if not prompt_yes_no("Proceed with this file anyway?", default_yes=True):
+    if not source_path:
+        print(f"\n{Colors.CYAN}── Video File Selection ───────────────────────────────────────────────{Colors.RESET}")
+        while True:
+            raw_path = prompt_string("Drag & drop or paste source VIDEO path (.mp4, .mkv, .webm, .avi)", required=True)
+            cleaned = clean_input_path(raw_path)
+            cand_path = Path(cleaned)
+
+            if not cand_path.exists() or not cand_path.is_file():
+                print(f"{Colors.RED}File does not exist: {cand_path}{Colors.RESET}")
                 continue
-        break
 
+            if cand_path.suffix.lower() not in SUPPORTED_VIDEO_EXTS:
+                print(f"{Colors.YELLOW}Warning: Extension '{cand_path.suffix}' is unusual for video.{Colors.RESET}")
+                if not prompt_yes_no("Proceed with this file anyway?", default_yes=True):
+                    continue
+            source_path = cand_path
+            break
+
+    ext = source_path.suffix.lower()
     size_mb = source_path.stat().st_size / (1024 * 1024)
-    print(f"{Colors.GREEN}✓ Found video: {source_path.name} ({size_mb:.1f} MB){Colors.RESET}")
+    print(f"{Colors.GREEN}✓ Selected video: {source_path.name} ({size_mb:.1f} MB){Colors.RESET}")
 
     if size_mb > 95:
         print(f"\n{Colors.YELLOW}💡 Tip on File Size ({size_mb:.1f} MB):{Colors.RESET}")
@@ -403,26 +428,54 @@ def handle_video_file(target_dir: Path) -> Path:
         print(f"   so you can stream this file locally without breaking GitHub Pages pushes!")
         print(f"   You can also provide a cloud streaming link in url.txt below.\n")
 
-    # Check if file is already inside target_dir
-    dest_path = target_dir / source_path.name
+    # Determine destination filename (Standard S1E3.mp4 vs episode.mp4 vs original)
+    if default_stem:
+        print(f"{Colors.CYAN}── Destination Filename ───────────────────────────────────────────────{Colors.RESET}")
+        print(f"  [1] {default_stem}{ext} (Recommended - standard code for LernKino subtitles: {default_stem}.srt)")
+        print(f"  [2] episode{ext} (Generic)")
+        print(f"  [3] {source_path.name} (Keep current filename)")
+        print(f"  [4] Custom name...")
+        name_choice = prompt_choice("Choose filename", 4, default=1)
+
+        if name_choice == 1:
+            target_filename = f"{default_stem}{ext}"
+        elif name_choice == 2:
+            target_filename = f"episode{ext}"
+        elif name_choice == 3:
+            target_filename = source_path.name
+        else:
+            custom_base = prompt_string(f"Enter filename (without extension {ext})", default=default_stem, required=True)
+            target_filename = f"{custom_base}{ext}"
+    else:
+        target_filename = source_path.name
+
+    dest_path = target_dir / target_filename
+
+    # Execute transfer / rename
     if source_path.resolve() == dest_path.resolve():
-        print(f"{Colors.CYAN}ℹ Video is already located in the target folder. Skipping copy.{Colors.RESET}")
+        print(f"{Colors.CYAN}ℹ Video is already in target folder as '{target_filename}'. Skipping copy.{Colors.RESET}")
+        dest_video = dest_path
+    elif source_path.parent.resolve() == target_dir.resolve():
+        # Video is inside target_dir, just rename it
+        print(f"Renaming '{source_path.name}' to '{target_filename}' in target folder...")
+        source_path.rename(dest_path)
+        print(f"{Colors.GREEN}✓ Video renamed to {target_filename}.{Colors.RESET}")
         dest_video = dest_path
     else:
-        print(f"Choose transfer action for {source_path.name}:")
-        print("  [1] Copy video to target folder (Default - keeps original safe)")
-        print("  [2] Move video to target folder")
+        print(f"\nChoose transfer action for {source_path.name} -> {target_filename}:")
+        print(f"  [1] Copy video to target folder as '{target_filename}' (Default - keeps original safe)")
+        print(f"  [2] Move video to target folder as '{target_filename}'")
         action = prompt_choice("Action", 2, default=1)
 
         if action == 1:
-            print(f"Copying video ({size_mb:.1f} MB) to {target_dir.name}... Please wait...")
+            print(f"Copying video ({size_mb:.1f} MB) to {target_filename}... Please wait...")
             shutil.copy2(source_path, dest_path)
-            print(f"{Colors.GREEN}✓ Video copied successfully.{Colors.RESET}")
+            print(f"{Colors.GREEN}✓ Video copied successfully as {target_filename}.{Colors.RESET}")
             dest_video = dest_path
         else:
-            print(f"Moving video to {target_dir.name}...")
+            print(f"Moving video to {target_filename}...")
             shutil.move(str(source_path), str(dest_path))
-            print(f"{Colors.GREEN}✓ Video moved successfully.{Colors.RESET}")
+            print(f"{Colors.GREEN}✓ Video moved successfully as {target_filename}.{Colors.RESET}")
             dest_video = dest_path
 
     # Optional url.txt
@@ -640,16 +693,16 @@ Options:
 
     # ── Step B: Folder Navigation / Creation ──
     if content_type_choice == 1:
-        target_dir = select_or_create_series()
-        item_label = f"Series: {target_dir.parent.parent.name} S{target_dir.parent.name}E{target_dir.name}"
+        target_dir, default_stem = select_or_create_series()
+        item_label = f"Series: {target_dir.parent.parent.name} {default_stem}"
     else:
-        target_dir = select_or_create_movie()
+        target_dir, default_stem = select_or_create_movie()
         item_label = f"Movie: {target_dir.name}"
 
     print(f"\n{Colors.GREEN}✓ Target Directory:{Colors.RESET} {target_dir}")
 
     # ── Step C: Video File Selection & Copy ──
-    video_file = handle_video_file(target_dir)
+    video_file = handle_video_file(target_dir, default_stem=default_stem)
 
     # ── Step D: Subtitle Plan & Confirmation ──
     video_stem = video_file.stem

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T09:28:58.877Z",
+  "generatedAt": "2026-11-14T10:07:47.543Z",
   "totalSeries": 1,
   "totalMovies": 0,
   "totalEpisodes": 2,
@@ -45,7 +45,7 @@
               "episodeNumber": 2,
               "title": "The One with the Sonogram at the End",
               "description": "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry.",
-              "videoSrc": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "videoSrc": "https://lorem.video/720p",
               "isExternalVideo": true,
               "thumbnailSrc": null,
               "subtitles": {
@@ -89,7 +89,7 @@
           "episodeNumber": 2,
           "title": "The One with the Sonogram at the End",
           "description": "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry.",
-          "videoSrc": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          "videoSrc": "https://lorem.video/720p",
           "isExternalVideo": true,
           "thumbnailSrc": null,
           "subtitles": {

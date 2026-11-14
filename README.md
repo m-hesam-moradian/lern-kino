@@ -79,6 +79,45 @@ LernKino resolves episode videos in this order:
 
 ---
 
+## 🎙️ Automated Subtitle & Media Pipeline (`lernkino_pipeline.py`)
+
+LernKino includes an interactive Python CLI pipeline to automatically transcribe German videos with **faster-whisper**, batch-translate to English via **deep-translator**, generate bilingual subtitles, organize files into the correct folder hierarchy, and push to GitHub.
+
+### 1. Requirements Setup (One-Time)
+On any computer (local machine, VPS, or cloud instance with Python 3.10+):
+```bash
+pip install -r requirements.txt
+```
+*(Packages: `faster-whisper`, `deep-translator`, `requests`, `av`)*
+
+### 2. Run the Interactive Pipeline
+```bash
+python lernkino_pipeline.py
+# (or on Windows: py -3.12 lernkino_pipeline.py)
+```
+
+### 3. What the Pipeline Does:
+1. **Interactive Content Selection:** Choose between `[1] Series Episode` or `[2] Standalone Movie`.
+2. **Folder Organization:** 
+   - Lists existing series/movies or prompts you to create a new one (creates folder, `series.json`/`meta.json`, and optional cover).
+   - Manages numeric seasons and episodes automatically (e.g. `series/Dark/seasons/1/1/`).
+3. **Video Handling & Safe Size Check:**
+   - Drag & drop your video path (`.mp4`, `.mkv`, `.avi`, `.webm`).
+   - Choose to **Copy** or **Move** into the target folder.
+   - Automatically reminds you of GitHub's 100 MB limit (videos >95 MB are safely ignored by `.gitignore` so your repo stays lightweight, and you can provide an external streaming URL in `url.txt`).
+4. **Whisper AI German Transcription:**
+   - Runs `faster-whisper` (`model="small"`, `language="de"`, `vad_filter=True`, `compute_type="int8"`).
+   - Streams 1:1 German dubtitles to `<basename>.srt`.
+5. **Fast Batch English Translation:**
+   - Uses Google Translate batch requests in chunks of 50 blocks without web rate-limiting.
+   - Generates English translation `<basename>.en.srt`.
+   - Generates synchronized Bilingual subtitles `<basename>.bilingual.srt` with yellow English accents (`<font color="#ffff00">`).
+6. **Automatic Catalog & GitHub Deploy:**
+   - Prompts to update `catalog.json` (`npm run catalog`).
+   - Prompts to commit and push the new subtitles and metadata directly to GitHub Pages (`git push`).
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Install Dependencies
@@ -159,6 +198,8 @@ subsync/ (lern-kino)
 │       ├── media.ts               # Media, series, episode, and movie types
 │       ├── learning.ts            # WatchProgress, LeitnerBoxLevel, SavedVocabCard
 │       └── subtitles.ts           # SubtitleCue, SubtitlePreferences
+├── lernkino_pipeline.py           # Interactive Whisper AI transcription & translation CLI
+├── requirements.txt               # Python dependencies for subtitle generation
 ├── next.config.mjs                # Static export configuration & dynamic basePath
 └── package.json                   # Dependencies, scripts, and prebuild catalog hook
 ```

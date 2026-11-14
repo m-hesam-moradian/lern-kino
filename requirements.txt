@@ -1,0 +1,6 @@
+# LernKino Media & Subtitle Pipeline Dependencies
+# Install with: pip install -r requirements.txt
+faster-whisper>=1.0.0
+deep-translator>=1.11.0
+requests>=2.28.0
+av>=12.0.0

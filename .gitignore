@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js build & static export output
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env*.local
+.env
+
+# Debug & npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# OS & Editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# ── Media Folders & GitHub 100 MB Push Limit Protection ────────────────────
+# Ensure media directory structure, subtitles, metadata, covers and url.txt are tracked:
+!public/media/
+!public/media/**
+
+# Ignore heavy video binaries by default (GitHub enforces a 100 MB per-file limit)
+public/media/**/*.mp4
+public/media/**/*.mkv
+public/media/**/*.avi
+public/media/**/*.webm
+*.mp4
+*.mkv
+*.avi
+*.webm
+
+# To un-ignore a specific small demo clip under 50 MB, add an exception like:
+# !public/media/series/demo/s1/e1/sample.mp4

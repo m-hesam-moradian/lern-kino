@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-11-14T09:28:58.877Z",
+  "totalSeries": 1,
+  "totalMovies": 0,
+  "totalEpisodes": 2,
+  "series": [
+    {
+      "slug": "friends-german-dub",
+      "title": "Friends (German Dub)",
+      "description": "Follow six friends navigating life, romance, and laughter in 1990s Manhattan. An ideal sitcom for German learners with natural everyday dialogue.",
+      "language": "de",
+      "genres": [
+        "Series"
+      ],
+      "featured": false,
+      "posterSrc": null,
+      "backdropSrc": null,
+      "totalSeasons": 1,
+      "totalEpisodes": 2,
+      "seasons": [
+        {
+          "seasonNumber": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "id": "s01e01",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 1,
+              "title": "The One Where Monica Gets a Roommate",
+              "description": "Monica and the gang are introduced to Rachel after she leaves her fiancé at the altar.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/1/episode.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": "/media/series/Friends (German Dub)/seasons/1/1/episode.srt",
+                "en": "/media/series/Friends (German Dub)/seasons/1/1/episode.en.srt"
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e02",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 2,
+              "title": "The One with the Sonogram at the End",
+              "description": "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry.",
+              "videoSrc": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "isExternalVideo": true,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": "/media/series/Friends (German Dub)/seasons/1/2/de.srt",
+                "en": "/media/series/Friends (German Dub)/seasons/1/2/en.srt"
+              },
+              "durationSeconds": 1320
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "movies": [],
+  "totalSeasons": 1,
+  "seasons": [
+    {
+      "seasonNumber": 1,
+      "title": "Season 1",
+      "episodes": [
+        {
+          "id": "s01e01",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 1,
+          "title": "The One Where Monica Gets a Roommate",
+          "description": "Monica and the gang are introduced to Rachel after she leaves her fiancé at the altar.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/1/episode.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": "/media/series/Friends (German Dub)/seasons/1/1/episode.srt",
+            "en": "/media/series/Friends (German Dub)/seasons/1/1/episode.en.srt"
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e02",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 2,
+          "title": "The One with the Sonogram at the End",
+          "description": "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry.",
+          "videoSrc": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          "isExternalVideo": true,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": "/media/series/Friends (German Dub)/seasons/1/2/de.srt",
+            "en": "/media/series/Friends (German Dub)/seasons/1/2/en.srt"
+          },
+          "durationSeconds": 1320
+        }
+      ]
+    }
+  ]
+}

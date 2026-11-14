@@ -1,0 +1,25 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2.5" floodColor="#00FFFF" floodOpacity="0.6" />
+    </filter>
+    <linearGradient id="frame" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#00FFFF" />
+      <stop offset="100%" stopColor="#0284C7" />
+    </linearGradient>
+    <linearGradient id="prism" x1="18" y1="14" x2="34" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#00FFFF" />
+      <stop offset="100%" stopColor="#06B6D4" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="40" height="40" rx="12" fill="#090C12" stroke="url(#frame)" stroke-width="3" />
+  <circle cx="11" cy="9" r="1.5" fill="#00FFFF" />
+  <circle cx="19" cy="9" r="1.5" fill="#00FFFF" />
+  <circle cx="27" cy="9" r="1.5" fill="#00FFFF" />
+  <circle cx="35" cy="9" r="1.5" fill="#00FFFF" />
+  <circle cx="11" cy="39" r="1.5" fill="#00FFFF" fill-opacity="0.5" />
+  <circle cx="19" cy="39" r="1.5" fill="#00FFFF" fill-opacity="0.5" />
+  <circle cx="27" cy="39" r="1.5" fill="#00FFFF" fill-opacity="0.5" />
+  <circle cx="35" cy="39" r="1.5" fill="#00FFFF" fill-opacity="0.5" />
+  <path d="M20 17C20 16 21.1 15.4 22 15.9L31.5 22.4C32.3 22.9 32.3 24.1 31.5 24.6L22 31.1C21.1 31.6 20 31 20 30V17Z" fill="url(#prism)" filter="url(#glow)" />
+</svg>

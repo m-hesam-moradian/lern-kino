@@ -1032,6 +1032,11 @@ export default function VideoPlayer({
         preferences={subtitlePrefs}
         controlsVisible={showControls}
         onWordClick={handleWordClick}
+        mediaSourceTitle={seriesTitle || title}
+        seriesSlug={seriesSlug}
+        seasonNumber={seasonNumber}
+        episodeNumber={episodeNumber}
+        movieSlug={movieSlug}
       />
 
       {/* ── Interactive Word Dictionary & Leitner Modal ────────────── */}

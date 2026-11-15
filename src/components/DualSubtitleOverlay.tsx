@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import type { SubtitleCue, SubtitlePreferences } from '@/types/subtitles';
 import { findActiveCues, isWordToken } from '@/lib/srtParser';
 import {
@@ -8,6 +8,8 @@ import {
   SUBTITLE_EN_COLOR_CLASSES,
   SUBTITLE_BG_CLASSES,
 } from '@/lib/subtitlePrefs';
+import { saveSentence, isSentenceSaved, SENTENCES_UPDATED_EVENT } from '@/lib/sentences';
+import { BookmarkPlus, BookmarkCheck, Check } from 'lucide-react';
 
 export interface DualSubtitleOverlayProps {
   currentTime: number;
@@ -16,6 +18,11 @@ export interface DualSubtitleOverlayProps {
   preferences: SubtitlePreferences;
   controlsVisible: boolean;
   onWordClick?: (word: string, language: 'de' | 'en', cue: SubtitleCue, pairedCue?: SubtitleCue) => void;
+  mediaSourceTitle?: string;
+  seriesSlug?: string;
+  seasonNumber?: number;
+  episodeNumber?: number;
+  movieSlug?: string;
 }
 
 export default function DualSubtitleOverlay({
@@ -25,6 +32,11 @@ export default function DualSubtitleOverlay({
   preferences,
   controlsVisible,
   onWordClick,
+  mediaSourceTitle,
+  seriesSlug,
+  seasonNumber,
+  episodeNumber,
+  movieSlug,
 }: DualSubtitleOverlayProps) {
   const { mode, fontSize, enColor, bgOpacity, offsetSeconds, snappyDialogue = true } = preferences;
 
@@ -55,6 +67,49 @@ export default function DualSubtitleOverlay({
     return [rawEnglishCues[rawEnglishCues.length - 1]];
   }, [rawEnglishCues, snappyDialogue]);
 
+  const currentGermanText = useMemo(() => activeGermanCues.map((c) => c.text).join(' '), [activeGermanCues]);
+  const currentEnglishText = useMemo(() => activeEnglishCues.map((c) => c.text).join(' '), [activeEnglishCues]);
+
+  const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [savedToast, setSavedToast] = useState<string | null>(null);
+
+  // Sync sentence saved status
+  useEffect(() => {
+    if (!currentGermanText) {
+      setIsSaved(false);
+      return;
+    }
+    const check = () => setIsSaved(isSentenceSaved(currentGermanText));
+    check();
+    window.addEventListener(SENTENCES_UPDATED_EVENT, check);
+    return () => window.removeEventListener(SENTENCES_UPDATED_EVENT, check);
+  }, [currentGermanText]);
+
+  const handleSaveCurrentSentence = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!currentGermanText) return;
+
+    if (isSaved) {
+      setSavedToast('Already saved in Sentence Studio');
+      setTimeout(() => setSavedToast(null), 2000);
+      return;
+    }
+
+    saveSentence({
+      german: currentGermanText,
+      english: currentEnglishText,
+      timestampSeconds: activeGermanCues[0]?.startTime ?? currentTime,
+      mediaSourceTitle,
+      seriesSlug,
+      seasonNumber,
+      episodeNumber,
+      movieSlug,
+    });
+    setIsSaved(true);
+    setSavedToast('Saved to Sentence Practice!');
+    setTimeout(() => setSavedToast(null), 2500);
+  };
+
   // If captions are turned off, don't render anything
   if (mode === 'off') {
     return null;
@@ -83,12 +138,40 @@ export default function DualSubtitleOverlay({
       className={`absolute left-0 right-0 z-30 flex flex-col items-center justify-end px-2.5 sm:px-4 pointer-events-none transition-all duration-300 ease-out select-none ${bottomPositionClass}`}
       aria-live="polite"
     >
+      {/* Toast Notification when a sentence is saved */}
+      {savedToast && (
+        <div className="mb-2 px-3 py-1 rounded-full bg-cyan-500/95 text-slate-950 font-bold text-xs shadow-[0_0_15px_rgba(0,255,255,0.6)] animate-in fade-in zoom-in-95 pointer-events-none flex items-center gap-1.5">
+          <Check className="w-3.5 h-3.5" />
+          <span>{savedToast}</span>
+        </div>
+      )}
+
       <div
-        className={`pointer-events-auto max-w-4xl rounded-xl sm:rounded-2xl px-3.5 py-2 sm:px-5 sm:py-3 text-center transition-all duration-200 space-y-1 sm:space-y-1.5 ${bgClass}`}
+        className={`relative pointer-events-auto max-w-4xl rounded-xl sm:rounded-2xl px-4 py-2 sm:px-7 sm:py-3 text-center transition-all duration-200 space-y-1 sm:space-y-1.5 group ${bgClass}`}
       >
+        {/* Quick Sentence Bookmark / Practice Button */}
+        {hasGerman && (
+          <button
+            onClick={handleSaveCurrentSentence}
+            className={`absolute top-2 right-2 p-1.5 rounded-lg transition-all ${
+              isSaved
+                ? 'text-cyan-400 bg-cyan-500/20 shadow-[0_0_10px_rgba(0,255,255,0.4)] opacity-100'
+                : 'text-slate-400 hover:text-white bg-black/40 hover:bg-white/15 opacity-70 group-hover:opacity-100'
+            }`}
+            title={isSaved ? 'Sentence saved in Sentence Studio' : 'Save full sentence to Practice Deck'}
+            type="button"
+          >
+            {isSaved ? (
+              <BookmarkCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
+            ) : (
+              <BookmarkPlus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            )}
+          </button>
+        )}
+
         {/* ── German Subtitle Line (Target Language) ────────────────── */}
         {hasGerman && (
-          <div className="space-y-0.5 sm:space-y-1">
+          <div className="space-y-0.5 sm:space-y-1 pr-5">
             {activeGermanCues.map((cue) => (
               <div
                 key={`de-${cue.index}`}
@@ -121,7 +204,7 @@ export default function DualSubtitleOverlay({
 
         {/* ── English Subtitle Line (Translation Reference) ─────────── */}
         {hasEnglish && (
-          <div className="space-y-0.5">
+          <div className="space-y-0.5 pr-5">
             {activeEnglishCues.map((cue) => (
               <div
                 key={`en-${cue.index}`}

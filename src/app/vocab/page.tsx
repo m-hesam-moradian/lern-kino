@@ -16,6 +16,7 @@ import {
   LEITNER_UPDATED_EVENT,
 } from '@/lib/leitner';
 import { speakGermanWord } from '@/lib/dictionary';
+import SentenceStudio from '@/components/SentenceStudio';
 import type { SavedVocabCard, LeitnerBoxLevel } from '@/types/learning';
 import {
   Sparkles,
@@ -36,11 +37,13 @@ import {
   Trophy,
   Calendar,
   HelpCircle,
+  BookOpen,
 } from 'lucide-react';
 
 export default function VocabPage() {
   const [deck, setDeck] = useState<SavedVocabCard[]>([]);
   const [mounted, setMounted] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<'words' | 'sentences'>('words');
   const [activeBoxFilter, setActiveBoxFilter] = useState<'all' | LeitnerBoxLevel>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -305,7 +308,43 @@ export default function VocabPage() {
         </div>
       </div>
 
-      {/* ── 1. The 5-Box Leitner Overview Row ────────────────────────── */}
+      {/* ── Learning Mode Tabs: Words vs Sentences ────────────────────── */}
+      <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-200/60 dark:bg-white/5 border border-slate-300/40 dark:border-white/10 w-fit">
+        <button
+          onClick={() => setActiveTab('words')}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            activeTab === 'words'
+              ? 'bg-cyan-500 text-slate-950 shadow-[0_0_15px_rgba(0,255,255,0.4)]'
+              : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/5'
+          }`}
+          type="button"
+        >
+          <Layers className="w-4 h-4" />
+          <span>Word Flashcards (Leitner)</span>
+          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-black/20">
+            {deck.length}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('sentences')}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            activeTab === 'sentences'
+              ? 'bg-cyan-500 text-slate-950 shadow-[0_0_15px_rgba(0,255,255,0.4)]'
+              : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/5'
+          }`}
+          type="button"
+        >
+          <BookOpen className="w-4 h-4" />
+          <span>Sentence Studio (Practice)</span>
+        </button>
+      </div>
+
+      {activeTab === 'sentences' ? (
+        <SentenceStudio onNotify={showToast} />
+      ) : (
+        <>
+          {/* ── 1. The 5-Box Leitner Overview Row ────────────────────────── */}
       <section className="space-y-3">
         <div className="flex items-center justify-between text-xs text-slate-500">
           <span className="font-semibold uppercase tracking-wider font-mono">Box Distribution & Intervals</span>
@@ -731,6 +770,8 @@ export default function VocabPage() {
           </div>
         )}
       </section>
+        </>
+      )}
 
     </main>
   );

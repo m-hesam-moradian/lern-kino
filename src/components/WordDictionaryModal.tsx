@@ -14,6 +14,7 @@ import {
   LEITNER_INTERVALS_DAYS,
 } from '@/lib/leitner';
 import type { SavedVocabCard } from '@/types/learning';
+import { saveSentence, isSentenceSaved, SENTENCES_UPDATED_EVENT } from '@/lib/sentences';
 import {
   Volume2,
   X,
@@ -27,6 +28,8 @@ import {
   Edit2,
   Save,
   Layers,
+  BookmarkPlus,
+  BookmarkCheck,
 } from 'lucide-react';
 
 export interface WordDictionaryModalProps {
@@ -66,6 +69,7 @@ export default function WordDictionaryModal({
   const [showExpanded, setShowExpanded] = useState<boolean>(false);
   const [autoResume, setAutoResume] = useState<boolean>(wasPlayingBeforeOpen);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
+  const [isSentenceContextSaved, setIsSentenceContextSaved] = useState<boolean>(false);
 
   const cleaned = cleanWord(word);
 
@@ -99,6 +103,30 @@ export default function WordDictionaryModal({
       active = false;
     };
   }, [word]);
+
+  // Sync sentence context saved status
+  useEffect(() => {
+    if (!germanSentence) return;
+    const check = () => setIsSentenceContextSaved(isSentenceSaved(germanSentence));
+    check();
+    window.addEventListener(SENTENCES_UPDATED_EVENT, check);
+    return () => window.removeEventListener(SENTENCES_UPDATED_EVENT, check);
+  }, [germanSentence]);
+
+  const handleSaveSentenceContext = () => {
+    if (!germanSentence) return;
+    saveSentence({
+      german: germanSentence,
+      english: englishSentence || '',
+      timestampSeconds,
+      mediaSourceTitle,
+      seriesSlug,
+      seasonNumber,
+      episodeNumber,
+      movieSlug,
+    });
+    setIsSentenceContextSaved(true);
+  };
 
   // ── 2. Keyboard Listener (Escape to close) ──────────────────────────────────
   useEffect(() => {
@@ -286,10 +314,36 @@ export default function WordDictionaryModal({
 
         {/* ── Subtitle Context Dialogue ───────────────────────────────── */}
         {(germanSentence || englishSentence) && (
-          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-white/10 space-y-1.5 text-xs">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
-              Subtitle Context
-            </span>
+          <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-white/10 space-y-2 text-xs relative">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+                Subtitle Context
+              </span>
+              {germanSentence && (
+                <button
+                  onClick={handleSaveSentenceContext}
+                  className={`px-2 py-0.5 rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all ${
+                    isSentenceContextSaved
+                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                      : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
+                  }`}
+                  type="button"
+                  title="Save full sentence to Sentence Practice Deck"
+                >
+                  {isSentenceContextSaved ? (
+                    <>
+                      <BookmarkCheck className="w-3 h-3 text-cyan-400" />
+                      <span>Sentence Saved</span>
+                    </>
+                  ) : (
+                    <>
+                      <BookmarkPlus className="w-3 h-3" />
+                      <span>Save Sentence</span>
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
             {germanSentence && (
               <p className="text-slate-200 leading-relaxed font-medium">
                 {renderHighlightedContext(germanSentence, cleaned)}

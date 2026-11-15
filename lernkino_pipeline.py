@@ -44,34 +44,63 @@ _orig_translate_batch = GoogleTranslator.translate_batch
 def _fast_translate_batch(self, batch, **kwargs):
     if not batch:
         return []
-    try:
-        delim = "\n§§§\n"
-        full_text = delim.join(batch)
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        }
-        data = {
-            "client": "gtx",
-            "sl": self._source,
-            "tl": self._target,
-            "dt": "t",
-            "q": full_text
-        }
-        response = requests.post(
-            "https://translate.googleapis.com/translate_a/single",
-            headers=headers,
-            data=data,
-            timeout=25
-        )
-        response.raise_for_status()
-        res_json = response.json()
-        translated_full = "".join(item[0] for item in res_json[0] if item and item[0])
-        results = [p.strip() for p in translated_full.split("§§§")]
-        if len(results) == len(batch):
-            return results
-    except Exception as e:
-        print(f"[!] Warning: Fast batch request fallback due to: {e}", file=sys.stderr)
-    return _orig_translate_batch(self, batch, **kwargs)
+    import time
+    clean_batch = [re.sub(r'[\r\n]+', ' ', b).strip() for b in batch]
+    numbered_lines = [f"{i}. {txt}" if txt else f"{i}. ." for i, txt in enumerate(clean_batch)]
+    full_text = "\n".join(numbered_lines)
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    data = {
+        "client": "gtx",
+        "sl": self._source,
+        "tl": self._target,
+        "dt": "t",
+        "q": full_text
+    }
+
+    for attempt in range(4):
+        try:
+            response = requests.post(
+                "https://translate.googleapis.com/translate_a/single",
+                headers=headers,
+                data=data,
+                timeout=25
+            )
+            if response.status_code == 429:
+                time.sleep(3.0 * (attempt + 1))
+                continue
+            response.raise_for_status()
+            res_json = response.json()
+            translated_full = "".join(item[0] for item in res_json[0] if item and item[0])
+
+            parsed_results = {}
+            for line in translated_full.strip().split("\n"):
+                m = re.match(r'^\s*(\d+)[\.\:\)]\s*(.*)$', line)
+                if m:
+                    idx = int(m.group(1))
+                    val = m.group(2).strip()
+                    if val != ".":
+                        parsed_results[idx] = val
+                    else:
+                        parsed_results[idx] = ""
+
+            final_results = []
+            for i, orig in enumerate(clean_batch):
+                if i in parsed_results and parsed_results[i]:
+                    final_results.append(parsed_results[i])
+                else:
+                    final_results.append(orig)
+
+            return final_results
+        except Exception as e:
+            if attempt < 3:
+                time.sleep(2.0 * (attempt + 1))
+            else:
+                print(f"[!] Warning: Fast batch request error ({e}); using safe fallback.", file=sys.stderr)
+
+    return [b for b in batch]
 
 GoogleTranslator.translate_batch = _fast_translate_batch
 
@@ -729,20 +758,32 @@ def handle_video_file(target_dir: Path, default_stem: Optional[str] = None) -> P
 
 
 # ── Step D: Subtitle Pipeline (Whisper + Batch Translation) ────────────────
-def run_transcription(video_path: Path, srt_path: Path):
+def run_transcription(
+    video_path: Path,
+    srt_path: Path,
+    model_instance: Optional[WhisperModel] = None,
+    model_name: Optional[str] = None
+):
     """Runs faster-whisper transcription with adaptive word-level speech synchronization."""
-    print(f"\n{Colors.BRIGHT_CYAN}── Phase 1: German Transcription (Whisper AI + Adaptive Speech Timing) ──{Colors.RESET}")
-    print("Select Whisper Model Size:")
-    print("  [1] base   (Balanced speed & accuracy - ~2-3 min for 20-min episode, recommended)")
-    print("  [2] small  (Higher German accuracy - ~6-10 min on CPU)")
-    print("  [3] tiny   (Fastest preview - ~1 min)")
-    print("  [4] medium (Maximum precision - ~15-20 min on CPU)")
-    m_choice = prompt_choice("Choose Whisper model", 4, default=1)
-    model_map = {1: "base", 2: "small", 3: "tiny", 4: "medium"}
-    model_name = model_map.get(m_choice, "base")
+    if model_instance is not None:
+        model = model_instance
+        active_model_name = getattr(model, "model_size_or_path", "base")
+    else:
+        if not model_name:
+            print(f"\n{Colors.BRIGHT_CYAN}── Phase 1: German Transcription (Whisper AI + Adaptive Speech Timing) ──{Colors.RESET}")
+            print("Select Whisper Model Size:")
+            print("  [1] base   (Balanced speed & accuracy - ~2-3 min for 20-min episode, recommended)")
+            print("  [2] small  (Higher German accuracy - ~6-10 min on CPU)")
+            print("  [3] tiny   (Fastest preview - ~1 min)")
+            print("  [4] medium (Maximum precision - ~15-20 min on CPU)")
+            m_choice = prompt_choice("Choose Whisper model", 4, default=1)
+            model_map = {1: "base", 2: "small", 3: "tiny", 4: "medium"}
+            active_model_name = model_map.get(m_choice, "base")
+        else:
+            active_model_name = model_name
 
-    print(f"\nLoading faster-whisper '{model_name}' (device='auto', compute_type='int8')...")
-    model = WhisperModel(model_name, device="auto", compute_type="int8")
+        print(f"\nLoading faster-whisper '{active_model_name}' (device='auto', compute_type='int8')...")
+        model = WhisperModel(active_model_name, device="auto", compute_type="int8", cpu_threads=4)
 
     print(f"Transcribing audio from: {video_path.name}")
     print("Parameters: language='de', word_timestamps=True, vad_filter=True, min_silence=250ms")
@@ -751,7 +792,7 @@ def run_transcription(video_path: Path, srt_path: Path):
     segments, info = model.transcribe(
         str(video_path),
         language="de",
-        beam_size=5 if model_name in ["small", "medium"] else 2,
+        beam_size=5 if active_model_name in ["small", "medium"] else 2,
         word_timestamps=True,
         vad_filter=True,
         vad_parameters=dict(min_silence_duration_ms=250, speech_pad_ms=100),
@@ -938,7 +979,7 @@ def run_translation(de_srt_path: Path, en_srt_path: Path, bilingual_srt_path: Pa
 
         translations = translator.translate_batch(chunk_texts)
         import time
-        time.sleep(0.15)
+        time.sleep(0.35)
 
         for b, en_text in zip(chunk, translations):
             clean_en = en_text.strip()
@@ -1030,23 +1071,96 @@ def git_commit_and_push(item_label: str):
         print(f"{Colors.RED}An unexpected error occurred during git sync: {e}{Colors.RESET}")
 
 
-# ── Main Interactive Flow ──────────────────────────────────────────────────
-def main():
-    if "--help" in sys.argv or "-h" in sys.argv:
-        print_banner()
-        print(f"""Usage:
-  py -3.12 lernkino_pipeline.py [OPTIONS]
+# ── Batch Episode Pipeline ──────────────────────────────────────────────────
+def process_episode_pipeline(
+    ep_dir: Path,
+    model_instance: Optional[WhisperModel] = None,
+    model_name: str = "base",
+    force_whisper: bool = False
+):
+    """Runs end-to-end German transcription and English/Bilingual translation for one episode folder."""
+    video_files = [f for f in ep_dir.iterdir() if f.is_file() and f.suffix.lower() in SUPPORTED_VIDEO_EXTS]
+    if not video_files:
+        print(f"{Colors.YELLOW}No video found in {ep_dir.name}; skipping.{Colors.RESET}")
+        return
+    video_file = video_files[0]
+    stem = video_file.stem
+    de_srt = ep_dir / f"{stem}.srt"
+    en_srt = ep_dir / f"{stem}.en.srt"
+    bilingual_srt = ep_dir / f"{stem}.bilingual.srt"
 
-Description:
-  Interactive CLI assistant for organizing series and movies into LernKino
-  (f:\\Friends\\subsync\\public\\media\\) and generating German, English,
-  and Bilingual .srt subtitles using faster-whisper and Google Translate.
+    print(f"\n{Colors.BRIGHT_CYAN}═══════════════════════════════════════════════════════════════════════{Colors.RESET}")
+    print(f"{Colors.BOLD}Episode Target:{Colors.RESET} {ep_dir.name} ({video_file.name})")
+    print(f"{Colors.BRIGHT_CYAN}═══════════════════════════════════════════════════════════════════════{Colors.RESET}")
 
-Options:
-  -h, --help     Show this help message and exit.
-""")
-        sys.exit(0)
+    # 1. German transcription
+    if not de_srt.exists() or force_whisper:
+        run_transcription(video_file, de_srt, model_instance=model_instance, model_name=model_name)
+    else:
+        print(f"{Colors.GREEN}✓ German SRT already exists: {de_srt.name}{Colors.RESET}")
 
+    # 2. English & Bilingual translation
+    if not en_srt.exists() or not bilingual_srt.exists() or force_whisper:
+        run_translation(de_srt, en_srt, bilingual_srt)
+    else:
+        print(f"{Colors.GREEN}✓ English and Bilingual SRTs already exist.{Colors.RESET}")
+
+
+def run_batch_episodes(
+    episodes: Optional[List[int]] = None,
+    season_num: int = 1,
+    series_name: str = "Friends (German Dub)",
+    model_name: str = "base",
+    force_whisper: bool = False,
+    auto_push: bool = False
+):
+    """Batch-transcribes and translates multiple episodes in one run."""
+    season_dir = SERIES_ROOT / series_name / "seasons" / str(season_num)
+    if not season_dir.exists():
+        print(f"{Colors.RED}Directory not found: {season_dir}{Colors.RESET}")
+        return
+
+    ep_dirs = []
+    for d in sorted(season_dir.iterdir(), key=lambda p: natural_sort_key(p.name)):
+        if not d.is_dir():
+            continue
+        m = re.search(r'\d+', d.name)
+        if m:
+            ep_n = int(m.group(0))
+            if episodes is None or ep_n in episodes:
+                ep_dirs.append((ep_n, d))
+
+    if not ep_dirs:
+        print(f"{Colors.YELLOW}No matching episode folders found in {season_dir}.{Colors.RESET}")
+        return
+
+    print_banner()
+    print(f"{Colors.BRIGHT_CYAN}╔═══════════════════════════════════════════════════════════════════╗{Colors.RESET}")
+    print(f"{Colors.BRIGHT_CYAN}║   🎬 Batch Pipeline: {len(ep_dirs)} Episodes · Whisper ({model_name}) · INT8 ║{Colors.RESET}")
+    print(f"{Colors.BRIGHT_CYAN}╚═══════════════════════════════════════════════════════════════════╝{Colors.RESET}")
+    print(f"Target Series: {series_name} - Season {season_num}")
+    print(f"Episodes: {[e[0] for e in ep_dirs]}\n")
+
+    print(f"Initializing WhisperModel('{model_name}', device='auto', compute_type='int8', cpu_threads=4)...")
+    model = WhisperModel(model_name, device="auto", compute_type="int8", cpu_threads=4)
+    print(f"{Colors.GREEN}✓ Model loaded! Beginning batch processing...{Colors.RESET}\n")
+
+    for i, (ep_n, ep_dir) in enumerate(ep_dirs, start=1):
+        print(f"\n{Colors.CYAN}── [{i}/{len(ep_dirs)}] Starting Episode {ep_n} ────────────────────────────────────{Colors.RESET}")
+        process_episode_pipeline(ep_dir, model_instance=model, model_name=model_name, force_whisper=force_whisper)
+
+    print(f"\n{Colors.GREEN}╔═══════════════════════════════════════════════════════════════════╗{Colors.RESET}")
+    print(f"{Colors.GREEN}║   ✅ All {len(ep_dirs)} episodes completed successfully!                  ║{Colors.RESET}")
+    print(f"{Colors.GREEN}╚═══════════════════════════════════════════════════════════════════╝{Colors.RESET}")
+
+    sync_lernkino_catalog()
+
+    if auto_push:
+        git_commit_and_push(f"{series_name} Season {season_num} (Episodes {ep_dirs[0][0]}-{ep_dirs[-1][0]})")
+
+
+# ── Interactive Wizard Flow ────────────────────────────────────────────────
+def interactive_flow():
     print_banner()
 
     print(f"{Colors.BOLD}Media Target Root:{Colors.RESET} {MEDIA_ROOT}")
@@ -1142,6 +1256,51 @@ Options:
         git_commit_and_push(item_label)
 
     print(f"\n{Colors.BRIGHT_CYAN}✨ All Done! You can view and play this episode in LernKino.{Colors.RESET}\n")
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="LernKino Media Organizer & Subtitle Pipeline",
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument("--batch", action="store_true", help="Run batch processing mode for episodes")
+    parser.add_argument("--episodes", "-e", type=str, help="Episodes to process (e.g. '3-10' or '3,4,5' or 'all')")
+    parser.add_argument("--season", "-s", type=int, default=1, help="Season number (default: 1)")
+    parser.add_argument("--series", type=str, default="Friends (German Dub)", help="Series directory name")
+    parser.add_argument("--model", "-m", type=str, default="base", choices=["base", "small", "tiny", "medium"], help="Whisper model size (default: base)")
+    parser.add_argument("--force", action="store_true", help="Force re-transcription even if SRT already exists")
+    parser.add_argument("--push", action="store_true", help="Automatically commit and push subtitles to Git")
+
+    if len(sys.argv) == 1:
+        interactive_flow()
+        return
+
+    args = parser.parse_args()
+
+    ep_list = None
+    if args.episodes:
+        if args.episodes.lower() == "all":
+            ep_list = None
+        elif "-" in args.episodes:
+            parts = [int(p.strip()) for p in args.episodes.split("-")]
+            ep_list = list(range(parts[0], parts[1] + 1))
+        elif "," in args.episodes:
+            ep_list = [int(p.strip()) for p in args.episodes.split(",")]
+        else:
+            ep_list = [int(args.episodes.strip())]
+
+    if args.batch or args.episodes:
+        run_batch_episodes(
+            episodes=ep_list,
+            season_num=args.season,
+            series_name=args.series,
+            model_name=args.model,
+            force_whisper=args.force,
+            auto_push=args.push
+        )
+    else:
+        interactive_flow()
 
 
 if __name__ == "__main__":

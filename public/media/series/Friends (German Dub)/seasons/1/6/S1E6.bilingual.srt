@@ -1,0 +1,2905 @@
+1
+00:00:07,120 --> 00:00:08,660
+Auch hier, das ist ein Foto von Joey!
+<font color="#ffff00">Again, this is a photo of Joey!</font>
+
+2
+00:00:09,080 --> 00:00:10,700
+Ach, das ist ja so aufregend!
+<font color="#ffff00">Oh, that's so exciting!</font>
+
+3
+00:00:10,800 --> 00:00:12,320
+Man kann sofort jeden, den noch nie auf
+<font color="#ffff00">You can instantly meet anyone you've never met before</font>
+
+4
+00:00:12,360 --> 00:00:13,400
+der Bühne gesehen hat.
+<font color="#ffff00">saw the stage.</font>
+
+5
+00:00:13,440 --> 00:00:15,060
+Keine Anzeichen von Angst und einer
+<font color="#ffff00">No signs of fear and one</font>
+
+6
+00:00:15,100 --> 00:00:16,600
+gleicheintretenen Katastrophe.
+<font color="#ffff00">equally occurring catastrophe.</font>
+
+7
+00:00:16,640 --> 00:00:18,480
+Mir macht das Ausrufezeichen hier Angst.
+<font color="#ffff00">The exclamation point here scares me.</font>
+
+8
+00:00:18,520 --> 00:00:19,980
+Es heißt nicht einfach Freut, sondern
+<font color="#ffff00">It's not just called Joy, but</font>
+
+9
+00:00:20,020 --> 00:00:20,920
+Freut!
+<font color="#ffff00">Glad!</font>
+
+10
+00:00:21,720 --> 00:00:22,470
+Oh, schau!
+<font color="#ffff00">Oh, look!</font>
+
+11
+00:00:22,580 --> 00:00:24,460
+Der Zauber des Theater zum Hild und uns.
+<font color="#ffff00">The magic of the theater for Hild and us.</font>
+
+12
+00:00:25,490 --> 00:00:26,770
+Also, Eva!
+<font color="#ffff00">So, Eve!</font>
+
+13
+00:00:27,410 --> 00:00:29,550
+Wir beide sind ein gutes Stück
+<font color="#ffff00">We both are a good piece</font>
+
+14
+00:00:29,590 --> 00:00:30,830
+vorangekommen.
+<font color="#ffff00">advanced.</font>
+
+15
+00:00:31,800 --> 00:00:33,780
+Und die Kondien nur sorgen.
+<font color="#ffff00">And the condia only worry.</font>
+
+16
+00:00:34,440 --> 00:00:36,220
+Ihr habt ein Problem, genau!
+<font color="#ffff00">You have a problem, exactly!</font>
+
+17
+00:00:36,260 --> 00:00:37,010
+Oh,
+<font color="#ffff00">Oh,</font>
+
+18
+00:00:37,080 --> 00:00:37,830
+er kann!
+<font color="#ffff00">he can!</font>
+
+19
+00:00:40,050 --> 00:00:42,570
+Du benäht es jeden Schnee da!
+<font color="#ffff00">You sew it every snow there!</font>
+
+20
+00:00:43,390 --> 00:00:46,530
+Du bist grün auf der Fiedel,
+<font color="#ffff00">You're green on the fiddle,</font>
+
+21
+00:00:46,710 --> 00:00:49,630
+doch der Bogen der Peltier
+<font color="#ffff00">but the Peltier bow</font>
+
+22
+00:00:49,670 --> 00:00:50,690
+nah!
+<font color="#ffff00">close!</font>
+
+23
+00:00:50,930 --> 00:00:52,670
+Du bist dir Kavalier!
+<font color="#ffff00">You are a cavalier!</font>
+
+24
+00:01:50,850 --> 00:01:53,010
+Das ist der nicht für mich Wunde-Eleint.
+<font color="#ffff00">This is the not for me wound-Eleint.</font>
+
+25
+00:01:54,100 --> 00:01:55,580
+Da ausser mir sonst noch jemand, das
+<font color="#ffff00">There is someone else besides me who</font>
+
+26
+00:01:55,620 --> 00:01:57,400
+Bedürfnis sich die Haut vom Leipzogratzen
+<font color="#ffff00">The skin needs to be removed from the Leipzo scratches</font>
+
+27
+00:01:57,440 --> 00:01:58,580
+nur, um sich abzulinken?
+<font color="#ffff00">just to disconnect?</font>
+
+28
+00:01:58,970 --> 00:01:59,670
+Ja,
+<font color="#ffff00">Yes,</font>
+
+29
+00:01:59,710 --> 00:02:00,170
+ich.
+<font color="#ffff00">i.</font>
+
+30
+00:02:00,210 --> 00:02:01,190
+Rast, zehn Uhr.
+<font color="#ffff00">Rest, ten o'clock.</font>
+
+31
+00:02:01,490 --> 00:02:03,290
+Wirklich, mir kommt's vor wie zwei Uhr.
+<font color="#ffff00">Really, it feels like two o'clock.</font>
+
+32
+00:02:03,350 --> 00:02:04,170
+Nein,
+<font color="#ffff00">No,</font>
+
+33
+00:02:04,510 --> 00:02:05,890
+nein, 10 Uhr.
+<font color="#ffff00">no, 10 o'clock.</font>
+
+34
+00:02:06,410 --> 00:02:07,160
+Was?
+<font color="#ffff00">What?</font>
+
+35
+00:02:08,080 --> 00:02:10,800
+Da sitzt eine tolle Frau Richtung Art, 19
+<font color="#ffff00">There's a great woman sitting there towards Art, 19</font>
+
+36
+00:02:10,840 --> 00:02:11,590
+Uhr.
+<font color="#ffff00">Uhr.</font>
+
+37
+00:02:13,420 --> 00:02:15,140
+Ja, mein lieber Mann.
+<font color="#ffff00">Yes, my dear husband.</font>
+
+38
+00:02:15,440 --> 00:02:17,560
+Sie ist umwerfend, die Frauen, von denen
+<font color="#ffff00">She's stunning, the women of which</font>
+
+39
+00:02:17,600 --> 00:02:19,100
+ich nachts träume, sind dagegen aus wie
+<font color="#ffff00">I dream at night, however, are like</font>
+
+40
+00:02:19,140 --> 00:02:20,320
+Frankenstein's braut.
+<font color="#ffff00">Frankenstein's Brewing.</font>
+
+41
+00:02:21,480 --> 00:02:23,080
+Die doch rüberzu, ihr sie schön allein
+<font color="#ffff00">Come over and leave her alone</font>
+
+42
+00:02:23,120 --> 00:02:23,920
+hier zu sein.
+<font color="#ffff00">to be here.</font>
+
+43
+00:02:24,120 --> 00:02:25,400
+Fantastische Idee und wie soll ich sie
+<font color="#ffff00">Fantastic idea and how should I use it</font>
+
+44
+00:02:25,440 --> 00:02:26,640
+ansprechen, entschuldigung?
+<font color="#ffff00">address, excuse me?</font>
+
+45
+00:02:29,320 --> 00:02:31,260
+Sie ist dann mensch wie du und ich.
+<font color="#ffff00">Then she is human like you and me.</font>
+
+46
+00:02:31,320 --> 00:02:32,060
+Du schaffst das schon.
+<font color="#ffff00">You can do it.</font>
+
+47
+00:02:32,100 --> 00:02:34,200
+Sie ist auch unerreichbar für mich.
+<font color="#ffff00">She is also unattainable for me.</font>
+
+48
+00:02:34,380 --> 00:02:35,480
+Ross, geht mir bitte recht.
+<font color="#ffff00">Ross, please forgive me.</font>
+
+49
+00:02:35,520 --> 00:02:36,920
+Nicht mal auf einer einsamen Inselkämmie
+<font color="#ffff00">Not even on a desert island cammie</font>
+
+50
+00:02:36,960 --> 00:02:37,820
+an so eine Frau.
+<font color="#ffff00">to a woman like that.</font>
+
+51
+00:02:39,720 --> 00:02:40,620
+Ja, richtig.
+<font color="#ffff00">Yes, right.</font>
+
+52
+00:02:40,660 --> 00:02:42,160
+Man sieht doch auf grüchlich bezaubernde
+<font color="#ffff00">You look at incredibly charming ones</font>
+
+53
+00:02:42,200 --> 00:02:44,600
+Frauen mit absolut nicht sagenen Kern.
+<font color="#ffff00">Women with absolutely no say core.</font>
+
+54
+00:02:44,700 --> 00:02:46,020
+Du könntest einer von Ihnen sein.
+<font color="#ffff00">You could be one of them.</font>
+
+55
+00:02:48,820 --> 00:02:50,620
+Ich bin sicher, du schaffst es.
+<font color="#ffff00">I'm sure you can do it.</font>
+
+56
+00:02:50,860 --> 00:02:52,200
+Okay, ich werde's versuchen.
+<font color="#ffff00">Okay, I'll try.</font>
+
+57
+00:02:52,240 --> 00:02:53,160
+Drück mir die Daumen.
+<font color="#ffff00">Keep your fingers crossed for me.</font>
+
+58
+00:02:53,460 --> 00:02:55,080
+Meine Kähle ist, da fährt man so trocken.
+<font color="#ffff00">My baldness is that you drive so dry.</font>
+
+59
+00:02:55,120 --> 00:02:56,040
+Mach schon, mach schon.
+<font color="#ffff00">Go on, go on.</font>
+
+60
+00:03:02,700 --> 00:03:03,450
+Ja.
+<font color="#ffff00">Yes.</font>
+
+61
+00:03:05,150 --> 00:03:05,900
+Hallo,
+<font color="#ffff00">Hello,</font>
+
+62
+00:03:06,380 --> 00:03:08,180
+als nächstes müsste jetzt kommt.
+<font color="#ffff00">next should come now.</font>
+
+63
+00:03:08,320 --> 00:03:09,070
+Moment,
+<font color="#ffff00">Moment,</font>
+
+64
+00:03:09,210 --> 00:03:09,990
+Schändler.
+<font color="#ffff00">Shame dealer.</font>
+
+65
+00:03:10,990 --> 00:03:14,010
+Schändler ist mein Name und...
+<font color="#ffff00">Shameful is my name and...</font>
+
+66
+00:03:14,320 --> 00:03:15,070
+Hallo.
+<font color="#ffff00">Hello.</font>
+
+67
+00:03:17,350 --> 00:03:18,610
+Was hast du schon gesagt?
+<font color="#ffff00">What have you already said?</font>
+
+68
+00:03:18,910 --> 00:03:19,890
+Ja, der stimmt dabei.
+<font color="#ffff00">Yes, that's true.</font>
+
+69
+00:03:19,930 --> 00:03:20,930
+Einz hab ich noch nicht gesagt.
+<font color="#ffff00">I haven't said anything yet.</font>
+
+70
+00:03:21,550 --> 00:03:22,970
+Also, ich meine, was ich gerade sagen
+<font color="#ffff00">So, I mean what I just said</font>
+
+71
+00:03:23,010 --> 00:03:25,290
+wollte, ist, dass du mal Lust mit mir
+<font color="#ffff00">what I wanted is for you to have fun with me</font>
+
+72
+00:03:25,330 --> 00:03:25,910
+auszugehen.
+<font color="#ffff00">auszugehen.</font>
+
+73
+00:03:25,950 --> 00:03:26,700
+Danke, Gute.
+<font color="#ffff00">Thank you, good one.</font>
+
+74
+00:03:28,430 --> 00:03:29,180
+Schändler,
+<font color="#ffff00">Shame dealer,</font>
+
+75
+00:03:33,380 --> 00:03:35,000
+wusste gar nicht, dass du singen kannst.
+<font color="#ffff00">didn't know you could sing.</font>
+
+76
+00:03:35,080 --> 00:03:35,830
+Du hast noch keine Zeit.
+<font color="#ffff00">You don't have time yet.</font>
+
+77
+00:03:36,440 --> 00:03:37,400
+Ach, sag ich gefallen.
+<font color="#ffff00">Oh, I say liked.</font>
+
+78
+00:03:38,860 --> 00:03:40,540
+Ich wusste gar nicht, dass du singen
+<font color="#ffff00">I didn't know you sang</font>
+
+79
+00:03:40,580 --> 00:03:41,330
+kannst.
+<font color="#ffff00">can.</font>
+
+80
+00:03:43,880 --> 00:03:45,920
+Das war eine große Rolle, du bist besser
+<font color="#ffff00">That was a big role, you're better</font>
+
+81
+00:03:45,960 --> 00:03:47,440
+als das Stück mit den Trollen.
+<font color="#ffff00">as the piece with the trolls.</font>
+
+82
+00:03:47,480 --> 00:03:48,880
+Ihr konnte dir mein Gesicht sehen.
+<font color="#ffff00">You could see my face.</font>
+
+83
+00:03:51,800 --> 00:03:53,640
+Ja, ja, ja, ja, ja, ja.
+<font color="#ffff00">Yes, yes, yes, yes, yes, yes.</font>
+
+84
+00:03:53,680 --> 00:03:55,880
+Ich habe mich da aber stöcken.
+<font color="#ffff00">But I hesitated there.</font>
+
+85
+00:03:57,120 --> 00:03:57,870
+Danke.
+<font color="#ffff00">Thank you.</font>
+
+86
+00:03:59,040 --> 00:04:01,240
+Ihr Name ist Aura, sie ist Italienerin,
+<font color="#ffff00">Her name is Aura, she is Italian,</font>
+
+87
+00:04:01,280 --> 00:04:02,560
+und wie sie mein Namen ausspricht.
+<font color="#ffff00">and how she pronounces my name.</font>
+
+88
+00:04:03,040 --> 00:04:03,790
+Schandler.
+<font color="#ffff00">Shamdler.</font>
+
+89
+00:04:04,520 --> 00:04:05,270
+Schandler.
+<font color="#ffff00">Shamdler.</font>
+
+90
+00:04:05,540 --> 00:04:07,020
+So, wer fährt mir mein Name rechtlich?
+<font color="#ffff00">So, who legally uses my name?</font>
+
+91
+00:04:07,060 --> 00:04:08,720
+Oh, das hat jemand für dich abgegeben.
+<font color="#ffff00">Oh, someone dropped this off for you.</font>
+
+92
+00:04:08,960 --> 00:04:09,360
+Was ist das?
+<font color="#ffff00">What is this?</font>
+
+93
+00:04:09,400 --> 00:04:11,760
+Estelle-Nee, Künstleragentur.
+<font color="#ffff00">Estelle-Nee, artist agency.</font>
+
+94
+00:04:12,200 --> 00:04:14,000
+Wow, eine Karte von der Agentur,
+<font color="#ffff00">Wow, a card from the agency,</font>
+
+95
+00:04:14,040 --> 00:04:15,320
+vielleicht wollen sie mich aufnehmen.
+<font color="#ffff00">maybe they want to take me in.</font>
+
+96
+00:04:15,420 --> 00:04:16,660
+Nach dieser Aufführung?
+<font color="#ffff00">After this performance?</font>
+
+97
+00:04:18,860 --> 00:04:20,840
+Nach dieser Aufführung.
+<font color="#ffff00">After this performance.</font>
+
+98
+00:04:21,780 --> 00:04:22,530
+Hallo,
+<font color="#ffff00">Hello,</font>
+
+99
+00:04:29,990 --> 00:04:30,740
+Leute.
+<font color="#ffff00">People.</font>
+
+100
+00:04:31,390 --> 00:04:32,140
+Hallo.
+<font color="#ffff00">Hello.</font>
+
+101
+00:04:32,530 --> 00:04:34,050
+Das hier ist die Liebeslinie.
+<font color="#ffff00">This is the love line.</font>
+
+102
+00:04:34,090 --> 00:04:35,570
+Das war einfach nur eine Linie.
+<font color="#ffff00">That was just a line.</font>
+
+103
+00:04:36,210 --> 00:04:37,070
+Nicht so flessig.
+<font color="#ffff00">Not so busy.</font>
+
+104
+00:04:37,110 --> 00:04:38,130
+Ich bin schon sieben Sekunden hier und
+<font color="#ffff00">I've been here for seven seconds and</font>
+
+105
+00:04:38,170 --> 00:04:39,330
+keiner fragt nicht, wie es mit Aurora
+<font color="#ffff00">no one asks how things are with Aurora</font>
+
+106
+00:04:39,370 --> 00:04:40,210
+gelaufen ist.
+<font color="#ffff00">ran.</font>
+
+107
+00:04:40,250 --> 00:04:40,810
+Ja,
+<font color="#ffff00">Yes,</font>
+
+108
+00:04:40,850 --> 00:04:42,710
+richtig, wie fast ein Aurora-Chang.
+<font color="#ffff00">right, like almost an aurora change.</font>
+
+109
+00:04:43,590 --> 00:04:44,890
+Es war unglaublich.
+<font color="#ffff00">It was incredible.</font>
+
+110
+00:04:44,930 --> 00:04:46,190
+Ich hab noch keine Frau wie sie getroffen.
+<font color="#ffff00">I have never met a woman like her.</font>
+
+111
+00:04:46,230 --> 00:04:48,130
+Sie hat ein aufregendes Leben hinter sich,
+<font color="#ffff00">She has had an exciting life,</font>
+
+112
+00:04:48,170 --> 00:04:49,410
+Sie war in der israelischen Armee.
+<font color="#ffff00">She was in the Israeli army.</font>
+
+113
+00:04:50,090 --> 00:04:52,350
+Zum Glück hat keine der Kugeln unseren
+<font color="#ffff00">Luckily none of the bullets have ours</font>
+
+114
+00:04:52,390 --> 00:04:54,500
+Mutter getroffen, und so haben wir es bis
+<font color="#ffff00">Met mother, and so we have it until</font>
+
+115
+00:04:54,540 --> 00:04:55,520
+zur Grenze geschafft.
+<font color="#ffff00">Made it to the border.</font>
+
+116
+00:04:56,020 --> 00:04:57,180
+Aber auch das war nicht leicht.
+<font color="#ffff00">But that wasn't easy either.</font>
+
+117
+00:04:58,880 --> 00:05:00,580
+Aber ich redet den ganzen Abend nur über
+<font color="#ffff00">But all I do is talk all evening</font>
+
+118
+00:05:00,620 --> 00:05:01,220
+mich.
+<font color="#ffff00">me.</font>
+
+119
+00:05:01,260 --> 00:05:02,320
+Das tut mir leid.
+<font color="#ffff00">I'm sorry about that.</font>
+
+120
+00:05:03,040 --> 00:05:03,960
+Was ist mit dir?
+<font color="#ffff00">What's wrong with you?</font>
+
+121
+00:05:04,140 --> 00:05:05,280
+Erzähl mir was von dir.
+<font color="#ffff00">Tell me something about yourself.</font>
+
+122
+00:05:05,320 --> 00:05:05,980
+Okay.
+<font color="#ffff00">Okay.</font>
+
+123
+00:05:06,020 --> 00:05:06,770
+Einmal.
+<font color="#ffff00">Once.</font>
+
+124
+00:05:07,340 --> 00:05:08,090
+Einmal.
+<font color="#ffff00">Once.</font>
+
+125
+00:05:08,340 --> 00:05:09,820
+Bin ich in die U-Bahn gestiegen.
+<font color="#ffff00">I got on the subway.</font>
+
+126
+00:05:10,080 --> 00:05:11,520
+Ja, es war spät in der Nacht.
+<font color="#ffff00">Yes, it was late at night.</font>
+
+127
+00:05:12,320 --> 00:05:14,100
+Ich bin durchgefahren bis nach Brooklyn.
+<font color="#ffff00">I drove through to Brooklyn.</font>
+
+128
+00:05:15,800 --> 00:05:16,660
+Ich hab's be erlebt.
+<font color="#ffff00">I've experienced it.</font>
+
+129
+00:05:16,700 --> 00:05:19,900
+Wir haben es zwei Jahr nachts geredet.
+<font color="#ffff00">We talked about it at night for two years.</font>
+
+130
+00:05:19,940 --> 00:05:21,220
+Das war ein fantastischer Abend.
+<font color="#ffff00">That was a fantastic evening.</font>
+
+131
+00:05:21,920 --> 00:05:23,060
+Mehr der weniger.
+<font color="#ffff00">More of less.</font>
+
+132
+00:05:23,600 --> 00:05:25,220
+Plötzlich wurde uns beiden klar, dass wir
+<font color="#ffff00">Suddenly we both realized that we</font>
+
+133
+00:05:25,260 --> 00:05:26,180
+im Jemen sind.
+<font color="#ffff00">are in Yemen.</font>
+
+134
+00:05:26,320 --> 00:05:27,640
+Entschuldige Binte, wie es ist.
+<font color="#ffff00">Sorry Binte as it is.</font>
+
+135
+00:05:28,180 --> 00:05:29,910
+Damit meinte ich Rick und mich.
+<font color="#ffff00">By that I meant Rick and me.</font>
+
+136
+00:05:30,150 --> 00:05:30,900
+Wer ist Rick?
+<font color="#ffff00">Who is Rick?</font>
+
+137
+00:05:31,550 --> 00:05:32,300
+Wer ist Rick?
+<font color="#ffff00">Who is Rick?</font>
+
+138
+00:05:33,770 --> 00:05:34,810
+Mein Ehemann.
+<font color="#ffff00">My husband.</font>
+
+139
+00:05:37,150 --> 00:05:38,910
+Und jetzt seid ihr geschieden, ne?
+<font color="#ffff00">And now you're divorced, right?</font>
+
+140
+00:05:39,220 --> 00:05:39,970
+Nein.
+<font color="#ffff00">No.</font>
+
+141
+00:05:40,670 --> 00:05:42,790
+Oh, tut mir leiter, so bist du verwitwet.
+<font color="#ffff00">Oh, I'm sorry, you're a widow.</font>
+
+142
+00:05:43,170 --> 00:05:43,920
+Offentlich.
+<font color="#ffff00">Publicly.</font>
+
+143
+00:05:45,270 --> 00:05:46,710
+Nein, ich bin mal verheiratet.
+<font color="#ffff00">No, I'm married once.</font>
+
+144
+00:05:47,730 --> 00:05:50,550
+Und was würde dein Mann dazu sagen, wenn
+<font color="#ffff00">And what would your husband say if</font>
+
+145
+00:05:50,590 --> 00:05:52,290
+er wüsste, dass du mit mir hier sitzt
+<font color="#ffff00">He would know that you are sitting here with me</font>
+
+146
+00:05:52,660 --> 00:05:54,860
+und mit deinen Bein so weit an meinen Bein
+<font color="#ffff00">and with your leg so far against my leg</font>
+
+147
+00:05:54,900 --> 00:05:55,960
+hochgleitest, dass du meine
+<font color="#ffff00">slide up that you mean</font>
+
+148
+00:05:56,000 --> 00:05:57,360
+Wechselgeldzielen könntest?
+<font color="#ffff00">Could you aim for change?</font>
+
+149
+00:05:59,760 --> 00:06:00,680
+Keine Angst.
+<font color="#ffff00">Don't be afraid.</font>
+
+150
+00:06:01,150 --> 00:06:02,850
+Ich denke, er wäre mit dir einverstanden,
+<font color="#ffff00">I think he would be okay with you,</font>
+
+151
+00:06:02,890 --> 00:06:04,410
+weil er auch nichts gegen Ethan hat.
+<font color="#ffff00">because he has nothing against Ethan either.</font>
+
+152
+00:06:06,650 --> 00:06:07,910
+Wie ist denn das?
+<font color="#ffff00">How is that?</font>
+
+153
+00:06:09,400 --> 00:06:10,620
+Ja, das ist mein
+<font color="#ffff00">Yes, that's mine</font>
+
+154
+00:06:11,760 --> 00:06:12,780
+Geliebter.
+<font color="#ffff00">Beloved.</font>
+
+155
+00:06:13,180 --> 00:06:13,530
+Was?
+<font color="#ffff00">What?</font>
+
+156
+00:06:13,500 --> 00:06:14,250
+Was?
+<font color="#ffff00">What?</font>
+
+157
+00:06:16,120 --> 00:06:17,640
+Erklär mir doch mal eben was.
+<font color="#ffff00">Just explain something to me.</font>
+
+158
+00:06:18,110 --> 00:06:19,410
+Was für eine Beziehung stellst du dir
+<font color="#ffff00">What kind of relationship do you envision</font>
+
+159
+00:06:19,450 --> 00:06:20,950
+zwischen uns vor, wenn du bereits einen
+<font color="#ffff00">between us if you already have one</font>
+
+160
+00:06:20,990 --> 00:06:22,490
+Mann und einen Liebhaber hast?
+<font color="#ffff00">Husband and a lover?</font>
+
+161
+00:06:22,900 --> 00:06:23,680
+Ich würde sagen,
+<font color="#ffff00">I would say</font>
+
+162
+00:06:24,120 --> 00:06:25,420
+eine Bettbeziehung.
+<font color="#ffff00">a bed relationship.</font>
+
+163
+00:06:28,940 --> 00:06:30,680
+Schade, dass es nicht geklappt hat.
+<font color="#ffff00">It's a shame it didn't work out.</font>
+
+164
+00:06:31,050 --> 00:06:32,110
+Was heißt nicht geklappt?
+<font color="#ffff00">What does not work mean?</font>
+
+165
+00:06:32,150 --> 00:06:33,570
+Ich treffe sie bonnerstag weder.
+<font color="#ffff00">I won't meet you on Sunday.</font>
+
+166
+00:06:34,290 --> 00:06:36,270
+Hast du eigentlich richtig zugehört?
+<font color="#ffff00">Did you actually listen properly?</font>
+
+167
+00:06:38,450 --> 00:06:40,350
+Was, du eigentlich richtig zugehört?
+<font color="#ffff00">What, you actually listened correctly?</font>
+
+168
+00:06:40,450 --> 00:06:41,750
+Wie kannst du dich mit so einer Frau
+<font color="#ffff00">How can you be with a woman like that?</font>
+
+169
+00:06:41,790 --> 00:06:42,270
+abgeben?
+<font color="#ffff00">hand in?</font>
+
+170
+00:06:42,310 --> 00:06:43,110
+Das ist doch schrecklich.
+<font color="#ffff00">That's terrible.</font>
+
+171
+00:06:43,150 --> 00:06:44,770
+Einerseits hatte ich auch meine Probleme
+<font color="#ffff00">On the one hand, I also had my problems</font>
+
+172
+00:06:44,810 --> 00:06:46,650
+damit, aber andererseits hat es durch eine
+<font color="#ffff00">with it, but on the other hand it has through a</font>
+
+173
+00:06:46,690 --> 00:06:47,450
+Vorteile.
+<font color="#ffff00">Benefits.</font>
+
+174
+00:06:47,530 --> 00:06:49,510
+Nichts als Spaß, intelligente Gespräche,
+<font color="#ffff00">Nothing but fun, intelligent conversations,</font>
+
+175
+00:06:49,550 --> 00:06:50,350
+heißes Sex.
+<font color="#ffff00">hot sex.</font>
+
+176
+00:06:50,750 --> 00:06:51,550
+Und ich fühle mich doch nichts
+<font color="#ffff00">And I don't feel anything</font>
+
+177
+00:06:51,590 --> 00:06:52,340
+verpflichtet.
+<font color="#ffff00">obligated.</font>
+
+178
+00:06:53,620 --> 00:06:55,440
+Ich meine, davon träumt er wohl jeder,
+<font color="#ffff00">I mean, that's probably what everyone dreams of,</font>
+
+179
+00:06:55,500 --> 00:06:55,940
+mein, oder?
+<font color="#ffff00">my, right?</font>
+
+180
+00:06:55,980 --> 00:06:57,360
+Oh nein, das ist doch nicht wahr.
+<font color="#ffff00">Oh no, that's not true.</font>
+
+181
+00:06:57,420 --> 00:06:58,780
+Ross, konntest du ehrlich an so was?
+<font color="#ffff00">Ross, could you honestly do something like that?</font>
+
+182
+00:06:58,860 --> 00:06:59,820
+Nein, natürlich nicht.
+<font color="#ffff00">No, of course not.</font>
+
+183
+00:07:02,520 --> 00:07:03,270
+Doch,
+<font color="#ffff00">Yes,</font>
+
+184
+00:07:03,380 --> 00:07:04,130
+ich auch.
+<font color="#ffff00">me too.</font>
+
+185
+00:07:05,160 --> 00:07:06,580
+Ihr Jungs habt also nichts dagegen mit
+<font color="#ffff00">So you guys don't mind</font>
+
+186
+00:07:06,620 --> 00:07:07,720
+einer ins Bett zu gehen, die mit einem
+<font color="#ffff00">one to go to bed with one</font>
+
+187
+00:07:07,760 --> 00:07:08,940
+anderen ins Bett geht?
+<font color="#ffff00">goes to bed with others?</font>
+
+188
+00:07:09,260 --> 00:07:10,360
+Ich könnte das nicht.
+<font color="#ffff00">I couldn't do that.</font>
+
+189
+00:07:10,760 --> 00:07:11,460
+Sehr logenswert.
+<font color="#ffff00">Very worthwhile.</font>
+
+190
+00:07:11,500 --> 00:07:13,300
+Wenn ich mit einer zusammen bin, muss ich
+<font color="#ffff00">When I'm with someone, I have to</font>
+
+191
+00:07:13,340 --> 00:07:15,120
+mir sicher sein, dass ich mir Eisen im
+<font color="#ffff00">be sure that I have iron in my body</font>
+
+192
+00:07:15,160 --> 00:07:16,120
+Feuer hab als sie.
+<font color="#ffff00">I have fire as her.</font>
+
+193
+00:07:18,180 --> 00:07:20,580
+Ich kann dich verstehen, die Monogami ist
+<font color="#ffff00">I can understand you who is monogamous</font>
+
+194
+00:07:20,620 --> 00:07:22,680
+ein zweischneidiges Modell vom
+<font color="#ffff00">a double-edged model from</font>
+
+195
+00:07:22,720 --> 00:07:24,640
+antropologischen Standpunkt aus.
+<font color="#ffff00">anthropological point of view.</font>
+
+196
+00:07:26,320 --> 00:07:28,120
+Okay, okay, jetzt fettet ihr es nie
+<font color="#ffff00">Okay, okay, now you never grease it</font>
+
+197
+00:07:28,160 --> 00:07:28,600
+erfahren.
+<font color="#ffff00">experienced.</font>
+
+198
+00:07:28,640 --> 00:07:30,280
+Aber nun schärzelt man es.
+<font color="#ffff00">But now people are dressing it up.</font>
+
+199
+00:07:30,640 --> 00:07:31,420
+Oh, es fang an.
+<font color="#ffff00">Oh, let it begin.</font>
+
+200
+00:07:31,980 --> 00:07:32,800
+Also gut.
+<font color="#ffff00">All right.</font>
+
+201
+00:07:33,610 --> 00:07:35,570
+Es gibt da eine Theorie des antropologen,
+<font color="#ffff00">There is an anthropologist's theory,</font>
+
+202
+00:07:35,610 --> 00:07:37,090
+welcher die...
+<font color="#ffff00">which the...</font>
+
+203
+00:07:47,420 --> 00:07:48,940
+Begrüßen wir uns jetzt immer so, Das geht
+<font color="#ffff00">Let's always greet each other like this, That's fine</font>
+
+204
+00:07:48,980 --> 00:07:49,820
+fängt mir nämlich.
+<font color="#ffff00">catches me.</font>
+
+205
+00:07:52,110 --> 00:07:53,150
+Doch wie hier alles streit.
+<font color="#ffff00">But how everything is arguing here.</font>
+
+206
+00:07:53,720 --> 00:07:55,040
+Ich hab die Fenster geputzt, den
+<font color="#ffff00">I cleaned the windows</font>
+
+207
+00:07:55,080 --> 00:07:56,280
+Staubsauger geschwungen.
+<font color="#ffff00">Vacuum cleaner curved.</font>
+
+208
+00:07:56,360 --> 00:07:57,980
+Ich hab sogar seienkliches Zubehör von dem
+<font color="#ffff00">I even have some of his accessories</font>
+
+209
+00:07:58,020 --> 00:07:58,940
+Staubsauger benutzt.
+<font color="#ffff00">Used vacuum cleaner.</font>
+
+210
+00:07:58,980 --> 00:08:00,500
+Nur ein kleines Ding nicht, weil ich nicht
+<font color="#ffff00">Just a little thing not because I don't</font>
+
+211
+00:08:00,540 --> 00:08:01,480
+wusste, was das ist.
+<font color="#ffff00">knew what that was.</font>
+
+212
+00:08:01,520 --> 00:08:02,520
+Oh ja, das weiß niemand.
+<font color="#ffff00">Oh yeah, nobody knows.</font>
+
+213
+00:08:02,600 --> 00:08:04,140
+Wir sollten es einfach ignorieren.
+<font color="#ffff00">We should just ignore it.</font>
+
+214
+00:08:05,160 --> 00:08:06,400
+Ja, was hab ich das gemacht?
+<font color="#ffff00">Yes, what did I do?</font>
+
+215
+00:08:07,000 --> 00:08:08,660
+Ich teige mir das mal bei mir
+<font color="#ffff00">I'll have this with me</font>
+
+216
+00:08:08,700 --> 00:08:09,560
+vorbeikommen.
+<font color="#ffff00">come over.</font>
+
+217
+00:08:13,810 --> 00:08:15,870
+Wie ich sehe, hast du den grünen Hocker
+<font color="#ffff00">I see you have the green stool</font>
+
+218
+00:08:15,910 --> 00:08:16,660
+verrückt.
+<font color="#ffff00">crazy.</font>
+
+219
+00:08:16,790 --> 00:08:17,140
+Oh!
+<font color="#ffff00">Oh!</font>
+
+220
+00:08:17,150 --> 00:08:17,900
+Oh!
+<font color="#ffff00">Oh!</font>
+
+221
+00:08:20,550 --> 00:08:21,910
+Könnte denn das passieren?
+<font color="#ffff00">Could that happen?</font>
+
+222
+00:08:23,110 --> 00:08:25,070
+Ich weiß nicht, ich find da passt der
+<font color="#ffff00">I don't know, I think it fits</font>
+
+223
+00:08:25,110 --> 00:08:25,860
+besser hin.
+<font color="#ffff00">better there.</font>
+
+224
+00:08:26,200 --> 00:08:28,100
+So hat man noch eine Sitzgelegenheit am
+<font color="#ffff00">So you still have somewhere to sit</font>
+
+225
+00:08:28,140 --> 00:08:28,890
+Tisch.
+<font color="#ffff00">Table.</font>
+
+226
+00:08:29,650 --> 00:08:31,510
+Ja, das ist sehr interessant.
+<font color="#ffff00">Yes, that is very interesting.</font>
+
+227
+00:08:33,370 --> 00:08:34,510
+Aber was du warst?
+<font color="#ffff00">But what were you?</font>
+
+228
+00:08:34,650 --> 00:08:36,570
+Lasst uns doch nur so zum Spaß sehen, wie
+<font color="#ffff00">Just for fun, let's see how</font>
+
+229
+00:08:36,610 --> 00:08:38,630
+er an seinem alten Platz aussieht.
+<font color="#ffff00">he looks in his old place.</font>
+
+230
+00:08:39,890 --> 00:08:40,830
+Nur so zum Vergleich.
+<font color="#ffff00">Just for comparison.</font>
+
+231
+00:08:43,730 --> 00:08:44,480
+Super!
+<font color="#ffff00">Great!</font>
+
+232
+00:08:45,070 --> 00:08:45,820
+Lassen
+<font color="#ffff00">Leave</font>
+
+233
+00:08:46,140 --> 00:08:47,520
+wir ihn doch erst mal erst stehen.
+<font color="#ffff00">Let's stand it first.</font>
+
+234
+00:08:48,640 --> 00:08:50,460
+Ich kann's nicht fassen, du wachst es, das
+<font color="#ffff00">I can't believe you're growing it, that</font>
+
+235
+00:08:50,500 --> 00:08:51,400
+Ding umzustellen.
+<font color="#ffff00">Change thing.</font>
+
+236
+00:08:52,200 --> 00:08:53,400
+Gott sei Dank hast du nicht versucht, die
+<font color="#ffff00">Thank God you didn't try that</font>
+
+237
+00:08:53,440 --> 00:08:54,960
+alten Zeitschriften auszusortieren.
+<font color="#ffff00">sort out old magazines.</font>
+
+238
+00:08:55,000 --> 00:08:56,760
+Dann hätte sie dir die Augen ausgekratzt.
+<font color="#ffff00">Then she would have scratched your eyes out.</font>
+
+239
+00:08:57,620 --> 00:08:59,080
+Oh, komm, so schlimm bin ich doch gar
+<font color="#ffff00">Oh, come on, I'm that bad</font>
+
+240
+00:08:59,120 --> 00:08:59,680
+nicht.
+<font color="#ffff00">not.</font>
+
+241
+00:08:59,720 --> 00:09:00,840
+Da auch, bist du Monika.
+<font color="#ffff00">There you are, Monika.</font>
+
+242
+00:09:01,300 --> 00:09:02,760
+Ich weiß noch, als wir zusammen gewohnt
+<font color="#ffff00">I remember when we lived together</font>
+
+243
+00:09:02,800 --> 00:09:04,180
+haben, hast du dich aufgeführt wie eine
+<font color="#ffff00">you acted like one</font>
+
+244
+00:09:04,220 --> 00:09:05,060
+hysterische
+<font color="#ffff00">hysterical</font>
+
+245
+00:09:05,370 --> 00:09:06,450
+...
+<font color="#ffff00">...</font>
+
+246
+00:09:06,490 --> 00:09:06,840
+...
+<font color="#ffff00">...</font>
+
+247
+00:09:06,550 --> 00:09:09,670
+das
+<font color="#ffff00">this</font>
+
+248
+00:09:09,980 --> 00:09:11,260
+ist überhaupt nicht wahr.
+<font color="#ffff00">is not true at all.</font>
+
+249
+00:09:11,560 --> 00:09:12,960
+Als wir klein waren, war deine Struppe
+<font color="#ffff00">When we were little, yours was a troupe</font>
+
+250
+00:09:13,000 --> 00:09:14,360
+Peter Puppert die einzige, die nicht
+<font color="#ffff00">Peter Puppert is the only one who doesn't</font>
+
+251
+00:09:14,400 --> 00:09:15,320
+strupellig war.
+<font color="#ffff00">was suspicious.</font>
+
+252
+00:09:18,000 --> 00:09:20,240
+Okay, ich bin eben verantwortungsbewusst
+<font color="#ffff00">Okay, I'm just responsible</font>
+
+253
+00:09:20,280 --> 00:09:22,100
+und ordentlich, aber manchmal kann ich
+<font color="#ffff00">und ordentlich, aber manchmal kann ich</font>
+
+254
+00:09:22,140 --> 00:09:23,300
+auch chaotisch sein.
+<font color="#ffff00">also be chaotic.</font>
+
+255
+00:09:25,000 --> 00:09:27,700
+Also gut, du ausgefleppte chaotin.
+<font color="#ffff00">All right, you crazy slob.</font>
+
+256
+00:09:29,200 --> 00:09:31,000
+Versuch mal dir folgendes vorzustellen, du
+<font color="#ffff00">Try to imagine this, you</font>
+
+257
+00:09:31,040 --> 00:09:32,600
+kriegst deine Telefonrechnung, aber du
+<font color="#ffff00">you get your phone bill, but you</font>
+
+258
+00:09:32,640 --> 00:09:34,420
+hast keine Lust, die sofort zu bezahlen.
+<font color="#ffff00">Don't feel like paying straight away.</font>
+
+259
+00:09:34,460 --> 00:09:35,210
+Wieso nicht?
+<font color="#ffff00">Why not?</font>
+
+260
+00:09:35,300 --> 00:09:36,900
+Weil du total chaotisch bist.
+<font color="#ffff00">Because you're totally messy.</font>
+
+261
+00:09:39,060 --> 00:09:40,720
+Stattdessen warteest du, bis sie dir eine
+<font color="#ffff00">Instead, you wait for her to give you one</font>
+
+262
+00:09:40,760 --> 00:09:41,480
+Marnung schicken.
+<font color="#ffff00">Send Marnung.</font>
+
+263
+00:09:41,520 --> 00:09:42,270
+Gut,
+<font color="#ffff00">Well,</font>
+
+264
+00:09:42,770 --> 00:09:43,650
+das könnte ich machen.
+<font color="#ffff00">I could do that.</font>
+
+265
+00:09:44,440 --> 00:09:45,260
+Okay, okay,
+<font color="#ffff00">Okay, okay,</font>
+
+266
+00:09:45,480 --> 00:09:46,100
+pass auf.
+<font color="#ffff00">pay attention.</font>
+
+267
+00:09:46,140 --> 00:09:47,620
+Dann werd ich das nächste Mal einkaufen
+<font color="#ffff00">Then I'll go shopping next time</font>
+
+268
+00:09:47,660 --> 00:09:48,140
+gehen.
+<font color="#ffff00">go.</font>
+
+269
+00:09:48,180 --> 00:09:49,820
+Aber ich besorg ne Zahnpaster, die sich
+<font color="#ffff00">But I'll get some toothpaste that...</font>
+
+270
+00:09:49,860 --> 00:09:51,300
+nicht auf den Kopf stellen lässt.
+<font color="#ffff00">cannot be turned upside down.</font>
+
+271
+00:09:51,400 --> 00:09:53,260
+Und damit musste man sich meine Liebe
+<font color="#ffff00">And with that you had to get my love</font>
+
+272
+00:09:53,300 --> 00:09:54,020
+Monika.
+<font color="#ffff00">Monica.</font>
+
+273
+00:09:54,060 --> 00:09:55,680
+Warum sollte man so was tun?
+<font color="#ffff00">Why would you do something like that?</font>
+
+274
+00:09:57,890 --> 00:09:59,590
+Er verkult mich doch, oder?
+<font color="#ffff00">He worships me, doesn't he?</font>
+
+275
+00:10:00,470 --> 00:10:02,070
+Irgendwann hat Englass Wasser auf deinen
+<font color="#ffff00">At some point Englass gets water on yours</font>
+
+276
+00:10:02,110 --> 00:10:03,830
+Kautstisch gestellt, ohne Untersetze und
+<font color="#ffff00">Rubber table provided, without coasters and</font>
+
+277
+00:10:03,870 --> 00:10:05,450
+wirft eine brause Tablette rein.
+<font color="#ffff00">throws in an effervescent tablet.</font>
+
+278
+00:10:05,860 --> 00:10:07,640
+Es brodelt und blubbert.
+<font color="#ffff00">It simmers and bubbles.</font>
+
+279
+00:10:07,820 --> 00:10:09,400
+Und die Spritze explodieren auf dem
+<font color="#ffff00">And the syringe explode on the</font>
+
+280
+00:10:09,440 --> 00:10:10,480
+Edelholz von ihr.
+<font color="#ffff00">Precious wood from her.</font>
+
+281
+00:10:10,520 --> 00:10:11,270
+Auf!
+<font color="#ffff00">Up!</font>
+
+282
+00:10:15,260 --> 00:10:16,480
+Heine, mitzüllen,
+<font color="#ffff00">Heine, join in,</font>
+
+283
+00:10:17,080 --> 00:10:18,740
+ihr habt ja alle so rechtwert.
+<font color="#ffff00">you are all so righteous.</font>
+
+284
+00:10:19,020 --> 00:10:19,770
+Monica,
+<font color="#ffff00">Monica,</font>
+
+285
+00:10:20,780 --> 00:10:21,680
+du bist wie Mutter.
+<font color="#ffff00">you are like mother.</font>
+
+286
+00:10:22,500 --> 00:10:23,250
+Falsen, falsen,
+<font color="#ffff00">False, false,</font>
+
+287
+00:10:23,980 --> 00:10:24,680
+falsen,
+<font color="#ffff00">false,</font>
+
+288
+00:10:24,720 --> 00:10:25,340
+falsen,
+<font color="#ffff00">false,</font>
+
+289
+00:10:25,380 --> 00:10:25,730
+falsen,
+<font color="#ffff00">false,</font>
+
+290
+00:10:25,740 --> 00:10:26,490
+falsen!
+<font color="#ffff00">false!</font>
+
+291
+00:10:28,520 --> 00:10:29,280
+Aha,
+<font color="#ffff00">Ah,</font>
+
+292
+00:10:31,000 --> 00:10:31,620
+aha!
+<font color="#ffff00">aha!</font>
+
+293
+00:10:31,660 --> 00:10:32,420
+Ein Ordnung!
+<font color="#ffff00">An Alright!</font>
+
+294
+00:10:33,560 --> 00:10:34,760
+Ich werde da sein!
+<font color="#ffff00">I'll be there!</font>
+
+295
+00:10:36,260 --> 00:10:37,020
+Das
+<font color="#ffff00">This</font>
+
+296
+00:10:37,430 --> 00:10:38,210
+war mein Agente.
+<font color="#ffff00">was my agent.</font>
+
+297
+00:10:40,700 --> 00:10:42,820
+Mein Agente hat mir gerade eine Filmrolle
+<font color="#ffff00">My agent just gave me a roll of film</font>
+
+298
+00:10:42,860 --> 00:10:45,440
+vermittelt und zwar im neuen Alpatino
+<font color="#ffff00">conveyed in the new Alpatino</font>
+
+299
+00:10:45,480 --> 00:10:46,140
+-Streifen.
+<font color="#ffff00">-Streifen.</font>
+
+300
+00:10:46,180 --> 00:10:46,580
+Ja!
+<font color="#ffff00">Yes!</font>
+
+301
+00:10:46,620 --> 00:10:48,140
+Ein so falsches Gewand!
+<font color="#ffff00">Such a false garment!</font>
+
+302
+00:10:48,600 --> 00:10:49,880
+Ja, du wirst nicht fliehst!
+<font color="#ffff00">Yes, you won't escape!</font>
+
+303
+00:10:49,920 --> 00:10:52,340
+Nicht zu fassen, was Alpagino.
+<font color="#ffff00">I can't believe what Alpagino is.</font>
+
+304
+00:10:52,560 --> 00:10:53,620
+Dieser Mann ist der Grund, warum ich
+<font color="#ffff00">This man is the reason why I</font>
+
+305
+00:10:53,660 --> 00:10:54,580
+Schauspieler wurde.
+<font color="#ffff00">became an actor.</font>
+
+306
+00:10:54,660 --> 00:10:56,080
+Vielleicht werde ich mal so wie er, dann
+<font color="#ffff00">Maybe I'll be like him one day, then</font>
+
+307
+00:10:56,120 --> 00:10:57,580
+spiele ich auch den Partenteilein, den
+<font color="#ffff00">I also play the part of the party</font>
+
+308
+00:10:57,620 --> 00:10:59,360
+Parten Teil 2 und reiter zu.
+<font color="#ffff00">Parten part 2 and rider too.</font>
+
+309
+00:11:01,280 --> 00:11:02,900
+Sag schon, wenn du das zu spielen.
+<font color="#ffff00">Tell me if you want to play this.</font>
+
+310
+00:11:03,040 --> 00:11:05,020
+Auf dir ich sie um diesen Tango.
+<font color="#ffff00">On you I her for this tango.</font>
+
+311
+00:11:06,880 --> 00:11:08,620
+Im Wernste Show, was für eine Rolle wirst
+<font color="#ffff00">In the worst show, what a role you will play</font>
+
+312
+00:11:08,660 --> 00:11:09,410
+du spielen.
+<font color="#ffff00">you play.</font>
+
+313
+00:11:10,410 --> 00:11:13,650
+So, du bist bravig, bravig, was?
+<font color="#ffff00">So, you're good, good, aren't you?</font>
+
+314
+00:11:16,180 --> 00:11:17,920
+Ich bin sein Po, du bist OK.
+<font color="#ffff00">I'm his bottom, you're OK.</font>
+
+315
+00:11:17,960 --> 00:11:20,360
+Ich werde
+<font color="#ffff00">I will</font>
+
+316
+00:11:23,260 --> 00:11:25,080
+Alpacinos hinteren spielen.
+<font color="#ffff00">Alpacino's rear play.</font>
+
+317
+00:11:26,050 --> 00:11:26,800
+Was
+<font color="#ffff00">What</font>
+
+318
+00:11:27,800 --> 00:11:28,550
+dagegen?
+<font color="#ffff00">against?</font>
+
+319
+00:11:28,680 --> 00:11:30,780
+Er stolziert unter die Dusche und dann bin
+<font color="#ffff00">He struts into the shower and then I</font>
+
+320
+00:11:30,820 --> 00:11:32,460
+ich Pacinos hinteren.
+<font color="#ffff00">I Pacino's rear.</font>
+
+321
+00:11:33,500 --> 00:11:34,380
+Oh Gott!
+<font color="#ffff00">Oh God!</font>
+
+322
+00:11:34,620 --> 00:11:36,060
+Was habt ihr denn Leute?
+<font color="#ffff00">What's wrong with you guys?</font>
+
+323
+00:11:36,100 --> 00:11:37,600
+Das ist ein richtiger Kino-Film und
+<font color="#ffff00">This is a real cinema film and</font>
+
+324
+00:11:37,640 --> 00:11:38,680
+Alpacino-Spiel.
+<font color="#ffff00">Alpacino game.</font>
+
+325
+00:11:38,720 --> 00:11:39,960
+Das ist fantastisch!
+<font color="#ffff00">This is fantastic!</font>
+
+326
+00:11:40,000 --> 00:11:41,780
+Oh ja, das ist fantastisch.
+<font color="#ffff00">Oh yeah, that's fantastic.</font>
+
+327
+00:11:41,840 --> 00:11:43,320
+Nach all den Jahren der Mühe hast es
+<font color="#ffff00">After all these years of effort, you got it</font>
+
+328
+00:11:43,360 --> 00:11:45,020
+endlich geschafft, wenigstens mit einem
+<font color="#ffff00">finally done, at least with one</font>
+
+329
+00:11:45,060 --> 00:11:46,580
+Körper teil zum Film zu kommen.
+<font color="#ffff00">Body part to come to the film.</font>
+
+330
+00:11:50,320 --> 00:11:52,320
+Lacht euch, macht euch nur lustig, Aber
+<font color="#ffff00">Laugh, just make fun, But</font>
+
+331
+00:11:52,360 --> 00:11:53,700
+ihr werdet schon sehen, das wird mein
+<font color="#ffff00">you will see, that will be mine</font>
+
+332
+00:11:53,740 --> 00:11:54,860
+großer Durchbruch.
+<font color="#ffff00">big breakthrough.</font>
+
+333
+00:11:55,040 --> 00:11:56,800
+Na ja, vielleicht hast du ja recht.
+<font color="#ffff00">Well, maybe you're right.</font>
+
+334
+00:11:56,860 --> 00:11:57,440
+Bestimmt.
+<font color="#ffff00">Definitely.</font>
+
+335
+00:11:57,480 --> 00:11:59,040
+Das wird garantiert ein ziemlich großes
+<font color="#ffff00">This is guaranteed to be a pretty big one</font>
+
+336
+00:11:59,080 --> 00:11:59,830
+Geschieden.
+<font color="#ffff00">Divorced.</font>
+
+337
+00:12:03,200 --> 00:12:03,950
+Hallo.
+<font color="#ffff00">Hello.</font>
+
+338
+00:12:12,160 --> 00:12:13,280
+Hier könntest du mir deine
+<font color="#ffff00">Here you could give me yours</font>
+
+339
+00:12:13,320 --> 00:12:14,380
+Feuchtigkeitsgremeline?
+<font color="#ffff00">Moisturizing Gremeline?</font>
+
+340
+00:12:14,500 --> 00:12:15,200
+Wofür?
+<font color="#ffff00">What for?</font>
+
+341
+00:12:15,240 --> 00:12:17,000
+Wofür schon, heute ist mein großer Tag.
+<font color="#ffff00">What for, today is my big day.</font>
+
+342
+00:12:18,420 --> 00:12:18,980
+Selbstverständlich.
+<font color="#ffff00">Of course.</font>
+
+343
+00:12:19,020 --> 00:12:20,340
+Geh ins Badezimmer und nehmen was du
+<font color="#ffff00">Go to the bathroom and grab what you want</font>
+
+344
+00:12:20,380 --> 00:12:20,820
+willst.
+<font color="#ffff00">want.</font>
+
+345
+00:12:20,860 --> 00:12:22,140
+Aber erzählen wir bitte nicht, was du da
+<font color="#ffff00">But please don't tell us what you're saying</font>
+
+346
+00:12:22,180 --> 00:12:23,060
+drin gemacht hast.
+<font color="#ffff00">you did in there.</font>
+
+347
+00:12:23,480 --> 00:12:24,230
+Danke.
+<font color="#ffff00">Thank you.</font>
+
+348
+00:12:25,600 --> 00:12:26,350
+Wo
+<font color="#ffff00">Wo</font>
+
+349
+00:12:28,120 --> 00:12:29,360
+ist Joey, seine Mutter ist am Telefon.
+<font color="#ffff00">ist Joey, seine Mutter ist am Telefon.</font>
+
+350
+00:12:29,400 --> 00:12:30,180
+Er ist im Bart,
+<font color="#ffff00">He is in the beard,</font>
+
+351
+00:12:30,420 --> 00:12:31,120
+ich würde ja nicht stracken, da
+<font color="#ffff00">I wouldn't stray, there</font>
+
+352
+00:12:31,160 --> 00:12:31,510
+reinzugehen.
+<font color="#ffff00">to go in.</font>
+
+353
+00:12:31,520 --> 00:12:32,700
+Ich sehe, ich bin schon nicht rechog.
+<font color="#ffff00">I see I'm already not right.</font>
+
+354
+00:12:34,040 --> 00:12:34,790
+Ah,
+<font color="#ffff00">Ah,</font>
+
+355
+00:12:35,690 --> 00:12:37,290
+meine Augen, meine Augen!
+<font color="#ffff00">my eyes, my eyes!</font>
+
+356
+00:12:40,350 --> 00:12:41,630
+Ich hab dich gewarnt.
+<font color="#ffff00">I warned you.</font>
+
+357
+00:12:42,570 --> 00:12:44,230
+Wir macht denn hier so ein Krach, hm?
+<font color="#ffff00">We're making such a racket here, huh?</font>
+
+358
+00:12:44,350 --> 00:12:45,270
+Das war Monika.
+<font color="#ffff00">That was Monica.</font>
+
+359
+00:12:46,770 --> 00:12:48,890
+Ich möchte mit Auroga frühstücken, hast du
+<font color="#ffff00">I want to have breakfast with Auroga, did you</font>
+
+360
+00:12:48,930 --> 00:12:49,930
+ein paar Scheiben bräut für mich.
+<font color="#ffff00">a few slices brew for me.</font>
+
+361
+00:12:49,970 --> 00:12:51,870
+Sie war die ganze Nacht fertig, hm?
+<font color="#ffff00">She was wasted all night, huh?</font>
+
+362
+00:12:51,910 --> 00:12:53,290
+Ja, aber jetzt bleiben nur noch 20 Minuten
+<font color="#ffff00">Yes, but now there are only 20 minutes left</font>
+
+363
+00:12:53,330 --> 00:12:54,690
+bis esen, sie abholt.
+<font color="#ffff00">until Esen picks her up.</font>
+
+364
+00:12:55,150 --> 00:12:56,910
+Oh, benachhe ich da einen leichten Anflug
+<font color="#ffff00">Oh, I notice a slight hint there</font>
+
+365
+00:12:56,950 --> 00:12:57,670
+von Alkohol?
+<font color="#ffff00">of alcohol?</font>
+
+366
+00:12:57,710 --> 00:12:58,450
+Nein, nein,
+<font color="#ffff00">No, no,</font>
+
+367
+00:12:58,490 --> 00:13:00,170
+ich bin kein bisschen Alversüchtig.
+<font color="#ffff00">I'm not the least bit addicted.</font>
+
+368
+00:13:00,210 --> 00:13:02,110
+Es ist einfach Klasse mit ihr, der aufwand
+<font color="#ffff00">It's just great with her, the effort</font>
+
+369
+00:13:02,150 --> 00:13:02,900
+lohnt sich.
+<font color="#ffff00">worth it.</font>
+
+370
+00:13:03,070 --> 00:13:04,530
+Ich sagt, der wir beide schwingen und zu
+<font color="#ffff00">I says we both swing and too</font>
+
+371
+00:13:04,570 --> 00:13:05,890
+Gipfeln auf, die ich wohl nie wieder
+<font color="#ffff00">Summits that I will probably never see again</font>
+
+372
+00:13:05,930 --> 00:13:06,830
+erklären kann.
+<font color="#ffff00">can explain.</font>
+
+373
+00:13:07,070 --> 00:13:08,430
+Und eins kann ich dir versichern, jeder
+<font color="#ffff00">And one thing I can assure you, everyone</font>
+
+374
+00:13:08,470 --> 00:13:10,630
+einzelne Sekunde mit ihr ist ein absoluter
+<font color="#ffff00">single second with her is an absolute</font>
+
+375
+00:13:10,670 --> 00:13:11,420
+Hochgenuss.
+<font color="#ffff00">Delight.</font>
+
+376
+00:13:12,050 --> 00:13:14,090
+Und ich hab gerade 35 davon mit euch
+<font color="#ffff00">And I have 35 of them with you right now</font>
+
+377
+00:13:14,130 --> 00:13:14,930
+vergeutet.
+<font color="#ffff00">spoiled.</font>
+
+378
+00:13:15,170 --> 00:13:16,710
+Ähm, der Oneker kommt jetzt die Meditöre
+<font color="#ffff00">Um, the Oneker is now coming the Meditöre</font>
+
+379
+00:13:16,750 --> 00:13:17,100
+aufmacht.
+<font color="#ffff00">opens.</font>
+
+380
+00:13:17,130 --> 00:13:18,570
+Natürlich, warte.
+<font color="#ffff00">Of course, wait.</font>
+
+381
+00:13:18,850 --> 00:13:20,370
+Ich wollte dir nur noch sagen, dass die
+<font color="#ffff00">I just wanted to tell you that the</font>
+
+382
+00:13:20,410 --> 00:13:22,390
+alte Monika dich daran erinnern würde, die
+<font color="#ffff00">old Monika would remind you of that</font>
+
+383
+00:13:22,430 --> 00:13:23,950
+beschichtete Pfanne mit einem feuchten
+<font color="#ffff00">coated pan with a damp one</font>
+
+384
+00:13:23,990 --> 00:13:24,950
+Lappen zu putzen.
+<font color="#ffff00">Rag to clean.</font>
+
+385
+00:13:26,630 --> 00:13:28,370
+Aber die neue unterlässt diesen Hinweis.
+<font color="#ffff00">But the new one omits this reference.</font>
+
+386
+00:13:28,410 --> 00:13:29,250
+Oh, da bin ich aber beruf.
+<font color="#ffff00">Oh, that's my job.</font>
+
+387
+00:13:29,290 --> 00:13:30,350
+Da
+<font color="#ffff00">There</font>
+
+388
+00:13:34,250 --> 00:13:35,690
+habt noch mal dann wohl eine andere.
+<font color="#ffff00">then you probably have another one.</font>
+
+389
+00:13:38,100 --> 00:13:39,600
+Okay, dann wollen wir mal.
+<font color="#ffff00">Okay, let's do it then.</font>
+
+390
+00:13:40,090 --> 00:13:40,990
+Entschuldigen Sie,
+<font color="#ffff00">Excuse me</font>
+
+391
+00:13:41,430 --> 00:13:43,030
+aber ich möchte mich für diese großartige
+<font color="#ffff00">but I want to thank you for this great</font>
+
+392
+00:13:43,070 --> 00:13:43,950
+Chance bedanken.
+<font color="#ffff00">Thank Chance.</font>
+
+393
+00:13:44,780 --> 00:13:46,180
+Runter mit dem Wademantel.
+<font color="#ffff00">Take off the calf coat.</font>
+
+394
+00:13:47,280 --> 00:13:48,030
+Dass ich?
+<font color="#ffff00">That me?</font>
+
+395
+00:13:48,480 --> 00:13:49,460
+Dass wir hilfreich.
+<font color="#ffff00">That we are helpful.</font>
+
+396
+00:13:50,140 --> 00:13:51,580
+Klar, natürlich.
+<font color="#ffff00">Sure, of course.</font>
+
+397
+00:13:52,040 --> 00:13:52,790
+Ich zieh ihn aus.
+<font color="#ffff00">I take off his clothes.</font>
+
+398
+00:13:54,940 --> 00:13:56,660
+Okay, der Wademantel ist runter.
+<font color="#ffff00">Okay, the calf coat is off.</font>
+
+399
+00:13:57,460 --> 00:13:59,240
+Ich möchte, dass alles mit einer Aufnahme
+<font color="#ffff00">I want everything in one shot</font>
+
+400
+00:13:59,280 --> 00:14:00,480
+im Kasten ist.
+<font color="#ffff00">im Kasten ist.</font>
+
+401
+00:14:00,800 --> 00:14:01,550
+Kamera ab.
+<font color="#ffff00">Camera off.</font>
+
+402
+00:14:01,830 --> 00:14:02,580
+Washer an.
+<font color="#ffff00">Washer on.</font>
+
+403
+00:14:04,210 --> 00:14:04,940
+Und...
+<font color="#ffff00">And...</font>
+
+404
+00:14:04,980 --> 00:14:05,730
+Etchen.
+<font color="#ffff00">Etchen.</font>
+
+405
+00:14:05,910 --> 00:14:07,450
+Nehm, nehm, nehm.
+<font color="#ffff00">Take, take, take.</font>
+
+406
+00:14:08,810 --> 00:14:09,160
+Schnell.
+<font color="#ffff00">Fast.</font>
+
+407
+00:14:09,070 --> 00:14:09,820
+Nee,
+<font color="#ffff00">Nope,</font>
+
+408
+00:14:10,310 --> 00:14:11,710
+pro Mann, was soll das darstellen?
+<font color="#ffff00">per man, what does that represent?</font>
+
+409
+00:14:13,240 --> 00:14:14,300
+Ja, ich durchschmache.
+<font color="#ffff00">Yes, I'm going through it.</font>
+
+410
+00:14:14,850 --> 00:14:16,390
+Du hast einen verkniffenen Hintern.
+<font color="#ffff00">You have a tight butt.</font>
+
+411
+00:14:17,250 --> 00:14:19,510
+Oh, so wie ich das sehe, ist dieser Kerl
+<font color="#ffff00">Oh, the way I see it is this guy</font>
+
+412
+00:14:19,550 --> 00:14:20,670
+sehr verbittert.
+<font color="#ffff00">very bitter.</font>
+
+413
+00:14:20,730 --> 00:14:22,170
+Verstehen Sie, ich meine, seine Frau ist
+<font color="#ffff00">You see, I mean his wife is</font>
+
+414
+00:14:22,210 --> 00:14:23,570
+tot, sein Bruder wird vermisst?
+<font color="#ffff00">dead, his brother is missing?</font>
+
+415
+00:14:23,810 --> 00:14:24,950
+Ich finde, das sollte auch über den
+<font color="#ffff00">I think that should also be discussed</font>
+
+416
+00:14:24,990 --> 00:14:26,450
+Hintern rauskommen, oder nicht?
+<font color="#ffff00">Butts come out, right?</font>
+
+417
+00:14:27,270 --> 00:14:28,650
+Und ich finde, dass der Hintern
+<font color="#ffff00">And I find that butt</font>
+
+418
+00:14:28,690 --> 00:14:30,390
+schnellstens in den Kasten soll.
+<font color="#ffff00">should go into the box as quickly as possible.</font>
+
+419
+00:14:30,430 --> 00:14:31,950
+Na rein, mach ich den Kamera ab.
+<font color="#ffff00">Come on, I'll turn off the camera.</font>
+
+420
+00:14:32,190 --> 00:14:32,940
+Wasser an
+<font color="#ffff00">Water on</font>
+
+421
+00:14:34,100 --> 00:14:36,200
+und Action.
+<font color="#ffff00">und Action.</font>
+
+422
+00:14:38,910 --> 00:14:39,570
+Nee,
+<font color="#ffff00">Nah,</font>
+
+423
+00:14:39,610 --> 00:14:40,650
+und was war das jetzt?
+<font color="#ffff00">and what was that now?</font>
+
+424
+00:14:40,690 --> 00:14:41,440
+Ich
+<font color="#ffff00">I</font>
+
+425
+00:14:42,130 --> 00:14:43,250
+versuch sie jetzt mit Stille auf der
+<font color="#ffff00">now try it with silence on the</font>
+
+426
+00:14:43,290 --> 00:14:44,050
+Zweiflung.
+<font color="#ffff00">Doubt.</font>
+
+427
+00:14:45,710 --> 00:14:47,830
+Aber wenn sie es fragen müssen...
+<font color="#ffff00">But if you have to ask...</font>
+
+428
+00:14:55,880 --> 00:14:57,200
+Ich liebe diese Finger.
+<font color="#ffff00">I love these fingers.</font>
+
+429
+00:14:57,400 --> 00:14:58,150
+Danke.
+<font color="#ffff00">Thank you.</font>
+
+430
+00:14:58,630 --> 00:15:00,630
+Nein, ich meine eigentlich meiner Finger.
+<font color="#ffff00">No, I actually mean my fingers.</font>
+
+431
+00:15:02,820 --> 00:15:04,340
+Liebe Flügel, sie sind.
+<font color="#ffff00">Dear wings, they are.</font>
+
+432
+00:15:05,220 --> 00:15:05,970
+Oh,
+<font color="#ffff00">Oh,</font>
+
+433
+00:15:07,030 --> 00:15:08,190
+verflix dich, kommt mir zu spät.
+<font color="#ffff00">damn it, it's too late for me.</font>
+
+434
+00:15:08,270 --> 00:15:09,020
+Oh nein.
+<font color="#ffff00">Oh no.</font>
+
+435
+00:15:10,070 --> 00:15:11,650
+Nicht, ich, ich, ich, ich.
+<font color="#ffff00">Not, I, I, I, I.</font>
+
+436
+00:15:11,810 --> 00:15:13,290
+Oh nein, ich, ich, ich, ich.
+<font color="#ffff00">Oh no, me, me, me, me.</font>
+
+437
+00:15:13,910 --> 00:15:15,930
+Oh nein, ich, meine Finger sind entsetzt.
+<font color="#ffff00">Oh no, I, my fingers are horrified.</font>
+
+438
+00:15:17,170 --> 00:15:18,690
+Er wartet auf mich.
+<font color="#ffff00">He is waiting for me.</font>
+
+439
+00:15:19,260 --> 00:15:20,520
+Ich dachte, du hättest mit Rick
+<font color="#ffff00">I thought you were with Rick</font>
+
+440
+00:15:20,560 --> 00:15:20,980
+gesprochen.
+<font color="#ffff00">spoken.</font>
+
+441
+00:15:21,020 --> 00:15:22,680
+Es ist nicht Drake.
+<font color="#ffff00">It's not Drake.</font>
+
+442
+00:15:23,550 --> 00:15:25,050
+Aber Ethan darf doch den ganzen Tag mit
+<font color="#ffff00">But Ethan can come along all day</font>
+
+443
+00:15:25,090 --> 00:15:25,840
+dir verbringen.
+<font color="#ffff00">spend with you.</font>
+
+444
+00:15:25,930 --> 00:15:26,550
+Nein,
+<font color="#ffff00">No,</font>
+
+445
+00:15:26,590 --> 00:15:27,470
+es ist Andrew.
+<font color="#ffff00">it's Andrew.</font>
+
+446
+00:15:31,670 --> 00:15:32,420
+In
+<font color="#ffff00">In</font>
+
+447
+00:15:33,200 --> 00:15:34,600
+den kommenden Jahren wird es viele
+<font color="#ffff00">there will be many in the coming years</font>
+
+448
+00:15:34,640 --> 00:15:35,480
+Augenblicke geben.
+<font color="#ffff00">Give moments.</font>
+
+449
+00:15:35,520 --> 00:15:37,340
+Da werde ich die Folgen der Frage bereuen.
+<font color="#ffff00">Then I will regret the consequences of the question.</font>
+
+450
+00:15:37,520 --> 00:15:37,980
+Aber
+<font color="#ffff00">But</font>
+
+451
+00:15:38,020 --> 00:15:39,580
+wer
+<font color="#ffff00">who</font>
+
+452
+00:15:39,890 --> 00:15:40,670
+ist Andrew?
+<font color="#ffff00">is Andrew?</font>
+
+453
+00:15:42,200 --> 00:15:42,950
+Neuer.
+<font color="#ffff00">Newer.</font>
+
+454
+00:15:44,600 --> 00:15:46,040
+Willst du etwa damit sagen, dass du nicht
+<font color="#ffff00">Are you saying that you don't</font>
+
+455
+00:15:46,080 --> 00:15:48,000
+vollkommen ausgelastet bist mit Rick,
+<font color="#ffff00">you're completely busy with Rick,</font>
+
+456
+00:15:48,100 --> 00:15:48,850
+Ethan und mir?
+<font color="#ffff00">Ethan and me?</font>
+
+457
+00:15:48,940 --> 00:15:50,960
+Oh, so würd ich das nicht formulieren.
+<font color="#ffff00">Oh, I wouldn't put it that way.</font>
+
+458
+00:15:51,060 --> 00:15:52,720
+Die meisten Frauen würden für drei Kerle
+<font color="#ffff00">Most women would go for three guys</font>
+
+459
+00:15:52,760 --> 00:15:55,190
+wie uns durch aus ein Mord beginn.
+<font color="#ffff00">how a murder begins through us.</font>
+
+460
+00:15:56,920 --> 00:15:57,920
+Was willst du eigentlich?
+<font color="#ffff00">What do you actually want?</font>
+
+461
+00:15:57,960 --> 00:15:58,880
+Du
+<font color="#ffff00">You</font>
+
+462
+00:15:59,700 --> 00:16:00,720
+hast
+<font color="#ffff00">have</font>
+
+463
+00:16:00,910 --> 00:16:01,630
+nicht doch.
+<font color="#ffff00">not after all.</font>
+
+464
+00:16:01,670 --> 00:16:02,130
+Nein,
+<font color="#ffff00">No,</font>
+
+465
+00:16:02,170 --> 00:16:03,010
+nein, dich allein.
+<font color="#ffff00">no, you alone.</font>
+
+466
+00:16:03,780 --> 00:16:04,680
+Wie meinst du das?
+<font color="#ffff00">What do you mean?</font>
+
+467
+00:16:04,920 --> 00:16:06,100
+Vergiss die anderen Kerle.
+<font color="#ffff00">Forget the other guys.</font>
+
+468
+00:16:07,710 --> 00:16:09,560
+Ich soll alle aufgeben.
+<font color="#ffff00">I should give up everyone.</font>
+
+469
+00:16:11,260 --> 00:16:12,760
+Wir beide passen doch spätzenmäßig
+<font color="#ffff00">We both fit lately</font>
+
+470
+00:16:12,800 --> 00:16:13,420
+zusammen.
+<font color="#ffff00">together.</font>
+
+471
+00:16:13,460 --> 00:16:14,280
+Findest du nicht auch?
+<font color="#ffff00">Don't you agree?</font>
+
+472
+00:16:14,440 --> 00:16:15,720
+Wieso können wir nicht einfach so
+<font color="#ffff00">Why can't we just do that?</font>
+
+473
+00:16:15,760 --> 00:16:16,580
+weitermachen?
+<font color="#ffff00">continue?</font>
+
+474
+00:16:16,640 --> 00:16:18,140
+Wieso können wir nicht einfach reden und
+<font color="#ffff00">Why can't we just talk and</font>
+
+475
+00:16:18,180 --> 00:16:20,080
+lachen und miteinander schlafen, ohne zu
+<font color="#ffff00">laugh and sleep together without having to</font>
+
+476
+00:16:20,120 --> 00:16:21,740
+irgendetwas verpflichtet zu sein?
+<font color="#ffff00">to be obliged to do anything?</font>
+
+477
+00:16:22,770 --> 00:16:24,170
+Was heute morgen dachte ich, dass dir das
+<font color="#ffff00">What this morning I thought that you</font>
+
+478
+00:16:24,210 --> 00:16:24,960
+recht ist.
+<font color="#ffff00">is right.</font>
+
+479
+00:16:27,210 --> 00:16:29,810
+Weißt du, das ist ganz schön zwiefältig.
+<font color="#ffff00">You know, that's pretty ambivalent.</font>
+
+480
+00:16:31,260 --> 00:16:32,500
+Ja, ich fühle mich zweigerteil, der einen
+<font color="#ffff00">Yes, I feel two parts, the one</font>
+
+481
+00:16:32,540 --> 00:16:34,240
+halt sagt, halt die Klappe, das ist doch
+<font color="#ffff00">stop says, shut up, that's it</font>
+
+482
+00:16:34,280 --> 00:16:34,960
+großartig.
+<font color="#ffff00">great.</font>
+
+483
+00:16:35,000 --> 00:16:37,710
+Aber der gibt's nach diesen Achteren.
+<font color="#ffff00">But that's after these eights.</font>
+
+484
+00:16:38,050 --> 00:16:39,110
+Dieser Teil bricht schon einmal einen
+<font color="#ffff00">This part is already breaking</font>
+
+485
+00:16:39,150 --> 00:16:40,530
+Trend aus, wenn Herr Bambi sieht oder
+<font color="#ffff00">Trend off when Mr. Bambi sees or</font>
+
+486
+00:16:40,570 --> 00:16:41,830
+irgendwelche Liebeschnutz in die
+<font color="#ffff00">any love interests in the</font>
+
+487
+00:16:41,870 --> 00:16:42,620
+Schnittwicke.
+<font color="#ffff00">Cut vetch.</font>
+
+488
+00:16:44,610 --> 00:16:46,850
+Dieser Teil sagt, das bringt doch nichts.
+<font color="#ffff00">This part says it's no use.</font>
+
+489
+00:16:47,090 --> 00:16:48,210
+Steig aus, steig aus!
+<font color="#ffff00">Get out, get out!</font>
+
+490
+00:16:50,010 --> 00:16:52,330
+Und auf welchen von den beiden wirst du
+<font color="#ffff00">And on which of the two will you</font>
+
+491
+00:16:52,370 --> 00:16:53,120
+hören?
+<font color="#ffff00">hear?</font>
+
+492
+00:16:53,850 --> 00:16:54,770
+Das weiß ich noch nicht.
+<font color="#ffff00">I don't know that yet.</font>
+
+493
+00:16:54,810 --> 00:16:55,810
+Ich muss auf beide hören.
+<font color="#ffff00">I have to listen to both.</font>
+
+494
+00:16:55,850 --> 00:16:57,230
+Sie fahren sich ständig ins Wacht.
+<font color="#ffff00">You constantly drive yourself into overdrive.</font>
+
+495
+00:16:59,130 --> 00:16:59,950
+Auf welchen?
+<font color="#ffff00">Which one?</font>
+
+496
+00:17:04,210 --> 00:17:05,070
+Auf den zweiten.
+<font color="#ffff00">On the second.</font>
+
+497
+00:17:06,950 --> 00:17:07,700
+Okay,
+<font color="#ffff00">Okay,</font>
+
+498
+00:17:12,640 --> 00:17:14,660
+mich an, wenn du deine Meinung entlastet.
+<font color="#ffff00">at me if you unburden your opinion.</font>
+
+499
+00:17:25,130 --> 00:17:26,370
+Mir sind dir lippen durchgegangen.
+<font color="#ffff00">I lost your lips.</font>
+
+500
+00:17:39,670 --> 00:17:40,810
+Sie ist doch mal so.
+<font color="#ffff00">She's like that.</font>
+
+501
+00:17:41,010 --> 00:17:42,970
+Du hast dir den Laufpass gegeben.
+<font color="#ffff00">You gave up on yourself.</font>
+
+502
+00:17:44,010 --> 00:17:47,730
+Ich meine, diese Frau war unglaublich sexy
+<font color="#ffff00">I mean, this woman was incredibly sexy</font>
+
+503
+00:17:47,770 --> 00:17:49,670
+und wunderschöne Intelligent und
+<font color="#ffff00">and beautiful intelligent and</font>
+
+504
+00:17:49,710 --> 00:17:52,730
+eigentlich unerreichbar, doch warum
+<font color="#ffff00">actually unattainable, but why</font>
+
+505
+00:17:54,200 --> 00:17:55,200
+bist du weggelaufen?
+<font color="#ffff00">did you run away?</font>
+
+506
+00:17:57,200 --> 00:17:57,950
+Hallo Joy!
+<font color="#ffff00">Hello Joy!</font>
+
+507
+00:17:58,020 --> 00:17:58,770
+Hei, hey!
+<font color="#ffff00">Hey, hey!</font>
+
+508
+00:17:59,000 --> 00:17:59,750
+Schon zurück?
+<font color="#ffff00">Back already?</font>
+
+509
+00:17:59,960 --> 00:18:01,420
+Hey, bist du nicht der Typ der dem
+<font color="#ffff00">Hey, aren't you the type of person?</font>
+
+510
+00:18:01,460 --> 00:18:03,460
+knackigen Fuhm neuen Erprudzino-Film
+<font color="#ffff00">crisp Fuhm new Erprudzino film</font>
+
+511
+00:18:03,500 --> 00:18:04,250
+schrieb?
+<font color="#ffff00">wrote?</font>
+
+512
+00:18:05,820 --> 00:18:06,570
+Nein.
+<font color="#ffff00">No.</font>
+
+513
+00:18:07,070 --> 00:18:09,010
+Nein, was ist denn passiert, mein großer?
+<font color="#ffff00">No, what happened, my big one?</font>
+
+514
+00:18:09,900 --> 00:18:10,650
+Mein großer?
+<font color="#ffff00">My big one?</font>
+
+515
+00:18:13,280 --> 00:18:15,200
+Ich dachte, mein großer wäre angemessen.
+<font color="#ffff00">I thought my tall one was appropriate.</font>
+
+516
+00:18:15,240 --> 00:18:15,990
+Ach so.
+<font color="#ffff00">Oh, right.</font>
+
+517
+00:18:16,460 --> 00:18:17,680
+Ich wurde gefeiert.
+<font color="#ffff00">I was celebrated.</font>
+
+518
+00:18:18,520 --> 00:18:20,100
+Ja, sie sagt nicht, ich würde zu sehr
+<font color="#ffff00">Yes, she doesn't say I would too much</font>
+
+519
+00:18:20,140 --> 00:18:21,000
+Schauspielern.
+<font color="#ffff00">Acting.</font>
+
+520
+00:18:23,090 --> 00:18:24,710
+Ich hab schon allen von diesen Patzino
+<font color="#ffff00">I already have all of these Patzino</font>
+
+521
+00:18:24,750 --> 00:18:25,490
+-Filmer zählt.
+<font color="#ffff00">-Filmer counts.</font>
+
+522
+00:18:25,530 --> 00:18:26,910
+Jetzt werden Sie ins Kino rennen und auf
+<font color="#ffff00">Now you will run to the cinema and up</font>
+
+523
+00:18:26,950 --> 00:18:27,850
+meinen großen Auftritt.
+<font color="#ffff00">my big entrance.</font>
+
+524
+00:18:27,890 --> 00:18:28,770
+Joi, weißt du was?
+<font color="#ffff00">Joi, you know what?</font>
+
+525
+00:18:28,890 --> 00:18:30,530
+Niemand wird den Unterschied bemerken.
+<font color="#ffff00">Nobody will notice the difference.</font>
+
+526
+00:18:30,710 --> 00:18:31,770
+Meine Mutter, aber schon.
+<font color="#ffff00">My mother, but yes.</font>
+
+527
+00:18:34,220 --> 00:18:35,680
+Irgendwie ist das ja niedlich,
+<font color="#ffff00">That's kind of cute,</font>
+
+528
+00:18:36,640 --> 00:18:38,160
+aber auch ziemlich beunruhigend.
+<font color="#ffff00">but also quite worrying.</font>
+
+529
+00:18:39,810 --> 00:18:41,790
+Ich hab sechs Jahre lang in Mesen der
+<font color="#ffff00">I lived in Mesen for six years</font>
+
+530
+00:18:41,830 --> 00:18:43,190
+Atastöcken mitgewirkt.
+<font color="#ffff00">Ata sticks contributed.</font>
+
+531
+00:18:43,310 --> 00:18:45,410
+Jetzt kriege ich endlich meine Chance und
+<font color="#ffff00">Now I finally get my chance and</font>
+
+532
+00:18:45,450 --> 00:18:46,430
+für ein Massell sie.
+<font color="#ffff00">for a massel them.</font>
+
+533
+00:18:46,470 --> 00:18:47,750
+Aber vielleicht war das gar nicht deine
+<font color="#ffff00">But maybe that wasn't yours at all</font>
+
+534
+00:18:47,790 --> 00:18:48,140
+Chance.
+<font color="#ffff00">Chance.</font>
+
+535
+00:18:48,070 --> 00:18:50,270
+Ja, Joey, ich denke, wenn man eine Chance
+<font color="#ffff00">Yes, Joey, I think if given a chance</font>
+
+536
+00:18:50,310 --> 00:18:52,690
+bekommt, weiß man, ob es die Chance ist.
+<font color="#ffff00">bekommt, weiß man, ob es die Chance ist.</font>
+
+537
+00:18:53,430 --> 00:18:55,350
+Hatte es das Gefühl, dass es die Chance
+<font color="#ffff00">Felt like there was a chance</font>
+
+538
+00:18:55,390 --> 00:18:56,140
+ist?
+<font color="#ffff00">is?</font>
+
+539
+00:18:56,960 --> 00:18:59,100
+Ja, schwer zu sagen, ich war nackt.
+<font color="#ffff00">Yes, hard to say, I was naked.</font>
+
+540
+00:19:00,080 --> 00:19:01,540
+Ich glaube nicht, dass der Film deine
+<font color="#ffff00">I don't think the movie is yours</font>
+
+541
+00:19:01,580 --> 00:19:02,880
+Chance war und ich glaube auch nicht, dass
+<font color="#ffff00">Chance war und ich glaube auch nicht, dass</font>
+
+542
+00:19:02,920 --> 00:19:04,320
+man nur eine Chance kriegt.
+<font color="#ffff00">you only get one chance.</font>
+
+543
+00:19:04,460 --> 00:19:05,700
+Ich bin mir sicher, dass dir ein Leben
+<font color="#ffff00">I am sure that you have a life</font>
+
+544
+00:19:05,740 --> 00:19:07,120
+noch großes bevorsteht.
+<font color="#ffff00">big things are still to come.</font>
+
+545
+00:19:07,160 --> 00:19:08,140
+Ja, Joey, wirklich.
+<font color="#ffff00">Yes, Joey, really.</font>
+
+546
+00:19:08,340 --> 00:19:10,080
+Du musst nur ganz fest daran glauben, dass
+<font color="#ffff00">You just have to believe that</font>
+
+547
+00:19:10,120 --> 00:19:11,720
+irgendwann mal einer zu seinem Freund
+<font color="#ffff00">at some point someone to his friend</font>
+
+548
+00:19:11,760 --> 00:19:13,520
+läuft und sagt, ich hab noch role, ich hab
+<font color="#ffff00">runs and says, I still have role, I have</font>
+
+549
+00:19:13,560 --> 00:19:14,220
+noch role.
+<font color="#ffff00">still role.</font>
+
+550
+00:19:14,260 --> 00:19:16,260
+Ich werde Joey trivialis hinteren sein.
+<font color="#ffff00">I'll be Joey trivialis posterior.</font>
+
+551
+00:19:17,300 --> 00:19:18,050
+Hey,
+<font color="#ffff00">Hey,</font>
+
+552
+00:19:20,050 --> 00:19:21,310
+das hast du schön gesagt.
+<font color="#ffff00">you said that beautifully.</font>
+
+553
+00:19:21,430 --> 00:19:22,180
+Oh,
+<font color="#ffff00">Oh,</font>
+
+554
+00:19:23,870 --> 00:19:24,620
+komm her.
+<font color="#ffff00">come here.</font>
+
+555
+00:19:28,480 --> 00:19:29,260
+Entschuldigt, Leute.
+<font color="#ffff00">Sorry, guys.</font>
+
+556
+00:19:29,920 --> 00:19:31,100
+Ich werde ins Bett gehen.
+<font color="#ffff00">I'm going to bed.</font>
+
+557
+00:19:32,100 --> 00:19:32,600
+Schlaft gut, meine Kunde nachts.
+<font color="#ffff00">Sleep well, my customer at night.</font>
+
+558
+00:19:32,640 --> 00:19:34,560
+So in deine Schuhe, die ganze Nacht darum
+<font color="#ffff00">So in your shoes, all night about it</font>
+
+559
+00:19:34,600 --> 00:19:35,350
+liegen.
+<font color="#ffff00">lie.</font>
+
+560
+00:19:40,010 --> 00:19:40,710
+Wirklich?
+<font color="#ffff00">Really?</font>
+
+561
+00:19:40,750 --> 00:19:43,010
+Du willst sie einfach so rumlegen lassen,
+<font color="#ffff00">You just want to let her lay around like that,</font>
+
+562
+00:19:43,270 --> 00:19:45,390
+so hingeworfen auf diese achlose Art und
+<font color="#ffff00">thrown away in this careless way and</font>
+
+563
+00:19:45,430 --> 00:19:46,180
+Weise?
+<font color="#ffff00">Wise?</font>
+
+564
+00:19:48,040 --> 00:19:48,790
+Egal.
+<font color="#ffff00">Whatever.</font>
+
+565
+00:19:48,860 --> 00:19:50,120
+Ich räume sie morgen weg oder auch?
+<font color="#ffff00">I'll put them away tomorrow or will I?</font>
+
+566
+00:19:50,160 --> 00:19:50,510
+Gar nichts.
+<font color="#ffff00">Nothing at all.</font>
+
+567
+00:19:50,540 --> 00:19:52,830
+Ich weiß
+<font color="#ffff00">I know</font>
+
+568
+00:19:53,590 --> 00:19:54,490
+es noch nicht.
+<font color="#ffff00">not yet.</font>
+
+569
+00:19:56,700 --> 00:19:59,260
+Jetzt ist sie wirklich chaotisch.
+<font color="#ffff00">Now she's really messy.</font>
+
+570
+00:20:00,880 --> 00:20:01,630
+Wenn
+<font color="#ffff00">If</font>
+
+571
+00:20:13,260 --> 00:20:14,800
+es dich so stört, dann geht doch einfach
+<font color="#ffff00">If it bothers you so much, then just leave</font>
+
+572
+00:20:14,840 --> 00:20:16,260
+raus und hol die Schuhe.
+<font color="#ffff00">go out and get the shoes.</font>
+
+573
+00:20:18,740 --> 00:20:19,490
+Nein,
+<font color="#ffff00">No,</font>
+
+574
+00:20:20,200 --> 00:20:21,160
+das mache ich nicht.
+<font color="#ffff00">I won't do that.</font>
+
+575
+00:20:21,400 --> 00:20:22,320
+Das wäre ja albern.
+<font color="#ffff00">That would be silly.</font>
+
+576
+00:20:24,470 --> 00:20:25,410
+Ich werde sie holen.
+<font color="#ffff00">I'll get her.</font>
+
+577
+00:20:27,330 --> 00:20:28,810
+Und sie ja holen, wenn alle schlafen.
+<font color="#ffff00">And get them when everyone is asleep.</font>
+
+578
+00:20:29,390 --> 00:20:31,290
+Ganz früh aufstehen und dann wiederhin
+<font color="#ffff00">Get up very early and then again</font>
+
+579
+00:20:31,330 --> 00:20:31,680
+stehen.
+<font color="#ffff00">stand.</font>
+
+580
+00:20:31,610 --> 00:20:32,590
+Oh!
+<font color="#ffff00">Oh!</font>
+
+581
+00:20:35,960 --> 00:20:36,720
+Wahnsinn!
+<font color="#ffff00">Awesome!</font>
+

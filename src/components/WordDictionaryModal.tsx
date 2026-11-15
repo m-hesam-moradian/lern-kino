@@ -161,35 +161,35 @@ export default function WordDictionaryModal({
 
   return (
     <div
-      className="absolute inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+      className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-6 overflow-y-auto"
       onClick={() => onClose(autoResume)}
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl glass-card bg-zinc-950/95 border border-cyan-500/40 p-6 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.9)] space-y-5 animate-in fade-in zoom-in-95 duration-200 select-text"
+        className="relative w-full max-w-lg max-h-[94vh] flex flex-col rounded-2xl sm:rounded-3xl glass-card bg-zinc-950/95 border border-cyan-500/40 p-4 sm:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.9)] space-y-3.5 sm:space-y-5 animate-in fade-in zoom-in-95 duration-200 select-text overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* ── Top Header Bar ─────────────────────────────────────────── */}
-        <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
-          <div className="space-y-1">
+        <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-3 sm:pb-4">
+          <div className="space-y-0.5 sm:space-y-1 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400">
                 German Vocabulary
               </span>
               {entry?.partOfSpeech && (
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/25">
+                <span className="text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/25">
                   {entry.partOfSpeech}
                 </span>
               )}
             </div>
 
-            <div className="flex items-center gap-3">
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <h2 className="text-xl sm:text-3xl font-black text-white tracking-tight truncate">
                 {cleaned}
               </h2>
 
               <button
                 onClick={handleSpeak}
-                className={`p-2 rounded-xl border transition-all ${
+                className={`p-1.5 sm:p-2 rounded-xl border transition-all shrink-0 ${
                   isSpeaking
                     ? 'bg-cyan-500 text-slate-950 border-cyan-400 scale-105'
                     : 'bg-white/5 border-white/10 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-500/40'
@@ -197,17 +197,17 @@ export default function WordDictionaryModal({
                 title="Pronounce word (de-DE)"
                 aria-label="Pronounce German word"
               >
-                <Volume2 className="w-5 h-5" />
+                <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
 
           <button
             onClick={() => onClose(autoResume)}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors shrink-0"
             title="Close dictionary (Esc)"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
 
@@ -251,6 +251,35 @@ export default function WordDictionaryModal({
           ) : (
             <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-base font-semibold text-white">
               {customTranslation || entry?.translation || 'No direct translation found.'}
+            </div>
+          )}
+
+          {/* Quick-Select Synonym / Alternative Meaning Pills */}
+          {!isLoading && entry?.synonyms && entry.synonyms.length > 1 && (
+            <div className="pt-1 space-y-1.5">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+                Suggested Meanings (Click to select)
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {entry.synonyms.slice(0, 6).map((syn, idx) => {
+                  const currentSelected = (customTranslation || entry.translation || '').toLowerCase();
+                  const isSelected = currentSelected === syn.toLowerCase();
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCustomTranslation(syn)}
+                      className={`px-2.5 py-1 rounded-xl text-xs transition-all ${
+                        isSelected
+                          ? 'bg-cyan-500 text-slate-950 font-bold shadow-[0_0_12px_rgba(0,255,255,0.4)] scale-105'
+                          : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 hover:border-cyan-500/40'
+                      }`}
+                    >
+                      {syn}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>
@@ -320,20 +349,61 @@ export default function WordDictionaryModal({
 
           {showExpanded && (
             <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
-              {entry?.definitions && entry.definitions.length > 0 && (
-                <div className="space-y-1.5">
+              {/* Categorized Meanings by Part of Speech */}
+              {entry?.meaningGroups && entry.meaningGroups.length > 0 && (
+                <div className="space-y-2">
                   <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
-                    Additional Definitions
+                    Grammatical Categories
                   </span>
-                  <ul className="text-xs text-slate-300 space-y-1 pl-4 list-disc marker:text-cyan-400">
-                    {entry.definitions.map((def, idx) => (
-                      <li key={idx} className="leading-relaxed">
-                        {def}
-                      </li>
+                  <div className="space-y-2">
+                    {entry.meaningGroups.map((mg, idx) => (
+                      <div key={idx} className="p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs space-y-1">
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 inline-block uppercase">
+                          {mg.partOfSpeech}
+                        </span>
+                        <p className="text-slate-200 text-xs pl-0.5 pt-0.5">
+                          {mg.meanings.join(', ')}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
+
+              {/* Bilingual Example Sentences */}
+              {entry?.examplePairs && entry.examplePairs.length > 0 && (
+                <div className="space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                    Example Sentences
+                  </span>
+                  <div className="space-y-2">
+                    {entry.examplePairs.slice(0, 3).map((pair, idx) => (
+                      <div key={idx} className="p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs space-y-1">
+                        <p className="text-white font-medium">🇩🇪 {pair.german}</p>
+                        <p className="text-yellow-300/90 font-normal">🇬🇧 {pair.english}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Additional Definitions */}
+              {(!entry?.meaningGroups || entry.meaningGroups.length === 0) &&
+                entry?.definitions &&
+                entry.definitions.length > 0 && (
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                      Definitions & Synonyms
+                    </span>
+                    <ul className="text-xs text-slate-300 space-y-1 pl-4 list-disc marker:text-cyan-400">
+                      {entry.definitions.map((def, idx) => (
+                        <li key={idx} className="leading-relaxed">
+                          {def}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
               {/* External Study Links */}
               <div className="pt-2">
@@ -350,12 +420,28 @@ export default function WordDictionaryModal({
                     Leo.org <ExternalLink className="w-3 h-3" />
                   </a>
                   <a
+                    href={`https://www.dict.cc/?s=${encodeURIComponent(cleaned)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-xl glass-pill text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 flex items-center gap-1 transition-all"
+                  >
+                    dict.cc <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <a
                     href={`https://de.wiktionary.org/wiki/${encodeURIComponent(cleaned)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3 py-1.5 rounded-xl glass-pill text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 flex items-center gap-1 transition-all"
                   >
                     Wiktionary <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <a
+                    href={`https://www.duden.de/suchen/dudenonline/${encodeURIComponent(cleaned)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-xl glass-pill text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 flex items-center gap-1 transition-all"
+                  >
+                    Duden <ExternalLink className="w-3 h-3" />
                   </a>
                   <a
                     href={`https://www.deepl.com/translator#de/en/${encodeURIComponent(cleaned)}`}

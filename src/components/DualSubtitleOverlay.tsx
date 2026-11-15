@@ -61,21 +61,21 @@ export default function DualSubtitleOverlay({
 
   // Dynamic vertical lift so captions smoothly dodge the glass controls bar
   const bottomPositionClass = controlsVisible
-    ? 'bottom-24 sm:bottom-28'
-    : 'bottom-6 sm:bottom-8';
+    ? 'bottom-20 sm:bottom-28'
+    : 'bottom-4 sm:bottom-8';
 
   return (
     <div
       id="lernkino-subtitle-slot"
-      className={`absolute left-0 right-0 z-30 flex flex-col items-center justify-end px-4 pointer-events-none transition-all duration-300 ease-out select-none ${bottomPositionClass}`}
+      className={`absolute left-0 right-0 z-30 flex flex-col items-center justify-end px-2.5 sm:px-4 pointer-events-none transition-all duration-300 ease-out select-none ${bottomPositionClass}`}
       aria-live="polite"
     >
       <div
-        className={`pointer-events-auto max-w-4xl rounded-2xl px-5 py-3 text-center transition-all duration-200 space-y-1.5 ${bgClass}`}
+        className={`pointer-events-auto max-w-4xl rounded-xl sm:rounded-2xl px-3.5 py-2 sm:px-5 sm:py-3 text-center transition-all duration-200 space-y-1 sm:space-y-1.5 ${bgClass}`}
       >
         {/* ── German Subtitle Line (Target Language) ────────────────── */}
         {hasGerman && (
-          <div className="space-y-1">
+          <div className="space-y-0.5 sm:space-y-1">
             {activeGermanCues.map((cue) => (
               <div
                 key={`de-${cue.index}`}
@@ -91,7 +91,7 @@ export default function DualSubtitleOverlay({
                           e.stopPropagation();
                           onWordClick?.(token, 'de', cue, activeEnglishCues[0]);
                         }}
-                        className="hover:text-cyan-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.7)] hover:underline cursor-pointer transition-all duration-150 inline-block px-0.5 rounded active:scale-95"
+                        className="hover:text-cyan-300 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.7)] hover:underline cursor-pointer transition-all duration-150 inline-block px-0.5 py-0.5 rounded active:scale-95 touch-manipulation"
                         title="Click to inspect German word & add to Leitner Box"
                       >
                         {token}
@@ -124,7 +124,7 @@ export default function DualSubtitleOverlay({
                           e.stopPropagation();
                           onWordClick?.(token, 'en', cue, activeGermanCues[0]);
                         }}
-                        className="hover:brightness-125 cursor-pointer transition-all inline-block px-0.5"
+                        className="hover:brightness-125 cursor-pointer transition-all inline-block px-0.5 py-0.5 rounded touch-manipulation"
                       >
                         {token}
                       </span>

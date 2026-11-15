@@ -8,7 +8,7 @@ const COOKIE_MAX_AGE = 2592000; // 30 days in seconds
  * Formats seconds into MM:SS or H:MM:SS string.
  */
 export function formatTimestamp(seconds: number | undefined | null): string {
-  if (typeof seconds !== 'number' || isNaN(seconds) || seconds < 0) {
+  if (typeof seconds !== 'number' || isNaN(seconds) || !isFinite(seconds) || seconds < 0) {
     return '00:00';
   }
   const totalSeconds = Math.floor(seconds);

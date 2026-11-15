@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# py -3.12 lernkino_pipeline.py
 """
 LernKino Media Organizer & Subtitle Pipeline
 ============================================

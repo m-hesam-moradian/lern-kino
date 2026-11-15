@@ -60,6 +60,7 @@ export interface VideoPlayerProps {
     de: string | null;
     en: string | null;
   };
+  expectedDuration?: number;
   autoResume?: boolean;
   startTime?: number;
   onTimeUpdateCallback?: (currentTime: number) => void;
@@ -87,6 +88,7 @@ export default function VideoPlayer({
   movieSlug,
   initialVideoSrc,
   subtitles,
+  expectedDuration,
   autoResume = false,
   startTime,
   onTimeUpdateCallback,
@@ -96,6 +98,7 @@ export default function VideoPlayer({
 }: VideoPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const scrubRailRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const deSrtInputRef = useRef<HTMLInputElement>(null);
   const enSrtInputRef = useRef<HTMLInputElement>(null);
@@ -118,7 +121,7 @@ export default function VideoPlayer({
   const [localFileName, setLocalFileName] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(expectedDuration && expectedDuration > 0 ? expectedDuration : 0);
   const [bufferedPct, setBufferedPct] = useState<number>(0);
   const [volume, setVolume] = useState<number>(1);
   const [isMuted, setIsMuted] = useState<boolean>(false);
@@ -127,6 +130,10 @@ export default function VideoPlayer({
   const [showControls, setShowControls] = useState<boolean>(true);
   const [isDraggingFile, setIsDraggingFile] = useState<boolean>(false);
   const [hasVideoError, setHasVideoError] = useState<boolean>(false);
+
+  // Smooth scrubbing & drag state
+  const [isScrubbing, setIsScrubbing] = useState<boolean>(false);
+  const [scrubbingTime, setScrubbingTime] = useState<number | null>(null);
 
   // Subtitle engine state
   const [germanCues, setGermanCues] = useState<SubtitleCue[]>([]);
@@ -156,6 +163,49 @@ export default function VideoPlayer({
   const [scrubHoverTime, setScrubHoverTime] = useState<number | null>(null);
   const [scrubHoverPos, setScrubHoverPos] = useState<number>(0);
 
+  // ── 0. Multi-Tier Duration Helper ──────────────────────────────────────────
+  const getEffectiveDuration = useCallback((): number => {
+    const vid = videoRef.current;
+    if (vid && typeof vid.duration === 'number' && !isNaN(vid.duration) && isFinite(vid.duration) && vid.duration > 0) {
+      return vid.duration;
+    }
+    if (typeof duration === 'number' && !isNaN(duration) && isFinite(duration) && duration > 0) {
+      return duration;
+    }
+    if (typeof expectedDuration === 'number' && !isNaN(expectedDuration) && isFinite(expectedDuration) && expectedDuration > 0) {
+      return expectedDuration;
+    }
+    // Subtitle cue fallback: find maximum end timestamp
+    const allCues = [...germanCues, ...englishCues];
+    if (allCues.length > 0) {
+      let maxEnd = 0;
+      for (const cue of allCues) {
+        if (typeof cue.endTime === 'number' && isFinite(cue.endTime) && cue.endTime > maxEnd) {
+          maxEnd = cue.endTime;
+        }
+      }
+      if (maxEnd > 0) return maxEnd;
+    }
+    return 0;
+  }, [duration, expectedDuration, germanCues, englishCues]);
+
+  const syncDuration = useCallback(() => {
+    const vid = videoRef.current;
+    if (vid && typeof vid.duration === 'number' && !isNaN(vid.duration) && isFinite(vid.duration) && vid.duration > 0) {
+      setDuration((prev) => (Math.abs(prev - vid.duration) > 0.3 ? vid.duration : prev));
+      return;
+    }
+    const eff = getEffectiveDuration();
+    if (eff > 0) {
+      setDuration((prev) => (prev <= 0 ? eff : prev));
+    }
+  }, [getEffectiveDuration]);
+
+  // Re-sync duration whenever subtitles or expectedDuration updates
+  useEffect(() => {
+    syncDuration();
+  }, [syncDuration, germanCues, englishCues, expectedDuration]);
+
   // ── 0. HUD Notification Helper ──────────────────────────────────────────────
   const showHud = useCallback((message: string) => {
     setHudMessage(message);
@@ -171,7 +221,8 @@ export default function VideoPlayer({
   const commitProgress = useCallback(
     (force = false) => {
       const vid = videoRef.current;
-      if (!vid || isNaN(vid.duration) || vid.duration <= 0) return;
+      const effDur = getEffectiveDuration();
+      if (!vid || effDur <= 0) return;
 
       const now = Date.now();
       // Throttle to 2000ms unless force is true
@@ -190,14 +241,14 @@ export default function VideoPlayer({
         title,
         seriesTitle,
         currentTime: vid.currentTime,
-        duration: vid.duration,
+        duration: effDur,
         lastWatchedAt: new Date().toISOString(),
         completed: false, // saveWatchProgress will auto-mark true if >= 95%
       };
 
       saveWatchProgress(progressItem);
     },
-    [mediaId, type, seriesSlug, seasonNumber, episodeNumber, movieSlug, title, seriesTitle]
+    [mediaId, type, seriesSlug, seasonNumber, episodeNumber, movieSlug, title, seriesTitle, getEffectiveDuration]
   );
 
   // ── 2. Handle Initial Video Source & Resumes ─────────────────────────────────
@@ -304,7 +355,7 @@ export default function VideoPlayer({
     const vid = videoRef.current;
     if (!vid) return;
 
-    setDuration(vid.duration);
+    syncDuration();
 
     if (startTime !== undefined && startTime > 0) {
       vid.currentTime = startTime;
@@ -315,19 +366,69 @@ export default function VideoPlayer({
     }
   };
 
+  const handleDurationChange = () => {
+    syncDuration();
+  };
+
+  const handleCanPlay = () => {
+    syncDuration();
+    const vid = videoRef.current;
+    if (!vid) return;
+    if (startTime !== undefined && startTime > 0 && Math.abs(vid.currentTime - startTime) > 1) {
+      vid.currentTime = startTime;
+      setCurrentTime(startTime);
+    } else if (autoResume && savedResumeTime > 0 && Math.abs(vid.currentTime - savedResumeTime) > 1) {
+      vid.currentTime = savedResumeTime;
+      setCurrentTime(savedResumeTime);
+    }
+  };
+
+  const handleProgress = () => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    const effDur = getEffectiveDuration();
+    if (vid.buffered && vid.buffered.length > 0 && effDur > 0) {
+      let activeBufferEnd = 0;
+      for (let i = 0; i < vid.buffered.length; i++) {
+        const end = vid.buffered.end(i);
+        if (end > activeBufferEnd) activeBufferEnd = end;
+      }
+      setBufferedPct(Math.min(100, Math.max(0, (activeBufferEnd / effDur) * 100)));
+    }
+  };
+
   const handleTimeUpdate = () => {
     const vid = videoRef.current;
     if (!vid) return;
 
-    setCurrentTime(vid.currentTime);
-    if (onTimeUpdateCallback) {
-      onTimeUpdateCallback(vid.currentTime);
+    const vTime = vid.currentTime;
+    if (!isScrubbing) {
+      setCurrentTime(vTime);
+      if (onTimeUpdateCallback) {
+        onTimeUpdateCallback(vTime);
+      }
+    }
+
+    if (duration <= 0 && typeof vid.duration === 'number' && isFinite(vid.duration) && vid.duration > 0) {
+      setDuration(vid.duration);
     }
 
     // Calculate buffered percentage
-    if (vid.buffered.length > 0 && vid.duration > 0) {
-      const bufferedEnd = vid.buffered.end(vid.buffered.length - 1);
-      setBufferedPct(Math.min(100, (bufferedEnd / vid.duration) * 100));
+    const effDur = getEffectiveDuration();
+    if (vid.buffered && vid.buffered.length > 0 && effDur > 0) {
+      let activeBufferEnd = 0;
+      for (let i = 0; i < vid.buffered.length; i++) {
+        const start = vid.buffered.start(i);
+        const end = vid.buffered.end(i);
+        if (start <= vTime && vTime <= end) {
+          activeBufferEnd = end;
+          break;
+        }
+        if (end > activeBufferEnd) {
+          activeBufferEnd = end;
+        }
+      }
+      setBufferedPct(Math.min(100, Math.max(0, (activeBufferEnd / effDur) * 100)));
     }
 
     commitProgress(false);
@@ -344,36 +445,105 @@ export default function VideoPlayer({
     }
   }, []);
 
-  const handleSeek = useCallback((seconds: number) => {
-    const vid = videoRef.current;
-    if (!vid || isNaN(vid.duration)) return;
-    const target = Math.max(0, Math.min(vid.duration, seconds));
-    vid.currentTime = target;
-    setCurrentTime(target);
-    commitProgress(true);
-  }, [commitProgress]);
+  const handleSeek = useCallback(
+    (seconds: number) => {
+      const vid = videoRef.current;
+      if (!vid) return;
+      const effDur = getEffectiveDuration();
+      // If duration is known, clamp between 0 and effDur; otherwise just non-negative
+      const target = effDur > 0 ? Math.max(0, Math.min(effDur, seconds)) : Math.max(0, seconds);
 
-  const handleSkip = useCallback((deltaSeconds: number) => {
-    const vid = videoRef.current;
-    if (!vid) return;
-    handleSeek(vid.currentTime + deltaSeconds);
-  }, [handleSeek]);
+      if (!isNaN(target) && isFinite(target)) {
+        try {
+          vid.currentTime = target;
+        } catch (err) {
+          console.warn('[LernKino] Seek error:', err);
+        }
+        setCurrentTime(target);
+        commitProgress(true);
+      }
+    },
+    [getEffectiveDuration, commitProgress]
+  );
 
-  const handleScrubberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = parseFloat(e.target.value);
-    handleSeek(target);
+  const handleSkip = useCallback(
+    (deltaSeconds: number) => {
+      const vid = videoRef.current;
+      if (!vid) return;
+      const baseTime = isScrubbing && scrubbingTime !== null ? scrubbingTime : vid.currentTime;
+      handleSeek(baseTime + deltaSeconds);
+    },
+    [handleSeek, isScrubbing, scrubbingTime]
+  );
+
+  // ── Precise Interactive Timeline Pointer Events ──────────────────────────
+  const getTimeFromClientX = useCallback(
+    (clientX: number): { time: number; pct: number } => {
+      const rail = scrubRailRef.current;
+      const effDur = getEffectiveDuration();
+      if (!rail || effDur <= 0) return { time: 0, pct: 0 };
+
+      const rect = rail.getBoundingClientRect();
+      if (rect.width <= 0) return { time: 0, pct: 0 };
+
+      const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      return {
+        time: ratio * effDur,
+        pct: ratio * 100,
+      };
+    },
+    [getEffectiveDuration]
+  );
+
+  const handleScrubPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+
+    const { time, pct } = getTimeFromClientX(e.clientX);
+    setIsScrubbing(true);
+    setScrubbingTime(time);
+    setScrubHoverPos(pct);
+    setScrubHoverTime(time);
+    handleSeek(time);
+    wakeControls();
   };
 
-  const handleScrubHover = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const pos = (e.clientX - rect.left) / rect.width;
-    const clampedPos = Math.max(0, Math.min(1, pos));
-    setScrubHoverPos(clampedPos * 100);
-    setScrubHoverTime(clampedPos * duration);
+  const handleScrubPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const { time, pct } = getTimeFromClientX(e.clientX);
+    setScrubHoverPos(pct);
+    setScrubHoverTime(time);
+
+    if (isScrubbing) {
+      setScrubbingTime(time);
+      handleSeek(time);
+      wakeControls();
+    }
   };
 
-  const handleScrubLeave = () => {
+  const handleScrubPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isScrubbing) {
+      const { time } = getTimeFromClientX(e.clientX);
+      handleSeek(time);
+      setIsScrubbing(false);
+      setScrubbingTime(null);
+    }
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  const handleScrubPointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsScrubbing(false);
+    setScrubbingTime(null);
     setScrubHoverTime(null);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
   };
 
   const handleToggleMute = useCallback(() => {
@@ -646,7 +816,12 @@ export default function VideoPlayer({
     return () => document.removeEventListener('fullscreenchange', onFsChange);
   }, []);
 
-  const progressPct = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const effectiveDur = getEffectiveDuration();
+  const displayedTime = isScrubbing && scrubbingTime !== null ? scrubbingTime : currentTime;
+  const progressPct =
+    effectiveDur > 0
+      ? Math.min(100, Math.max(0, (displayedTime / effectiveDur) * 100))
+      : 0;
 
   return (
     <div
@@ -689,7 +864,12 @@ export default function VideoPlayer({
         <video
           ref={videoRef}
           src={videoSrc}
+          preload="metadata"
           onLoadedMetadata={handleLoadedMetadata}
+          onDurationChange={handleDurationChange}
+          onCanPlay={handleCanPlay}
+          onLoadedData={handleLoadedMetadata}
+          onProgress={handleProgress}
           onTimeUpdate={handleTimeUpdate}
           onPlay={() => {
             setIsPlaying(true);
@@ -799,10 +979,10 @@ export default function VideoPlayer({
 
       {/* ── Floating Resume Prompt (if opened without &resume=1) ────── */}
       {showResumePrompt && savedResumeTime > 0 && (
-        <div className="absolute top-6 left-6 z-30 max-w-sm rounded-2xl glass-card border border-cyan-500/40 p-4 shadow-[0_8px_32px_rgba(0,0,0,0.6)] animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="absolute top-3 left-3 right-3 sm:right-auto sm:top-6 sm:left-6 z-30 max-w-sm rounded-2xl glass-card border border-cyan-500/40 p-3.5 sm:p-4 shadow-[0_8px_32px_rgba(0,0,0,0.6)] animate-in fade-in slide-in-from-top-4 duration-300">
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center shrink-0">
-              <Clock className="w-5 h-5 text-cyan-400" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center shrink-0">
+              <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
             </div>
             <div className="space-y-1">
               <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
@@ -839,7 +1019,7 @@ export default function VideoPlayer({
 
       {/* ── HUD Heads-Up Toast Notification ─────────────────────────── */}
       {hudMessage && (
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-2xl bg-zinc-950/90 backdrop-blur-xl border border-cyan-500/40 text-xs font-mono font-bold text-cyan-300 shadow-[0_0_25px_rgba(0,255,255,0.35)] animate-in fade-in zoom-in-95 duration-200 pointer-events-none text-center">
+        <div className="absolute top-12 sm:top-16 left-1/2 -translate-x-1/2 z-40 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl bg-zinc-950/90 backdrop-blur-xl border border-cyan-500/40 text-[11px] sm:text-xs font-mono font-bold text-cyan-300 shadow-[0_0_25px_rgba(0,255,255,0.35)] animate-in fade-in zoom-in-95 duration-200 pointer-events-none text-center">
           {hudMessage}
         </div>
       )}
@@ -873,29 +1053,29 @@ export default function VideoPlayer({
 
       {/* ── Top Header Bar (Title & Local Indicators) ───────────────── */}
       <div
-        className={`absolute top-0 left-0 right-0 p-6 flex items-center justify-between z-20 pointer-events-none transition-opacity duration-300 ${
+        className={`absolute top-0 left-0 right-0 p-3 sm:p-6 flex items-center justify-between gap-2 z-20 pointer-events-none transition-opacity duration-300 ${
           showControls ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="bg-slate-950/60 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 pointer-events-auto">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold block">
+        <div className="bg-slate-950/70 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl border border-white/10 pointer-events-auto min-w-0 max-w-[70%] sm:max-w-md">
+          <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold block truncate">
             {seriesTitle ? `${seriesTitle} · S${seasonNumber}E${episodeNumber}` : 'Cinema'}
           </span>
-          <h2 className="text-sm font-bold text-white truncate max-w-md">{title}</h2>
+          <h2 className="text-xs sm:text-sm font-bold text-white truncate">{title}</h2>
         </div>
 
-        <div className="flex items-center gap-2 pointer-events-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto shrink-0">
           {localFileName && (
-            <div className="bg-cyan-500/15 backdrop-blur-md border border-cyan-500/30 px-3 py-1.5 rounded-xl text-[11px] font-mono text-cyan-300 flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span className="truncate max-w-[140px]">{localFileName}</span>
+            <div className="bg-cyan-500/15 backdrop-blur-md border border-cyan-500/30 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-[11px] font-mono text-cyan-300 flex items-center gap-1">
+              <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+              <span className="truncate max-w-[80px] sm:max-w-[140px]">{localFileName}</span>
             </div>
           )}
 
           {(localDeName || localEnName) && (
-            <div className="bg-emerald-500/15 backdrop-blur-md border border-emerald-500/30 px-3 py-1.5 rounded-xl text-[11px] font-mono text-emerald-300 flex items-center gap-1.5">
-              <Subtitles className="w-3.5 h-3.5" />
-              <span className="truncate max-w-[140px]">{localDeName || localEnName}</span>
+            <div className="bg-emerald-500/15 backdrop-blur-md border border-emerald-500/30 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-[11px] font-mono text-emerald-300 flex items-center gap-1">
+              <Subtitles className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+              <span className="truncate max-w-[80px] sm:max-w-[140px]">{localDeName || localEnName}</span>
             </div>
           )}
         </div>
@@ -905,16 +1085,16 @@ export default function VideoPlayer({
       {!isPlaying && videoSrc && (
         <button
           onClick={handlePlayPause}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-cyan-500 text-slate-950 shadow-[0_0_40px_rgba(0,255,255,0.7)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95 z-20"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-cyan-500 text-slate-950 shadow-[0_0_35px_rgba(0,255,255,0.7)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95 z-20"
           aria-label="Play video"
         >
-          <Play className="w-8 h-8 fill-current translate-x-0.5" />
+          <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
         </button>
       )}
 
       {/* ── Caption Settings Popover ────────────────────────────────── */}
       {showCaptionSettings && (
-        <div className="absolute bottom-24 right-4 sm:right-6 z-40 w-80 sm:w-96 rounded-3xl glass-card bg-zinc-950/90 backdrop-blur-2xl border border-cyan-500/30 p-5 space-y-4 shadow-[0_16px_48px_rgba(0,0,0,0.85)] animate-in fade-in slide-in-from-bottom-3 duration-200">
+        <div className="fixed sm:absolute inset-x-3 bottom-20 sm:inset-x-auto sm:bottom-24 sm:right-6 z-40 w-auto sm:w-96 max-h-[80vh] overflow-y-auto rounded-2xl sm:rounded-3xl glass-card bg-zinc-950/95 backdrop-blur-2xl border border-cyan-500/30 p-4 sm:p-5 space-y-3.5 sm:space-y-4 shadow-[0_16px_48px_rgba(0,0,0,0.85)] animate-in fade-in slide-in-from-bottom-3 duration-200">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <Sliders className="w-4 h-4 text-cyan-400" />
@@ -1069,7 +1249,7 @@ export default function VideoPlayer({
 
       {/* ── Up Next Countdown Card ──────────────────────────────────── */}
       {showUpNextCard && nextEpisodeInfo && (
-        <div className="absolute bottom-28 right-4 sm:right-6 z-40 max-w-sm w-[calc(100%-2rem)] sm:w-auto rounded-3xl glass-card bg-zinc-950/95 border border-cyan-500/40 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="fixed sm:absolute inset-x-3 bottom-20 sm:inset-x-auto sm:bottom-28 sm:right-6 z-40 max-w-sm w-auto rounded-2xl sm:rounded-3xl glass-card bg-zinc-950/95 border border-cyan-500/40 p-4 sm:p-5 shadow-[0_20px_60px_rgba(0,0,0,0.85)] space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
           <div className="flex items-center justify-between text-xs font-mono">
             <span className="text-cyan-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" /> Up Next in {upNextSeconds}s
@@ -1113,22 +1293,28 @@ export default function VideoPlayer({
 
       {/* ── Custom Glassmorphic Controls Overlay ───────────────────── */}
       <div
-        className={`absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-20 transition-all duration-300 ${
+        className={`absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-6 bg-gradient-to-t from-black/95 via-black/60 to-transparent z-20 transition-all duration-300 ${
           showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 pointer-events-none'
         }`}
       >
-        <div className="rounded-2xl glass-card border border-white/10 p-3 sm:p-4 space-y-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+        <div className="rounded-2xl glass-card border border-white/10 p-2 sm:p-3.5 space-y-2 sm:space-y-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
 
           {/* ── Progress Scrubber with Hover Tooltip ─────────────────── */}
           <div
-            className="relative group/scrub py-1 cursor-pointer"
-            onMouseMove={handleScrubHover}
-            onMouseLeave={handleScrubLeave}
+            ref={scrubRailRef}
+            className="relative group/scrub py-2 sm:py-2.5 cursor-pointer touch-none select-none"
+            onPointerDown={handleScrubPointerDown}
+            onPointerMove={handleScrubPointerMove}
+            onPointerUp={handleScrubPointerUp}
+            onPointerCancel={handleScrubPointerCancel}
+            onMouseLeave={() => {
+              if (!isScrubbing) setScrubHoverTime(null);
+            }}
           >
-            {/* Timestamp hover tooltip */}
-            {scrubHoverTime !== null && (
+            {/* Timestamp hover / scrubbing tooltip */}
+            {scrubHoverTime !== null && effectiveDur > 0 && (
               <div
-                className="absolute -top-7 -translate-x-1/2 px-2 py-0.5 rounded-lg bg-zinc-900 border border-cyan-500/40 text-[10px] font-mono text-cyan-300 shadow-md pointer-events-none"
+                className="absolute -top-7 -translate-x-1/2 px-2.5 py-0.5 rounded-lg bg-zinc-950/95 border border-cyan-400/50 text-[10px] font-mono font-bold text-cyan-300 shadow-[0_0_12px_rgba(0,0,0,0.8)] pointer-events-none z-30 transition-transform duration-75"
                 style={{ left: `${scrubHoverPos}%` }}
               >
                 {formatTimestamp(scrubHoverTime)}
@@ -1136,7 +1322,7 @@ export default function VideoPlayer({
             )}
 
             {/* Scrubber Rail & Progress */}
-            <div className="relative h-2 w-full bg-white/15 rounded-full overflow-hidden">
+            <div className="relative h-2 group-hover/scrub:h-2.5 w-full bg-white/15 rounded-full overflow-hidden transition-all duration-150">
               {/* Buffered Bar */}
               <div
                 className="absolute top-0 bottom-0 left-0 bg-white/20 rounded-full transition-all duration-300"
@@ -1149,117 +1335,115 @@ export default function VideoPlayer({
               />
             </div>
 
-            {/* Invisible Range Slider */}
-            <input
-              type="range"
-              min={0}
-              max={duration || 100}
-              step={0.1}
-              value={currentTime}
-              onChange={handleScrubberChange}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              aria-label="Seek video position"
+            {/* Scrubber Playhead Thumb */}
+            <div
+              className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-cyan-300 border-2 border-slate-950 shadow-[0_0_12px_rgba(0,255,255,1)] transition-transform duration-100 pointer-events-none ${
+                isScrubbing ? 'scale-125' : 'group-hover/scrub:scale-110'
+              }`}
+              style={{ left: `${progressPct}%` }}
             />
           </div>
 
           {/* ── Bottom Control Buttons ───────────────────────────────── */}
-          <div className="flex items-center justify-between gap-3 text-white">
+          <div className="flex items-center justify-between gap-1 sm:gap-3 text-white">
 
             {/* Left Controls: Play, Skip, Replay Line, Timestamp */}
-            <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
               <button
                 onClick={handlePlayPause}
-                className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500 hover:text-slate-950 flex items-center justify-center transition-all shadow-[0_0_15px_rgba(0,255,255,0.2)]"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500 hover:text-slate-950 flex items-center justify-center transition-all shadow-[0_0_15px_rgba(0,255,255,0.2)] shrink-0"
                 aria-label={isPlaying ? 'Pause' : 'Play'}
               >
-                {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current translate-x-0.5" />}
+                {isPlaying ? <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" /> : <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current translate-x-0.5" />}
               </button>
 
               <button
                 onClick={() => handleSkip(-10)}
-                className="p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0"
                 title="Skip back 10 seconds (Left Arrow)"
               >
-                <RotateCcw className="w-4 h-4" />
+                <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
               <button
                 onClick={() => handleSkip(10)}
-                className="p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0"
                 title="Skip forward 10 seconds (Right Arrow)"
               >
-                <RotateCw className="w-4 h-4" />
+                <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
               {nextEpisodeInfo && (
                 <button
                   onClick={handlePlayNextNow}
-                  className="p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
+                  className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0 hidden xs:flex"
                   title={`Play Next Episode: ${nextEpisodeInfo.title}`}
                 >
-                  <SkipForward className="w-4 h-4" />
+                  <SkipForward className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               )}
 
               {/* Repeat Current/Last Subtitle Line Button (Language Learning Shortcut) */}
               <button
                 onClick={handleRepeatCurrentLine}
-                className="px-2.5 py-1.5 rounded-xl glass-pill text-xs font-mono font-bold text-cyan-300 hover:text-white hover:bg-cyan-500/20 border border-cyan-500/30 flex items-center gap-1 transition-all"
+                className="px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-xl glass-pill text-[11px] sm:text-xs font-mono font-bold text-cyan-300 hover:text-white hover:bg-cyan-500/20 border border-cyan-500/30 flex items-center gap-1 transition-all shrink-0"
                 title="Repeat Current Line (R)"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Replay Line (R)</span>
-                <span className="sm:hidden">R</span>
+                <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="hidden md:inline">Replay Line (R)</span>
+                <span className="md:hidden">Replay</span>
               </button>
 
               {/* Timestamp */}
-              <div className="text-xs font-mono text-slate-300 select-none ml-1 hidden xs:block">
-                <span className="text-white font-bold">{formatTimestamp(currentTime)}</span>
-                <span className="text-slate-500 mx-1">/</span>
-                <span className="text-slate-400">{formatTimestamp(duration)}</span>
+              <div className="text-[11px] sm:text-xs font-mono text-slate-300 select-none ml-1 whitespace-nowrap">
+                <span className="text-white font-bold">{formatTimestamp(displayedTime)}</span>
+                <span className="text-slate-500 mx-0.5 sm:mx-1">/</span>
+                <span className="text-slate-400">
+                  {effectiveDur > 0 ? formatTimestamp(effectiveDur) : '--:--'}
+                </span>
               </div>
             </div>
 
-            {/* Right Controls: Volume, Speed, Caption Mode, Settings, Fullscreen */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Right Controls: Caption Mode, Settings, Volume, Speed, Local File, Fullscreen */}
+            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
 
               {/* Caption Mode Switcher Pill */}
               <button
                 onClick={handleCycleCaptionMode}
-                className={`px-2.5 py-1 rounded-xl text-xs font-mono font-bold transition-all border ${
+                className={`px-2 py-1 sm:px-2.5 sm:py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all border shrink-0 ${
                   subtitlePrefs.mode !== 'off'
                     ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 shadow-[0_0_12px_rgba(0,255,255,0.25)]'
                     : 'glass-pill text-slate-400 border-white/10 hover:text-white'
                 }`}
                 title="Caption Mode (C) - Press to cycle: Both -> DE -> EN -> Off"
               >
-                {subtitlePrefs.mode === 'both' && 'DE + EN'}
+                {subtitlePrefs.mode === 'both' && 'DE+EN'}
                 {subtitlePrefs.mode === 'de' && 'DE'}
                 {subtitlePrefs.mode === 'en' && 'EN'}
-                {subtitlePrefs.mode === 'off' && 'CC OFF'}
+                {subtitlePrefs.mode === 'off' && 'OFF'}
               </button>
 
               {/* Caption Settings Popover Toggle */}
               <button
                 onClick={() => setShowCaptionSettings(!showCaptionSettings)}
-                className={`p-2 rounded-xl transition-all ${
+                className={`p-1.5 sm:p-2 rounded-xl transition-all shrink-0 ${
                   showCaptionSettings
                     ? 'bg-cyan-500 text-slate-950 shadow-[0_0_15px_rgba(0,255,255,0.4)]'
                     : 'text-slate-300 hover:text-cyan-400 hover:bg-white/10'
                 }`}
                 title="Subtitle & Sync Settings"
               >
-                <Subtitles className="w-4 h-4" />
+                <Subtitles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
               {/* Volume Slider */}
-              <div className="flex items-center gap-1.5 group/vol">
+              <div className="flex items-center gap-1 sm:gap-1.5 group/vol shrink-0">
                 <button
                   onClick={handleToggleMute}
-                  className="p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
+                  className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
                   title="Toggle mute (M)"
                 >
-                  {isMuted || volume === 0 ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+                  {isMuted || volume === 0 ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                 </button>
                 <input
                   type="range"
@@ -1268,7 +1452,7 @@ export default function VideoPlayer({
                   step={0.05}
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
-                  className="w-14 sm:w-20 h-1 bg-white/20 rounded-full accent-cyan-400 cursor-pointer hidden md:block"
+                  className="w-14 sm:w-20 h-1 bg-white/20 rounded-full accent-cyan-400 cursor-pointer hidden lg:block"
                   aria-label="Volume slider"
                 />
               </div>
@@ -1276,7 +1460,7 @@ export default function VideoPlayer({
               {/* Playback Speed Pill */}
               <button
                 onClick={handleSpeedChange}
-                className="px-2.5 py-1 rounded-xl text-xs font-mono font-bold glass-pill text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all hidden sm:block"
+                className="px-2 py-1 sm:px-2.5 sm:py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold glass-pill text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all shrink-0 hidden xs:block"
                 title="Playback Speed"
               >
                 {playbackRate}x
@@ -1285,22 +1469,21 @@ export default function VideoPlayer({
               {/* Open Local Video File Button */}
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0 hidden sm:flex"
                 title="Load Local Video File (.mp4 / .webm)"
               >
-                <FolderOpen className="w-4 h-4" />
+                <FolderOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
               {/* Fullscreen Button */}
               <button
                 onClick={handleToggleFullscreen}
-                className="p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0"
                 title="Toggle Fullscreen (F)"
               >
-                {isFullscreen ? <Minimize className="w-4 h-4" /> : <Maximize className="w-4 h-4" />}
+                {isFullscreen ? <Minimize className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Maximize className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
               </button>
             </div>
-
           </div>
         </div>
       </div>

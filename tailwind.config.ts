@@ -5,6 +5,9 @@ const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      screens: {
+        xs: '480px',
+      },
       colors: {
         cyan: {
           DEFAULT: '#00FFFF',

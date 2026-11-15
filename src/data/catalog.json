@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T10:07:47.543Z",
+  "generatedAt": "2026-11-15T09:17:33.092Z",
   "totalSeries": 1,
   "totalMovies": 0,
   "totalEpisodes": 2,
@@ -43,16 +43,14 @@
               "seriesSlug": "friends-german-dub",
               "seasonNumber": 1,
               "episodeNumber": 2,
-              "title": "The One with the Sonogram at the End",
-              "description": "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry.",
-              "videoSrc": "https://lorem.video/720p",
-              "isExternalVideo": true,
+              "title": "Episode 2",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.mp4",
+              "isExternalVideo": false,
               "thumbnailSrc": null,
               "subtitles": {
-                "de": "/media/series/Friends (German Dub)/seasons/1/2/de.srt",
-                "en": "/media/series/Friends (German Dub)/seasons/1/2/en.srt"
-              },
-              "durationSeconds": 1320
+                "de": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.srt",
+                "en": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.en.srt"
+              }
             }
           ]
         }
@@ -87,16 +85,14 @@
           "seriesSlug": "friends-german-dub",
           "seasonNumber": 1,
           "episodeNumber": 2,
-          "title": "The One with the Sonogram at the End",
-          "description": "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry.",
-          "videoSrc": "https://lorem.video/720p",
-          "isExternalVideo": true,
+          "title": "Episode 2",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.mp4",
+          "isExternalVideo": false,
           "thumbnailSrc": null,
           "subtitles": {
-            "de": "/media/series/Friends (German Dub)/seasons/1/2/de.srt",
-            "en": "/media/series/Friends (German Dub)/seasons/1/2/en.srt"
-          },
-          "durationSeconds": 1320
+            "de": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.srt",
+            "en": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.en.srt"
+          }
         }
       ]
     }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T10:40:42.545Z",
+  "generatedAt": "2026-11-15T10:49:35.761Z",
   "totalSeries": 1,
   "totalMovies": 0,
   "totalEpisodes": 2,
@@ -31,8 +31,8 @@
               "episodeNumber": 1,
               "title": "The One Where Monica Gets a Roommate",
               "description": "Monica and the gang are introduced to Rachel after she leaves her fiancé at the altar.",
-              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/1/episode.mp4",
-              "isExternalVideo": false,
+              "videoSrc": "https://drive.usercontent.google.com/download?id=1uv8u9AGQu6LolLYqlKxMTotnyp0Pu9Aj&export=download&confirm=t",
+              "isExternalVideo": true,
               "thumbnailSrc": null,
               "subtitles": {
                 "de": "/media/series/Friends (German Dub)/seasons/1/1/episode.srt",
@@ -73,8 +73,8 @@
           "episodeNumber": 1,
           "title": "The One Where Monica Gets a Roommate",
           "description": "Monica and the gang are introduced to Rachel after she leaves her fiancé at the altar.",
-          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/1/episode.mp4",
-          "isExternalVideo": false,
+          "videoSrc": "https://drive.usercontent.google.com/download?id=1uv8u9AGQu6LolLYqlKxMTotnyp0Pu9Aj&export=download&confirm=t",
+          "isExternalVideo": true,
           "thumbnailSrc": null,
           "subtitles": {
             "de": "/media/series/Friends (German Dub)/seasons/1/1/episode.srt",

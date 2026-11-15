@@ -77,6 +77,29 @@ export interface VideoPlayerProps {
 
 const SPEED_OPTIONS = [0.75, 1.0, 1.25, 1.5];
 
+/**
+ * Normalizes video source URLs.
+ * Automatically transforms Google Drive and Dropbox viewer links into direct-streaming endpoints.
+ */
+function normalizeVideoUrl(url: string | null): string | null {
+  if (!url) return null;
+  const trimmed = url.trim();
+  const gdriveMatch = trimmed.match(
+    /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^&]*&)*id=)|drive\.usercontent\.google\.com\/download\?id=)([a-zA-Z0-9_-]+)/i
+  );
+  if (gdriveMatch) {
+    const fileId = gdriveMatch[1];
+    return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
+  }
+  if (trimmed.includes('dropbox.com')) {
+    return (
+      trimmed.replace(/[?&]dl=[01]/, '').replace(/[?&]raw=1/, '') +
+      (trimmed.includes('?') ? '&raw=1' : '?raw=1')
+    );
+  }
+  return withBasePath(trimmed);
+}
+
 export default function VideoPlayer({
   mediaId,
   type,
@@ -115,7 +138,7 @@ export default function VideoPlayer({
 
   // Player core state
   const [videoSrc, setVideoSrc] = useState<string | null>(
-    initialVideoSrc ? withBasePath(initialVideoSrc) : null
+    normalizeVideoUrl(initialVideoSrc)
   );
   const [localBlobUrl, setLocalBlobUrl] = useState<string | null>(null);
   const [localFileName, setLocalFileName] = useState<string | null>(null);
@@ -253,7 +276,7 @@ export default function VideoPlayer({
 
   // ── 2. Handle Initial Video Source & Resumes ─────────────────────────────────
   useEffect(() => {
-    const src = initialVideoSrc ? withBasePath(initialVideoSrc) : null;
+    const src = normalizeVideoUrl(initialVideoSrc);
     setVideoSrc(src);
     setHasVideoError(false);
     if (videoRef.current) {

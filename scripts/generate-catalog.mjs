@@ -92,6 +92,35 @@ function parseEpisodeFolder(folderName) {
 }
 
 /**
+ * Normalizes external video URLs into direct-playable stream links.
+ * Automatically transforms Google Drive sharing / viewer links into direct video/mp4 stream endpoints.
+ */
+function normalizeExternalVideoUrl(rawUrl) {
+  if (!rawUrl) return null;
+  const trimmed = rawUrl.trim();
+
+  // Google Drive sharing link transformer:
+  // e.g. https://drive.google.com/file/d/1uv8u9AGQu6LolLYqlKxMTotnyp0Pu9Aj/view?usp=sharing
+  // or https://drive.google.com/open?id=...
+  // or https://drive.google.com/uc?id=...
+  const gdriveMatch = trimmed.match(
+    /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^&]*&)*id=)|drive\.usercontent\.google\.com\/download\?id=)([a-zA-Z0-9_-]+)/i
+  );
+  if (gdriveMatch) {
+    const fileId = gdriveMatch[1];
+    return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
+  }
+
+  // Dropbox direct stream transformer:
+  // ?dl=0 -> ?raw=1
+  if (trimmed.includes('dropbox.com')) {
+    return trimmed.replace(/[?&]dl=[01]/, '').replace(/[?&]raw=1/, '') + (trimmed.includes('?') ? '&raw=1' : '?raw=1');
+  }
+
+  return trimmed;
+}
+
+/**
  * Reads the first non-empty line of a url.txt file.
  */
 function readUrlFile(filePath) {
@@ -99,7 +128,8 @@ function readUrlFile(filePath) {
     if (!fs.existsSync(filePath)) return null;
     const content = fs.readFileSync(filePath, 'utf-8');
     const lines = content.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-    return lines[0] || null;
+    const first = lines[0] || null;
+    return normalizeExternalVideoUrl(first);
   } catch {
     return null;
   }

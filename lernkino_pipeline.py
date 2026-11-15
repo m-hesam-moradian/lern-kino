@@ -47,20 +47,25 @@ def _fast_translate_batch(self, batch, **kwargs):
     try:
         delim = "\n§§§\n"
         full_text = delim.join(batch)
-        response = requests.get(
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        data = {
+            "client": "gtx",
+            "sl": self._source,
+            "tl": self._target,
+            "dt": "t",
+            "q": full_text
+        }
+        response = requests.post(
             "https://translate.googleapis.com/translate_a/single",
-            params={
-                "client": "gtx",
-                "sl": self._source,
-                "tl": self._target,
-                "dt": "t",
-                "q": full_text
-            },
+            headers=headers,
+            data=data,
             timeout=25
         )
         response.raise_for_status()
-        data = response.json()
-        translated_full = "".join(item[0] for item in data[0] if item and item[0])
+        res_json = response.json()
+        translated_full = "".join(item[0] for item in res_json[0] if item and item[0])
         results = [p.strip() for p in translated_full.split("§§§")]
         if len(results) == len(batch):
             return results
@@ -314,19 +319,21 @@ def build_adaptive_cues(
         cand_duration = w["end"] - current_start
 
         # Break conditions:
-        # A. Sentence boundary (. ! ? :)
-        has_sentence_end = bool(re.search(r'[\.\!\?\:]$', prev_w["word"].strip()))
+        # A. Sentence boundary (. ! ? : ;)
+        has_sentence_end = bool(re.search(r'[\.\!\?\:\;]$', prev_w["word"].strip()))
 
-        # B. Audible pause in dialogue (> 0.32s)
+        # B. Audible pause in dialogue (> 0.32s) -> split immediately even for single words
         has_audible_pause = pause >= pause_split
 
         # C. Exceeded max characters or max duration
         is_too_long = len(cand_text_clean) > max_chars or cand_duration > max_duration
 
-        if has_sentence_end or (has_audible_pause and len(current_words) >= 2) or is_too_long:
+        if has_sentence_end or has_audible_pause or is_too_long:
             text = "".join(x["word"] for x in current_words).strip()
             # Duration based on actual acoustic word end plus small reading buffer (0.12s)
             end_time = max(current_words[-1]["end"] + 0.12, current_start + min_duration)
+            if end_time >= w["start"] - 0.04:
+                end_time = max(current_start + 0.35, w["start"] - 0.04)
             cues.append({
                 "start": current_start,
                 "end": end_time,
@@ -390,15 +397,15 @@ def sanitize_and_adapt_srt_content(srt_content: str) -> str:
         plain_text = re.sub(r'<[^>]+>', '', text).strip()
         char_count = len(plain_text)
 
-        # Average German speech rate is ~15-16 chars/sec + 0.3s base recognition
-        estimated_natural_dur = min(4.0, max(0.75, (char_count / 15.0) + 0.3))
+        # Average German speech rate is ~14-15 chars/sec + 0.35s base recognition
+        estimated_natural_dur = min(4.5, max(0.70, (char_count / 14.5) + 0.35))
 
-        # Check if this cue has an artificial 2.0s clamp on a very short phrase
-        if abs(raw_dur - 2.0) < 0.05 and char_count <= 25:
-            # Short phrase like "Du sagst es." (12 chars) -> adapt down to natural speech duration (~0.9s)
+        # Check if this cue has an artificial 2.0s clamp or bloated duration across silence
+        if raw_dur > estimated_natural_dur * 1.6 and raw_dur > 2.2:
+            # Overextended silence clamp -> contract to natural speaking duration
             end = start + estimated_natural_dur
-        elif raw_dur > 4.5 and char_count < 30:
-            # Overextended silence clamp
+        elif abs(raw_dur - 2.0) < 0.08 and char_count <= 22:
+            # Short phrase like "Du sagst es." (12 chars) -> adapt down to natural speech duration (~1.0s)
             end = start + estimated_natural_dur
 
         # Clamp against next cue start with 40ms frame gap
@@ -747,7 +754,10 @@ def run_transcription(video_path: Path, srt_path: Path):
         beam_size=5 if model_name in ["small", "medium"] else 2,
         word_timestamps=True,
         vad_filter=True,
-        vad_parameters=dict(min_silence_duration_ms=250, speech_pad_ms=100)
+        vad_parameters=dict(min_silence_duration_ms=250, speech_pad_ms=100),
+        condition_on_previous_text=False,
+        no_speech_threshold=0.6,
+        compression_ratio_threshold=2.4
     )
 
     print(f"Detected language: {info.language} (confidence: {info.language_probability:.2f})")
@@ -780,6 +790,127 @@ def run_transcription(video_path: Path, srt_path: Path):
     print(f"  • Overlaps: 0 (100% clean, non-overlapping frame transitions)")
 
 
+def align_srt_to_audio(video_path: Path, srt_path: Path):
+    """
+    Acoustically realigns an existing German SRT file against the video audio using Whisper word timestamps.
+    Automatically detects and eliminates timing shifts, offsets, scene pauses, and delays while preserving
+    100% of the original dialogue text.
+    """
+    print(f"\n{Colors.BRIGHT_CYAN}── Acoustic Subtitle Re-Alignment (Whisper AI) ────────────────────────{Colors.RESET}")
+    print(f"Reading existing German cues from: {srt_path.name}")
+    with open(srt_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    blocks = parse_srt(content)
+    if not blocks:
+        print(f"{Colors.RED}No cues found in {srt_path.name}.{Colors.RESET}")
+        return
+
+    def normalize_text(text: str) -> str:
+        text = re.sub(r'<[^>]+>', '', text).lower()
+        text = re.sub(r'[^\w\s]', '', text)
+        return re.sub(r'\s+', ' ', text).strip()
+
+    studio_cues = []
+    for b in blocks:
+        studio_cues.append({
+            "text": b["text"],
+            "norm": normalize_text(b["text"])
+        })
+
+    print(f"Loaded {len(studio_cues)} studio cues to align.")
+    print("Loading faster-whisper (model='base', device='auto', compute_type='int8')...")
+    model = WhisperModel("base", device="auto", compute_type="int8")
+
+    print(f"Decoding acoustic word timestamps from {video_path.name}...")
+    segments, info = model.transcribe(
+        str(video_path),
+        language="de",
+        beam_size=2,
+        word_timestamps=True,
+        vad_filter=True,
+        vad_parameters=dict(min_silence_duration_ms=250, speech_pad_ms=100),
+        condition_on_previous_text=False,
+        no_speech_threshold=0.6,
+        compression_ratio_threshold=2.4
+    )
+
+    whisper_words = []
+    for s in segments:
+        if hasattr(s, "words") and s.words:
+            for w in s.words:
+                cleaned = w.word.strip()
+                if cleaned:
+                    whisper_words.append({
+                        "word": w.word,
+                        "norm": normalize_text(w.word),
+                        "start": w.start,
+                        "end": w.end
+                    })
+
+    print(f"Decoded {len(whisper_words)} acoustic words. Aligning cues...")
+    w_idx = 0
+    total_w = len(whisper_words)
+    aligned_cues = []
+
+    for sc in studio_cues:
+        c_words = sc["norm"].split()
+        if not c_words:
+            continue
+
+        best_start_idx = None
+        best_match_count = 0
+        search_end = min(total_w, w_idx + 140)
+        first_target = c_words[0] if len(c_words) > 0 else ""
+        target_set = set(c_words)
+
+        for i in range(w_idx, search_end):
+            if whisper_words[i]["norm"] == first_target or (len(first_target) > 3 and first_target in whisper_words[i]["norm"]):
+                matches = 0
+                for j in range(min(len(c_words), search_end - i)):
+                    if whisper_words[i + j]["norm"] in target_set:
+                        matches += 1
+                if matches > best_match_count:
+                    best_match_count = matches
+                    best_start_idx = i
+                    if matches >= min(3, len(c_words)):
+                        break
+
+        if best_start_idx is not None and best_match_count >= 1:
+            start_time = max(0.0, whisper_words[best_start_idx]["start"] - 0.04)
+            end_idx = min(total_w - 1, best_start_idx + max(1, len(c_words)))
+            end_time = max(start_time + 0.6, whisper_words[end_idx]["end"] + 0.12)
+            w_idx = best_start_idx + 1
+        else:
+            prev_end = aligned_cues[-1]["end"] + 0.05 if aligned_cues else 0.0
+            start_time = prev_end
+            est_dur = min(4.5, max(0.8, len(sc["norm"]) / 15.0 + 0.3))
+            end_time = start_time + est_dur
+
+        aligned_cues.append({
+            "start": start_time,
+            "end": end_time,
+            "text": sc["text"]
+        })
+
+    # Sanitize and write
+    aligned_cues.sort(key=lambda c: c["start"])
+    for i in range(len(aligned_cues)):
+        c = aligned_cues[i]
+        if i < len(aligned_cues) - 1:
+            nxt = aligned_cues[i + 1]["start"]
+            if c["end"] >= nxt - 0.04:
+                c["end"] = max(c["start"] + 0.35, nxt - 0.04)
+
+    with open(srt_path, "w", encoding="utf-8") as f:
+        for i, c in enumerate(aligned_cues, start=1):
+            s_str = format_timestamp(c["start"])
+            e_str = format_timestamp(c["end"])
+            f.write(f"{i}\n{s_str} --> {e_str}\n{c['text']}\n\n")
+
+    print(f"{Colors.GREEN}✓ Re-aligned {len(aligned_cues)} cues in {srt_path.name} to exact speech timestamps!{Colors.RESET}")
+
+
 def run_translation(de_srt_path: Path, en_srt_path: Path, bilingual_srt_path: Path):
     """Runs fast batch translation and generates English and Bilingual SRT files."""
     print(f"\n{Colors.BRIGHT_CYAN}── Phase 2: English Batch Translation & Bilingual Generation ────────{Colors.RESET}")
@@ -797,7 +928,7 @@ def run_translation(de_srt_path: Path, en_srt_path: Path, bilingual_srt_path: Pa
     print(f"Parsed {total_blocks} subtitle cues.")
     translator = GoogleTranslator(source="de", target="en")
 
-    chunk_size = 50
+    chunk_size = 25
     translated_blocks = []
     print(f"Translating in chunks of {chunk_size} via GoogleTranslator(source='de', target='en')...\n")
 
@@ -806,6 +937,8 @@ def run_translation(de_srt_path: Path, en_srt_path: Path, bilingual_srt_path: Pa
         chunk_texts = [b["text"] for b in chunk]
 
         translations = translator.translate_batch(chunk_texts)
+        import time
+        time.sleep(0.15)
 
         for b, en_text in zip(chunk, translations):
             clean_en = en_text.strip()
@@ -959,15 +1092,19 @@ Options:
         print(f"\n{Colors.YELLOW}Notice: One or more subtitle files already exist in this folder.{Colors.RESET}")
         print("  [1] Transcribe fresh with Whisper AI (Adaptive Speech Timings) & Overwrite all")
         if de_srt.exists():
-            print("  [2] Sanitize & Adapt Timings of Existing German SRT (Fix 2.0s dummy timers & overlaps)")
-            print("  [3] Skip Whisper: Use existing German SRT as-is for English & Bilingual translation")
+            print("  [2] Acoustically Align Existing German SRT to Audio (Whisper AI - Fixes all delays/offsets)")
+            print("  [3] Sanitize & Adapt Timings of Existing German SRT without Whisper (Fast frame-gap & duration repair)")
+            print("  [4] Skip Whisper: Use existing German SRT as-is for English & Bilingual translation")
         print("  [0] Cancel")
-        max_sub = 3 if de_srt.exists() else 1
+        max_sub = 4 if de_srt.exists() else 1
         sub_choice = prompt_choice("Choose subtitle action", max_sub, default=1)
         if sub_choice == 0:
             print(f"{Colors.YELLOW}Operation cancelled by user.{Colors.RESET}")
             sys.exit(0)
         elif sub_choice == 2:
+            align_srt_to_audio(video_file, de_srt)
+            skip_transcription = True
+        elif sub_choice == 3:
             print(f"\n{Colors.CYAN}Sanitizing timings in {de_srt.name}...{Colors.RESET}")
             with open(de_srt, "r", encoding="utf-8") as f_in:
                 raw_srt = f_in.read()
@@ -976,7 +1113,7 @@ Options:
                 f_out.write(sanitized)
             print(f"{Colors.GREEN}✓ Sanitized {de_srt.name}: eliminated fake 2s clamps & overlaps!{Colors.RESET}")
             skip_transcription = True
-        elif sub_choice == 3:
+        elif sub_choice == 4:
             skip_transcription = True
 
     if not skip_transcription:

@@ -8,7 +8,12 @@ import {
   SUBTITLE_EN_COLOR_CLASSES,
   SUBTITLE_BG_CLASSES,
 } from '@/lib/subtitlePrefs';
-import { saveSentence, isSentenceSaved, SENTENCES_UPDATED_EVENT } from '@/lib/sentences';
+import {
+  saveSentence,
+  deleteSentenceByGerman,
+  isSentenceSaved,
+  SENTENCES_UPDATED_EVENT,
+} from '@/lib/sentences';
 import { BookmarkPlus, BookmarkCheck, Check } from 'lucide-react';
 
 export interface DualSubtitleOverlayProps {
@@ -90,7 +95,9 @@ export default function DualSubtitleOverlay({
     if (!currentGermanText) return;
 
     if (isSaved) {
-      setSavedToast('Already saved in Sentence Studio');
+      deleteSentenceByGerman(currentGermanText);
+      setIsSaved(false);
+      setSavedToast('Removed from Sentence Practice');
       setTimeout(() => setSavedToast(null), 2000);
       return;
     }
@@ -158,7 +165,7 @@ export default function DualSubtitleOverlay({
                 ? 'text-cyan-400 bg-cyan-500/20 shadow-[0_0_10px_rgba(0,255,255,0.4)] opacity-100'
                 : 'text-slate-400 hover:text-white bg-black/40 hover:bg-white/15 opacity-70 group-hover:opacity-100'
             }`}
-            title={isSaved ? 'Sentence saved in Sentence Studio' : 'Save full sentence to Practice Deck'}
+            title={isSaved ? 'Sentence saved (Click to remove)' : 'Save full sentence to Practice Deck'}
             type="button"
           >
             {isSaved ? (

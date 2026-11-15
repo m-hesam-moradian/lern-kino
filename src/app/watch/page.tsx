@@ -168,6 +168,7 @@ function WatchContent() {
 
       {/* ── Video Player Component ─────────────────────────────────── */}
       <VideoPlayer
+        key={mediaId}
         mediaId={mediaId}
         type={type}
         title={title}

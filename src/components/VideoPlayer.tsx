@@ -253,8 +253,12 @@ export default function VideoPlayer({
 
   // ── 2. Handle Initial Video Source & Resumes ─────────────────────────────────
   useEffect(() => {
-    setVideoSrc(initialVideoSrc ? withBasePath(initialVideoSrc) : null);
+    const src = initialVideoSrc ? withBasePath(initialVideoSrc) : null;
+    setVideoSrc(src);
     setHasVideoError(false);
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
   }, [initialVideoSrc]);
 
   // Clean up any generated blob URL on unmount

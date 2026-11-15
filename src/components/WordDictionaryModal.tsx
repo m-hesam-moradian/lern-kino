@@ -14,7 +14,12 @@ import {
   LEITNER_INTERVALS_DAYS,
 } from '@/lib/leitner';
 import type { SavedVocabCard } from '@/types/learning';
-import { saveSentence, isSentenceSaved, SENTENCES_UPDATED_EVENT } from '@/lib/sentences';
+import {
+  saveSentence,
+  deleteSentenceByGerman,
+  isSentenceSaved,
+  SENTENCES_UPDATED_EVENT,
+} from '@/lib/sentences';
 import {
   Volume2,
   X,
@@ -115,6 +120,11 @@ export default function WordDictionaryModal({
 
   const handleSaveSentenceContext = () => {
     if (!germanSentence) return;
+    if (isSentenceContextSaved) {
+      deleteSentenceByGerman(germanSentence);
+      setIsSentenceContextSaved(false);
+      return;
+    }
     saveSentence({
       german: germanSentence,
       english: englishSentence || '',
@@ -328,7 +338,7 @@ export default function WordDictionaryModal({
                       : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
                   }`}
                   type="button"
-                  title="Save full sentence to Sentence Practice Deck"
+                  title={isSentenceContextSaved ? 'Sentence saved (Click to remove)' : 'Save full sentence to Sentence Practice Deck'}
                 >
                   {isSentenceContextSaved ? (
                     <>

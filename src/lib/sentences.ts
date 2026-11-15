@@ -166,6 +166,22 @@ export function deleteSentence(id: string): void {
 }
 
 /**
+ * Deletes a sentence matching the given German text (normalized).
+ * Returns true if a sentence was found and removed.
+ */
+export function deleteSentenceByGerman(germanText: string): boolean {
+  const key = normalizeSentenceKey(germanText);
+  if (!key) return false;
+  const list = getSavedSentences();
+  const filtered = list.filter((s) => normalizeSentenceKey(s.german) !== key);
+  if (filtered.length !== list.length) {
+    persistSentences(filtered);
+    return true;
+  }
+  return false;
+}
+
+/**
  * Updates an existing sentence's properties.
  */
 export function updateSentence(id: string, updates: Partial<SavedSentence>): void {

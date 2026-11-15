@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T10:49:35.761Z",
+  "generatedAt": "2026-11-15T10:54:16.211Z",
   "totalSeries": 1,
   "totalMovies": 0,
   "totalEpisodes": 2,
@@ -46,8 +46,8 @@
               "seasonNumber": 1,
               "episodeNumber": 2,
               "title": "Episode 2",
-              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.mp4",
-              "isExternalVideo": false,
+              "videoSrc": "https://drive.usercontent.google.com/download?id=1kyA_YwF1wDrJ8HyMimdl9_KZJtHTcfJ0&export=download&confirm=t",
+              "isExternalVideo": true,
               "thumbnailSrc": null,
               "subtitles": {
                 "de": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.srt",
@@ -88,8 +88,8 @@
           "seasonNumber": 1,
           "episodeNumber": 2,
           "title": "Episode 2",
-          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.mp4",
-          "isExternalVideo": false,
+          "videoSrc": "https://drive.usercontent.google.com/download?id=1kyA_YwF1wDrJ8HyMimdl9_KZJtHTcfJ0&export=download&confirm=t",
+          "isExternalVideo": true,
           "thumbnailSrc": null,
           "subtitles": {
             "de": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.srt",

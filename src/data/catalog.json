@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T09:17:33.092Z",
+  "generatedAt": "2026-11-15T09:32:30.856Z",
   "totalSeries": 1,
   "totalMovies": 0,
   "totalEpisodes": 2,
@@ -7,14 +7,16 @@
     {
       "slug": "friends-german-dub",
       "title": "Friends (German Dub)",
-      "description": "Follow six friends navigating life, romance, and laughter in 1990s Manhattan. An ideal sitcom for German learners with natural everyday dialogue.",
+      "description": "Begleite Rachel, Monica, Phoebe, Joey, Chandler und Ross durch ihren chaotischen und humorvollen Alltag in Manhattan. Eine der besten Sitcoms zum Deutschlernen mit lebendigen, natürlichen Alltagsdialogen.",
       "language": "de",
       "genres": [
-        "Series"
+        "Comedy",
+        "Sitcom",
+        "Sprachlernen"
       ],
-      "featured": false,
-      "posterSrc": null,
-      "backdropSrc": null,
+      "featured": true,
+      "posterSrc": "/media/series/Friends (German Dub)/cover.jpg",
+      "backdropSrc": "/media/series/Friends (German Dub)/backdrop.jpg",
       "totalSeasons": 1,
       "totalEpisodes": 2,
       "seasons": [

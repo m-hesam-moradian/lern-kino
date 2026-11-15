@@ -22,6 +22,7 @@ export const DEFAULT_SUBTITLE_PREFERENCES: SubtitlePreferences = {
   enColor: 'yellow',
   bgOpacity: 'glass',
   offsetSeconds: 0,
+  snappyDialogue: true,
 };
 
 /**
@@ -50,6 +51,7 @@ export function getSubtitlePreferences(): SubtitlePreferences {
       enColor: validColors.includes(parsed.enColor as CaptionEnColor) ? (parsed.enColor as CaptionEnColor) : DEFAULT_SUBTITLE_PREFERENCES.enColor,
       bgOpacity: validOpacities.includes(parsed.bgOpacity as CaptionBgOpacity) ? (parsed.bgOpacity as CaptionBgOpacity) : DEFAULT_SUBTITLE_PREFERENCES.bgOpacity,
       offsetSeconds: typeof parsed.offsetSeconds === 'number' && !isNaN(parsed.offsetSeconds) ? parsed.offsetSeconds : 0,
+      snappyDialogue: typeof parsed.snappyDialogue === 'boolean' ? parsed.snappyDialogue : DEFAULT_SUBTITLE_PREFERENCES.snappyDialogue,
     };
   } catch (err) {
     console.warn('[LernKino] Failed to read subtitle preferences:', err);

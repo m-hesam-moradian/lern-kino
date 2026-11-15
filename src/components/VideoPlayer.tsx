@@ -1222,6 +1222,44 @@ export default function VideoPlayer({
             </div>
           </div>
 
+          {/* Snappy Fast-Speech Transition */}
+          <div className="pt-1 border-t border-white/10">
+            <button
+              onClick={() => {
+                const nextVal = !(subtitlePrefs.snappyDialogue ?? true);
+                const updated = saveSubtitlePreferences({ snappyDialogue: nextVal });
+                setSubtitlePrefs(updated);
+              }}
+              className="w-full flex items-center justify-between text-left py-1 group"
+              type="button"
+            >
+              <div>
+                <div className="text-[11px] font-semibold text-slate-300 flex items-center gap-1.5">
+                  <span>⚡ Snappy Fast Dialogue</span>
+                  <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${
+                    (subtitlePrefs.snappyDialogue ?? true) ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/10 text-slate-400'
+                  }`}>
+                    {(subtitlePrefs.snappyDialogue ?? true) ? 'ACTIVE' : 'OFF'}
+                  </span>
+                </div>
+                <div className="text-[10px] text-slate-400 font-normal">
+                  Advances on time during rapid speech without lingering old lines
+                </div>
+              </div>
+              <div
+                className={`w-8 h-4 rounded-full transition-colors relative flex items-center px-0.5 shrink-0 ml-2 ${
+                  (subtitlePrefs.snappyDialogue ?? true) ? 'bg-cyan-500' : 'bg-white/20'
+                }`}
+              >
+                <div
+                  className={`w-3 h-3 rounded-full bg-white transition-transform ${
+                    (subtitlePrefs.snappyDialogue ?? true) ? 'translate-x-4' : 'translate-x-0'
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
+
           {/* Custom Local SRT Pickers */}
           <div className="space-y-2 pt-1 border-t border-white/10">
             <label className="text-[11px] font-semibold text-slate-400">Custom Subtitle Files</label>

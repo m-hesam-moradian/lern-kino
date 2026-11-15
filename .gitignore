@@ -21,6 +21,11 @@ yarn-error.log*
 # TypeScript cache
 *.tsbuildinfo
 
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
 # OS & Editor artifacts
 .DS_Store
 Thumbs.db

@@ -26,21 +26,34 @@ export default function DualSubtitleOverlay({
   controlsVisible,
   onWordClick,
 }: DualSubtitleOverlayProps) {
-  const { mode, fontSize, enColor, bgOpacity, offsetSeconds } = preferences;
+  const { mode, fontSize, enColor, bgOpacity, offsetSeconds, snappyDialogue = true } = preferences;
 
   // Adjust playback time by the user's micro-sync offset
   const syncTime = Math.max(0, currentTime + (offsetSeconds || 0));
 
   // Fast binary-search lookup for active cues (hooks must run unconditionally)
-  const activeGermanCues = useMemo(() => {
+  const rawGermanCues = useMemo(() => {
     if (mode === 'off' || mode === 'en') return [];
     return findActiveCues(germanCues, syncTime);
   }, [germanCues, syncTime, mode]);
 
-  const activeEnglishCues = useMemo(() => {
+  const rawEnglishCues = useMemo(() => {
     if (mode === 'off' || mode === 'de') return [];
     return findActiveCues(englishCues, syncTime);
   }, [englishCues, syncTime, mode]);
+
+  // Snappy Fast Dialogue Mode:
+  // When characters speak rapidly and cues overlap, prioritize the newest active cue
+  // so the caption box immediately cuts to the current spoken line on time without lingering old text.
+  const activeGermanCues = useMemo(() => {
+    if (!snappyDialogue || rawGermanCues.length <= 1) return rawGermanCues;
+    return [rawGermanCues[rawGermanCues.length - 1]];
+  }, [rawGermanCues, snappyDialogue]);
+
+  const activeEnglishCues = useMemo(() => {
+    if (!snappyDialogue || rawEnglishCues.length <= 1) return rawEnglishCues;
+    return [rawEnglishCues[rawEnglishCues.length - 1]];
+  }, [rawEnglishCues, snappyDialogue]);
 
   // If captions are turned off, don't render anything
   if (mode === 'off') {

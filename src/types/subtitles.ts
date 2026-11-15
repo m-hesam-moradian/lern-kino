@@ -34,6 +34,8 @@ export interface SubtitlePreferences {
   bgOpacity: CaptionBgOpacity;
   /** Global audio/subtitle sync offset in seconds (e.g. -0.2s or +0.3s) */
   offsetSeconds: number;
+  /** Immediately advance to newest caption when dialogue is fast and overlapping */
+  snappyDialogue?: boolean;
 }
 
 export interface SubtitleTrackState {

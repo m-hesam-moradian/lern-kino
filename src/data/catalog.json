@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-15T10:54:16.211Z",
+  "generatedAt": "2026-11-15T12:04:26.754Z",
   "totalSeries": 1,
   "totalMovies": 0,
-  "totalEpisodes": 2,
+  "totalEpisodes": 10,
   "series": [
     {
       "slug": "friends-german-dub",
@@ -18,7 +18,7 @@
       "posterSrc": "/media/series/Friends (German Dub)/cover.jpg",
       "backdropSrc": "/media/series/Friends (German Dub)/backdrop.jpg",
       "totalSeasons": 1,
-      "totalEpisodes": 2,
+      "totalEpisodes": 10,
       "seasons": [
         {
           "seasonNumber": 1,
@@ -45,14 +45,144 @@
               "seriesSlug": "friends-german-dub",
               "seasonNumber": 1,
               "episodeNumber": 2,
-              "title": "Episode 2",
+              "title": "The One with the Sonogram at the End",
+              "description": "Ross finds out his ex-wife is pregnant. Rachel tries to return her engagement ring to Barry.",
               "videoSrc": "https://drive.usercontent.google.com/download?id=1kyA_YwF1wDrJ8HyMimdl9_KZJtHTcfJ0&export=download&confirm=t",
               "isExternalVideo": true,
               "thumbnailSrc": null,
               "subtitles": {
                 "de": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.srt",
                 "en": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.en.srt"
-              }
+              },
+              "durationSeconds": 1362
+            },
+            {
+              "id": "s01e03",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 3,
+              "title": "The One with the Thumb",
+              "description": "Monica dates an attractive guy that everyone adores. Chandler takes up smoking again. Phoebe finds a thumb in a soda can.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/3/S1E3.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e04",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 4,
+              "title": "The One with George Stephanopoulos",
+              "description": "Joey and Chandler take Ross to a hockey game to take his mind off his anniversary. Rachel, Monica, and Phoebe spy on George Stephanopoulos.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/4/S1E4.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e05",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 5,
+              "title": "The One with the East German Laundry Detergent",
+              "description": "Ross helps Rachel do laundry for the first time. Joey recruits Monica to pose as his date to win back his ex-girlfriend Angela.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/5/S1E5.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e06",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 6,
+              "title": "The One with the Butt",
+              "description": "Joey lands an acting gig as Al Pacino's shower body double. Chandler dates a woman who is seeing other men.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/6/S1E6.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e07",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 7,
+              "title": "The One with the Blackout",
+              "description": "A massive blackout hits New York City. Chandler gets trapped in an ATM vestibule with model Jill Goodacre. Ross tries to tell Rachel his feelings.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/7/S1E7.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e08",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 8,
+              "title": "The One Where Nana Dies Twice",
+              "description": "Ross and Monica's grandmother passes away. Chandler is perplexed when his office colleagues assume he is gay.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/8/S1E8.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e09",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 9,
+              "title": "The One Where Underdog Gets Away",
+              "description": "Thanksgiving dinner burns when the gang locks themselves out of Monica's apartment while watching the runaway Underdog balloon.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/9/S1E9.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
+            },
+            {
+              "id": "s01e10",
+              "seriesSlug": "friends-german-dub",
+              "seasonNumber": 1,
+              "episodeNumber": 10,
+              "title": "The One with the Monkey",
+              "description": "The friends agree to spend New Year's Eve date-free, but things get complicated. Ross adopts a capuchin monkey named Marcel.",
+              "videoSrc": "/media/series/Friends (German Dub)/seasons/1/10/S1E10.mp4",
+              "isExternalVideo": false,
+              "thumbnailSrc": null,
+              "subtitles": {
+                "de": null,
+                "en": null
+              },
+              "durationSeconds": 1320
             }
           ]
         }
@@ -87,14 +217,144 @@
           "seriesSlug": "friends-german-dub",
           "seasonNumber": 1,
           "episodeNumber": 2,
-          "title": "Episode 2",
+          "title": "The One with the Sonogram at the End",
+          "description": "Ross finds out his ex-wife is pregnant. Rachel tries to return her engagement ring to Barry.",
           "videoSrc": "https://drive.usercontent.google.com/download?id=1kyA_YwF1wDrJ8HyMimdl9_KZJtHTcfJ0&export=download&confirm=t",
           "isExternalVideo": true,
           "thumbnailSrc": null,
           "subtitles": {
             "de": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.srt",
             "en": "/media/series/Friends (German Dub)/seasons/1/2/S1E2.en.srt"
-          }
+          },
+          "durationSeconds": 1362
+        },
+        {
+          "id": "s01e03",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 3,
+          "title": "The One with the Thumb",
+          "description": "Monica dates an attractive guy that everyone adores. Chandler takes up smoking again. Phoebe finds a thumb in a soda can.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/3/S1E3.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e04",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 4,
+          "title": "The One with George Stephanopoulos",
+          "description": "Joey and Chandler take Ross to a hockey game to take his mind off his anniversary. Rachel, Monica, and Phoebe spy on George Stephanopoulos.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/4/S1E4.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e05",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 5,
+          "title": "The One with the East German Laundry Detergent",
+          "description": "Ross helps Rachel do laundry for the first time. Joey recruits Monica to pose as his date to win back his ex-girlfriend Angela.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/5/S1E5.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e06",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 6,
+          "title": "The One with the Butt",
+          "description": "Joey lands an acting gig as Al Pacino's shower body double. Chandler dates a woman who is seeing other men.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/6/S1E6.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e07",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 7,
+          "title": "The One with the Blackout",
+          "description": "A massive blackout hits New York City. Chandler gets trapped in an ATM vestibule with model Jill Goodacre. Ross tries to tell Rachel his feelings.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/7/S1E7.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e08",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 8,
+          "title": "The One Where Nana Dies Twice",
+          "description": "Ross and Monica's grandmother passes away. Chandler is perplexed when his office colleagues assume he is gay.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/8/S1E8.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e09",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 9,
+          "title": "The One Where Underdog Gets Away",
+          "description": "Thanksgiving dinner burns when the gang locks themselves out of Monica's apartment while watching the runaway Underdog balloon.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/9/S1E9.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
+        },
+        {
+          "id": "s01e10",
+          "seriesSlug": "friends-german-dub",
+          "seasonNumber": 1,
+          "episodeNumber": 10,
+          "title": "The One with the Monkey",
+          "description": "The friends agree to spend New Year's Eve date-free, but things get complicated. Ross adopts a capuchin monkey named Marcel.",
+          "videoSrc": "/media/series/Friends (German Dub)/seasons/1/10/S1E10.mp4",
+          "isExternalVideo": false,
+          "thumbnailSrc": null,
+          "subtitles": {
+            "de": null,
+            "en": null
+          },
+          "durationSeconds": 1320
         }
       ]
     }

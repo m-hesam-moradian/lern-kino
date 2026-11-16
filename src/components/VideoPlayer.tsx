@@ -132,6 +132,11 @@ export default function VideoPlayer({
   // Throttling ref for watch progress
   const lastSaveTimestampRef = useRef<number>(0);
 
+  // Initial resume seek guard (prevents repeated snaps on canplay)
+  const hasAppliedInitialSeekRef = useRef<boolean>(false);
+  const pendingSeekTimeRef = useRef<number | null>(null);
+  const seekClearTimerRef = useRef<NodeJS.Timeout | null>(null);
+
   // Up Next auto-advance card state
   const [showUpNextCard, setShowUpNextCard] = useState<boolean>(false);
   const [upNextSeconds, setUpNextSeconds] = useState<number>(6);
@@ -295,11 +300,13 @@ export default function VideoPlayer({
 
   // Check saved progress on mediaId change
   useEffect(() => {
+    hasAppliedInitialSeekRef.current = false;
+    pendingSeekTimeRef.current = null;
     const saved = getProgressForMedia(mediaId);
     if (saved && saved.currentTime > 5 && !saved.completed) {
       setSavedResumeTime(saved.currentTime);
       if (autoResume) {
-        // Will seek in onLoadedMetadata
+        // Will seek once in onLoadedMetadata or onCanPlay
       } else if (startTime === undefined) {
         setShowResumePrompt(true);
       }
@@ -384,12 +391,16 @@ export default function VideoPlayer({
 
     syncDuration();
 
-    if (startTime !== undefined && startTime > 0) {
-      vid.currentTime = startTime;
-      setCurrentTime(startTime);
-    } else if (autoResume && savedResumeTime > 0) {
-      vid.currentTime = savedResumeTime;
-      setCurrentTime(savedResumeTime);
+    if (!hasAppliedInitialSeekRef.current) {
+      if (startTime !== undefined && startTime > 0) {
+        vid.currentTime = startTime;
+        setCurrentTime(startTime);
+        hasAppliedInitialSeekRef.current = true;
+      } else if (autoResume && savedResumeTime > 0) {
+        vid.currentTime = savedResumeTime;
+        setCurrentTime(savedResumeTime);
+        hasAppliedInitialSeekRef.current = true;
+      }
     }
   };
 
@@ -401,12 +412,17 @@ export default function VideoPlayer({
     syncDuration();
     const vid = videoRef.current;
     if (!vid) return;
-    if (startTime !== undefined && startTime > 0 && Math.abs(vid.currentTime - startTime) > 1) {
-      vid.currentTime = startTime;
-      setCurrentTime(startTime);
-    } else if (autoResume && savedResumeTime > 0 && Math.abs(vid.currentTime - savedResumeTime) > 1) {
-      vid.currentTime = savedResumeTime;
-      setCurrentTime(savedResumeTime);
+
+    if (!hasAppliedInitialSeekRef.current) {
+      if (startTime !== undefined && startTime > 0) {
+        vid.currentTime = startTime;
+        setCurrentTime(startTime);
+        hasAppliedInitialSeekRef.current = true;
+      } else if (autoResume && savedResumeTime > 0) {
+        vid.currentTime = savedResumeTime;
+        setCurrentTime(savedResumeTime);
+        hasAppliedInitialSeekRef.current = true;
+      }
     }
   };
 
@@ -429,7 +445,7 @@ export default function VideoPlayer({
     if (!vid) return;
 
     const vTime = vid.currentTime;
-    if (!isScrubbing) {
+    if (!isScrubbing && pendingSeekTimeRef.current === null) {
       setCurrentTime(vTime);
       if (onTimeUpdateCallback) {
         onTimeUpdateCallback(vTime);
@@ -473,34 +489,67 @@ export default function VideoPlayer({
   }, []);
 
   const handleSeek = useCallback(
-    (seconds: number) => {
+    (seconds: number, updateHud = false, hudPrefix = '') => {
       const vid = videoRef.current;
       if (!vid) return;
+      hasAppliedInitialSeekRef.current = true;
       const effDur = getEffectiveDuration();
       // If duration is known, clamp between 0 and effDur; otherwise just non-negative
       const target = effDur > 0 ? Math.max(0, Math.min(effDur, seconds)) : Math.max(0, seconds);
 
       if (!isNaN(target) && isFinite(target)) {
+        pendingSeekTimeRef.current = target;
+        setCurrentTime(target);
+        if (onTimeUpdateCallback) {
+          onTimeUpdateCallback(target);
+        }
+
         try {
           vid.currentTime = target;
         } catch (err) {
           console.warn('[LernKino] Seek error:', err);
         }
-        setCurrentTime(target);
+
         commitProgress(true);
+
+        if (updateHud) {
+          const sign = hudPrefix ? `${hudPrefix} ` : '';
+          showHud(`${sign}${formatTimestamp(target)}`);
+        }
+
+        if (seekClearTimerRef.current) {
+          clearTimeout(seekClearTimerRef.current);
+        }
+        seekClearTimerRef.current = setTimeout(() => {
+          pendingSeekTimeRef.current = null;
+        }, 500);
       }
     },
-    [getEffectiveDuration, commitProgress]
+    [getEffectiveDuration, commitProgress, onTimeUpdateCallback, showHud]
   );
 
   const handleSkip = useCallback(
     (deltaSeconds: number) => {
       const vid = videoRef.current;
       if (!vid) return;
-      const baseTime = isScrubbing && scrubbingTime !== null ? scrubbingTime : vid.currentTime;
-      handleSeek(baseTime + deltaSeconds);
+      hasAppliedInitialSeekRef.current = true;
+      const effDur = getEffectiveDuration();
+
+      // Determine starting base: if multiple rapid clicks occur, build upon pending target
+      const currentBase =
+        pendingSeekTimeRef.current !== null
+          ? pendingSeekTimeRef.current
+          : (isScrubbing && scrubbingTime !== null ? scrubbingTime : vid.currentTime);
+
+      const target = effDur > 0
+        ? Math.max(0, Math.min(effDur, currentBase + deltaSeconds))
+        : Math.max(0, currentBase + deltaSeconds);
+
+      const prefix = deltaSeconds > 0 ? `+${deltaSeconds}s` : `${deltaSeconds}s`;
+      handleSeek(target, true, prefix);
+      wakeControls();
     },
-    [handleSeek, isScrubbing, scrubbingTime]
+    [handleSeek, isScrubbing, scrubbingTime, getEffectiveDuration, wakeControls]
   );
 
   // ── Precise Interactive Timeline Pointer Events ──────────────────────────
@@ -799,14 +848,14 @@ export default function VideoPlayer({
           wakeControls();
           break;
         case 'arrowleft':
+        case 'j':
           e.preventDefault();
           handleSkip(-5);
-          wakeControls();
           break;
         case 'arrowright':
+        case 'l':
           e.preventDefault();
           handleSkip(5);
-          wakeControls();
           break;
         case 'm':
           e.preventDefault();
@@ -930,7 +979,10 @@ export default function VideoPlayer({
               onNextEpisode();
             }
           }}
-          onSeeked={() => commitProgress(true)}
+          onSeeked={() => {
+            pendingSeekTimeRef.current = null;
+            commitProgress(true);
+          }}
           onError={() => setHasVideoError(true)}
           onClick={() => {
             if (!showControls) {
@@ -1021,7 +1073,8 @@ export default function VideoPlayer({
               <div className="flex items-center gap-2 pt-2">
                 <button
                   onClick={() => {
-                    handleSeek(savedResumeTime);
+                    hasAppliedInitialSeekRef.current = true;
+                    handleSeek(savedResumeTime, true, 'Resumed at');
                     setShowResumePrompt(false);
                     videoRef.current?.play().catch(console.warn);
                   }}
@@ -1031,7 +1084,8 @@ export default function VideoPlayer({
                 </button>
                 <button
                   onClick={() => {
-                    handleSeek(0);
+                    hasAppliedInitialSeekRef.current = true;
+                    handleSeek(0, true, 'Started over');
                     setShowResumePrompt(false);
                   }}
                   className="px-3 py-1.5 rounded-lg text-xs font-semibold glass-pill text-slate-300 hover:text-white transition-all"
@@ -1428,19 +1482,23 @@ export default function VideoPlayer({
               </button>
 
               <button
-                onClick={() => handleSkip(-10)}
-                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0"
-                title="Skip back 10 seconds (Left Arrow)"
+                onClick={() => handleSkip(-5)}
+                className="px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-xl text-slate-300 hover:text-cyan-300 hover:bg-white/10 transition-all shrink-0 flex items-center gap-1 group active:scale-95"
+                title="Skip back 5 seconds (Left Arrow or J)"
+                aria-label="Skip back 5 seconds"
               >
-                <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-rotate-45" />
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-tight">5s</span>
               </button>
 
               <button
-                onClick={() => handleSkip(10)}
-                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-cyan-400 hover:bg-white/10 transition-colors shrink-0"
-                title="Skip forward 10 seconds (Right Arrow)"
+                onClick={() => handleSkip(5)}
+                className="px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-xl text-slate-300 hover:text-cyan-300 hover:bg-white/10 transition-all shrink-0 flex items-center gap-1 group active:scale-95"
+                title="Skip forward 5 seconds (Right Arrow or L)"
+                aria-label="Skip forward 5 seconds"
               >
-                <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-tight">5s</span>
+                <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:rotate-45" />
               </button>
 
               {nextEpisodeInfo && (
